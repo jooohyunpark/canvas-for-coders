@@ -112,8 +112,12 @@ npm run dev`}
             <H3>GitHub</H3>
             <p>
               Stores your source code and tracks its history. Combined with
-              Vercel, every push to <code>main</code> build and deploys
+              Vercel, every push to <code>main</code> builds and deploys
               automatically — a complete CI/CD pipeline.
+            </p>
+            <p>
+              For this class, create a repository at the start and develop your
+              final project in it across 7 weeks.
             </p>
 
             <H3>Vercel</H3>

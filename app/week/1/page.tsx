@@ -27,6 +27,14 @@ export default function Week1Page() {
             <H1>Week 1: Introduction</H1>
             <p>Welcome. XXXXX</p>
 
+            <H2>Web as a creative medium</H2>
+            <p>
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industry's standard dummy text
+              ever since the 1500s, when an unknown printer took a galley of
+              type and scrambled it to make a type specimen book.
+            </p>
+
             <H2>Thinking in xyz</H2>
             <p>
               Three.js is a 3D engine for the web. It gives you a virtual space

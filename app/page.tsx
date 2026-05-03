@@ -17,13 +17,17 @@ export default function Page() {
               like to say:
             </p>
             <blockquote>
-              Web browser is a twenty-first century canvas.
+              The web browser is a twenty-first century canvas.
             </blockquote>
             <p>
               For the next seven weeks, we’ll explore Three.js and React Three
-              Fiber as tools for putting your ideas on the web. Bring your
-              curiosity, your questions, and whatever you’ve been wanting to
-              make. I’m looking forward to building with you.
+              Fiberas tools for your creative practice on the web. Each class is
+              split in two: we’ll cover the week’s topic in the first half, then
+              put it into practice with a hands-on exercise in the second.
+            </p>
+            <p>
+              Bring your curiosity, your questions, and whatever you’ve been
+              wanting to make. I’m looking forward to building with you.
             </p>
             <p>:)</p>
             <p>Joohyun</p>

@@ -3,6 +3,7 @@ import { Section } from "@/components/site/section"
 import { Content } from "@/components/site/content"
 import { Article } from "@/components/site/article"
 import { CodeBlock } from "@/components/site/code-block"
+import { H1, H2 } from "@/components/site/heading"
 
 export const metadata: Metadata = {
   title: "W1: Intro",
@@ -21,8 +22,7 @@ v.x = 5
 v.add(new THREE.Vector3(0, 1, 0))
 console.log(v) // Vector3 { x: 5, y: 3, z: 3 }`
 
-const colorCode = `import * as THREE from "three"
-
+const colorCode = `
 const a = new THREE.Color("tomato")
 const b = new THREE.Color("#3366ff")
 const c = new THREE.Color(1, 0, 0.5)`
@@ -45,18 +45,11 @@ export default function Week1Page() {
       <Section>
         <Content>
           <Article>
-            <h1>Week 1: Introduction</h1>
-            <p>
-              Welcome. This semester we treat the web as a creative medium. The
-              browser already includes a 3D graphics pipeline and a render loop;
-              our job is to learn how to use them.
-            </p>
+            <H1>Week 1: Introduction</H1>
+            <p>Welcome. XXXXX</p>
 
-            <h2>Your go-to dictionary</h2>
-            <p>
-              You are not expected to memorize the Three.js API. Keep these two
-              references open while you work:
-            </p>
+            <H2>Your go-to reference</H2>
+            <p>The following references will be helpful as you work:</p>
             <ul>
               <li>
                 <a
@@ -76,11 +69,11 @@ export default function Week1Page() {
                 >
                   Three.js fundamentals
                 </a>{" "}
-                for tutorial-style explanations.
+                for core concepts.
               </li>
             </ul>
 
-            <h2>Thinking in xyz space</h2>
+            <H2>Thinking in xyz space</H2>
             <p>
               Open the{" "}
               <a
@@ -107,77 +100,41 @@ export default function Week1Page() {
               </li>
             </ul>
 
-            <h2>Getting started with a Vite project</h2>
+            <H2>Getting started with a Vite project</H2>
             <p>
               Vite is a dev server and bundler. It gives you fast reload and ES
               module imports, so you can pull in <code>three</code> like any
               other package.
             </p>
-          </Article>
-        </Content>
-      </Section>
 
-      <Section>
-        <Content>
-          <CodeBlock code={installCode} lang="sh" />
-        </Content>
-      </Section>
+            <CodeBlock code={installCode} lang="sh" />
 
-      <Section>
-        <Content>
-          <Article>
-            <h2>Vectors</h2>
+            <H2>Vectors</H2>
             <p>
               A <code>Vector3</code> holds three numbers: <code>x</code>,{" "}
               <code>y</code>, <code>z</code>. We use it for positions,
               directions, and any other quantity with three components.
             </p>
-          </Article>
-        </Content>
-      </Section>
 
-      <Section>
-        <Content>
-          <CodeBlock code={vectorCode} lang="ts" />
-        </Content>
-      </Section>
+            <CodeBlock code={vectorCode} lang="ts" />
 
-      <Section>
-        <Content>
-          <Article>
-            <h2>Colors</h2>
+            <H2>Colors</H2>
             <p>
               <code>Color</code> accepts a CSS name, a hex string, or three
               numbers in the range 0&ndash;1. Three.js stores it as floats so
               the GPU can blend between values.
             </p>
-          </Article>
-        </Content>
-      </Section>
+            <CodeBlock code={colorCode} lang="js" />
 
-      <Section>
-        <Content>
-          <CodeBlock code={colorCode} lang="ts" />
-        </Content>
-      </Section>
-
-      <Section>
-        <Content>
-          <Article>
-            <h2>Object properties</h2>
+            <H2>Object properties</H2>
             <p>
               Meshes, lights, cameras, and groups all extend{" "}
               <code>Object3D</code>. They share the same transform:{" "}
               <code>position</code>, <code>rotation</code>, and{" "}
               <code>scale</code>. Add an object with <code>scene.add()</code>.
             </p>
+            <CodeBlock code={objectCode} lang="ts" />
           </Article>
-        </Content>
-      </Section>
-
-      <Section>
-        <Content>
-          <CodeBlock code={objectCode} lang="ts" />
         </Content>
       </Section>
     </div>

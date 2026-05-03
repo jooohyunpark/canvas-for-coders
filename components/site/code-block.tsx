@@ -19,11 +19,11 @@ export async function CodeBlock({
 
   return (
     <div className="relative">
-      <div className="absolute top-4 right-2 flex h-lh items-center text-sm leading-relaxed">
+      <div className="absolute top-4 right-2 hidden h-lh items-center text-sm leading-relaxed lg:inline-flex">
         <CodeBlockCopyButton text={code} />
       </div>
       <div
-        className="rounded border bg-card p-4 pr-12 text-sm leading-relaxed [&_code]:bg-transparent! [&_code]:p-0 [&_code]:font-mono [&_pre]:m-0 [&_pre]:overflow-x-auto [&_pre]:bg-transparent! [&_pre]:p-0"
+        className="rounded border bg-card p-4 text-sm leading-relaxed [&_code]:bg-transparent! [&_code]:p-0 [&_code]:font-mono [&_pre]:m-0 [&_pre]:overflow-x-auto [&_pre]:bg-transparent! [&_pre]:p-0"
         dangerouslySetInnerHTML={{ __html: html }}
       />
     </div>

@@ -124,6 +124,22 @@ npm run dev`}
 
             <H2>Three.js basic concepts</H2>
 
+            <H3>Pattern</H3>
+            <p>
+              Three.js exposes everything through a single <code>THREE</code>{" "}
+              namespace. You instantiate classes with <code>new</code> and reach
+              every primitive: <code>PerspectiveCamera</code>,{" "}
+              <code>Scene</code>, <code>AmbientLight</code>, and so on.
+            </p>
+            <CodeBlock
+              code={`import * as THREE from "three"
+
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
+const scene = new THREE.Scene()
+const light = new THREE.AmbientLight(0xffffff, 1)`}
+              lang="ts"
+            />
+
             <H3>Vectors</H3>
             <p>
               A <code>Vector3</code> holds three values: <code>x</code>,{" "}
@@ -142,14 +158,15 @@ const d = a.distanceTo(b);
 
             <H3>Colors</H3>
             <p>
-              <code>Color</code> accepts a CSS name, a hex string, or three
-              numbers in the range 0&ndash;1. Three.js stores it as floats so
-              the GPU can blend between values.
+              <code>Color</code> accepts a CSS name, a hex string, a JavaScript
+              hex literal, or three numbers in the range 0&ndash;1. Three.js
+              stores it as floats so the GPU can blend between values.
             </p>
             <CodeBlock
               code={`const color1 = new THREE.Color("coral")
-const color2 = new THREE.Color("#0000ff")
-const color3 = new THREE.Color("rgb(255, 0, 0)")`}
+const color2 = new THREE.Color(0x0000ff) // hex literal — same as "#0000ff"
+const color3 = new THREE.Color("rgb(255, 0, 0)")
+`}
               lang="js"
             />
 

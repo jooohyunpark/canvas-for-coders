@@ -54,10 +54,10 @@ export default function Week1Page() {
                 for the API reference.
               </li>
               <li>
-                <Link href="https://threejs.org/manual/">
+                <Link href="https://threejs.org/manual/#en/fundamentals">
                   Three.js fundamentals
                 </Link>{" "}
-                for core concepts.
+                for a high-level overview.
               </li>
             </ul>
 
@@ -122,35 +122,38 @@ npm run dev`}
               every push auto-deploys.
             </p>
 
-            <H2>Vectors</H2>
+            <H2>Three.js basic concepts</H2>
+
+            <H3>Vectors</H3>
             <p>
-              A <code>Vector3</code> holds three numbers: <code>x</code>,{" "}
+              A <code>Vector3</code> holds three values: <code>x</code>,{" "}
               <code>y</code>, <code>z</code>. We use it for positions,
               directions, and any other quantity with three components.
             </p>
 
             <CodeBlock
-              code={`const v = new THREE.Vector3(1, 2, 3)
-v.x = 5
-v.add(new THREE.Vector3(0, 1, 0))
-console.log(v) // Vector3 { x: 5, y: 3, z: 3 }`}
+              code={`//no arguments; will be initialised to (0, 0, 0)
+const a = new THREE.Vector3()
+const b = new THREE.Vector3(1, 2, 3);
+const d = a.distanceTo(b);
+`}
               lang="ts"
             />
 
-            <H2>Colors</H2>
+            <H3>Colors</H3>
             <p>
               <code>Color</code> accepts a CSS name, a hex string, or three
               numbers in the range 0&ndash;1. Three.js stores it as floats so
               the GPU can blend between values.
             </p>
             <CodeBlock
-              code={`const a = new THREE.Color("tomato")
-const b = new THREE.Color("#3366ff")
-const c = new THREE.Color(1, 0, 0.5)`}
+              code={`const color1 = new THREE.Color("coral")
+const color2 = new THREE.Color("#0000ff")
+const color3 = new THREE.Color("rgb(255, 0, 0)")`}
               lang="js"
             />
 
-            <H2>Object properties</H2>
+            <H3>Object properties</H3>
             <p>
               Meshes, lights, cameras, and groups all extend{" "}
               <code>Object3D</code>. They share the same transform:{" "}

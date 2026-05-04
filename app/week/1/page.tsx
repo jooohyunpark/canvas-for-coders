@@ -3,6 +3,7 @@ import { Link } from "@/components/site/link"
 import { Section } from "@/components/site/section"
 import { Content } from "@/components/site/content"
 import { Article } from "@/components/site/article"
+import { ClickToMove } from "@/components/site/click-to-move"
 import { CodeBlock } from "@/components/site/code-block"
 import { H1, H2, H3 } from "@/components/site/heading"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -24,16 +25,16 @@ export default function Week1Page() {
       <Section>
         <Content>
           <Article>
-            <H1>Week 1: Introduction</H1>
-            <p>Welcome. XXXXX</p>
+            <H1>Week 1: Intro</H1>
 
-            <H2>Web as a creative medium</H2>
             <p>
               Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
+              industry. Lorem Ipsum has been the industry’s standard dummy text
               ever since the 1500s, when an unknown printer took a galley of
               type and scrambled it to make a type specimen book.
             </p>
+
+            <ClickToMove />
 
             <H2>Thinking in xyz</H2>
             <p>

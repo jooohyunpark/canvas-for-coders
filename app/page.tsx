@@ -1,7 +1,7 @@
 import { Section } from "@/components/site/section"
 import { Content } from "@/components/site/content"
 import { Article } from "@/components/site/article"
-import Link from "next/link"
+import { Link } from "@/components/site/link"
 
 export default function Page() {
   return (
@@ -50,7 +50,7 @@ export default function Page() {
               <dt>Class</dt>
               <dd>
                 <div>
-                  Thursdays, Oct 23 &ndash; Dec 11, 2025, 6:00&ndash;8:30pm
+                  Thursdays, Oct 23 &ndash; Dec 11, 2026, 6:00&ndash;8:30pm
                 </div>
                 <div>370 Jay Street, Room 409, Brooklyn Campus</div>
               </dd>
@@ -58,6 +58,15 @@ export default function Page() {
               <dt>Office hours</dt>
               <dd>After class, same room</dd>
             </dl>
+
+            <h2>Assignment</h2>
+            <p>
+              Submit your weekly assignments in the{" "}
+              <Link href="https://github.com/jooohyunpark/canvas-for-coders/discussions/categories/assignments">
+                discussions section of our class repo
+              </Link>
+              .
+            </p>
           </Article>
         </Content>
       </Section>

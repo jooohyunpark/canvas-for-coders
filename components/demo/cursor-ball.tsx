@@ -23,7 +23,7 @@ export function CursorBall() {
       className="relative aspect-video w-full overflow-hidden rounded-lg border"
     >
       <motion.div
-        className="absolute size-8 rounded-full bg-blue-500 sm:size-12"
+        className="absolute size-8 rounded-full bg-indigo-500 sm:size-12"
         style={{ x, y }}
       />
     </div>

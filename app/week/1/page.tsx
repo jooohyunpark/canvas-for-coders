@@ -3,7 +3,7 @@ import { Link } from "@/components/site/link"
 import { Section } from "@/components/site/section"
 import { Content } from "@/components/site/content"
 import { Article } from "@/components/site/article"
-import { CursorBall } from "@/components/site/cursor-ball"
+import { CursorBall } from "@/components/demo/cursor-ball"
 import { CodeBlock } from "@/components/site/code-block"
 import { H1, H2, H3 } from "@/components/site/heading"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -192,9 +192,7 @@ const color3 = new THREE.Color("rgb(255, 0, 0)")
               <code>scale</code>. Add an object with <code>scene.add()</code>.
             </p>
             <CodeBlock
-              code={`import * as THREE from "three"
-
-const geometry = new THREE.BoxGeometry(1, 1, 1)
+              code={`const geometry = new THREE.BoxGeometry(1, 1, 1)
 const material = new THREE.MeshNormalMaterial()
 const mesh = new THREE.Mesh(geometry, material)
 
@@ -208,7 +206,7 @@ scene.add(mesh)`}
 
             <hr />
 
-            <h2>Assignment</h2>
+            <H2>Assignment</H2>
             <ul>
               <li>
                 Read{" "}

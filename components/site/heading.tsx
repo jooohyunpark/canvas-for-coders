@@ -25,7 +25,7 @@ function Heading({ level, className, children, id, ...props }: HeadingProps) {
   const Tag = `h${level}` as const
   const slug = id ?? slugify(extractText(children))
   return (
-    <Tag id={slug} className={cn("scroll-mt-20", className)} {...props}>
+    <Tag id={slug} className={cn("scroll-mt-8", className)} {...props}>
       <a href={`#${slug}`} className="no-underline">
         {children}
       </a>

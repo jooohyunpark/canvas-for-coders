@@ -10,17 +10,20 @@ export function CursorBall() {
   const x = useSpring(0, SPRING)
   const y = useSpring(0, SPRING)
 
+  const moveTo = (e: React.PointerEvent<HTMLDivElement>) => {
+    const bounds = e.currentTarget.getBoundingClientRect()
+    x.set(e.clientX - bounds.left - 24)
+    y.set(e.clientY - bounds.top - 24)
+  }
+
   return (
     <div
-      onPointerMove={(e) => {
-        const bounds = e.currentTarget.getBoundingClientRect()
-        x.set(e.clientX - bounds.left - 24)
-        y.set(e.clientY - bounds.top - 24)
-      }}
+      onPointerMove={moveTo}
+      onPointerDown={moveTo}
       className="relative aspect-video w-full overflow-hidden rounded-lg border"
     >
       <motion.div
-        className="absolute size-12 rounded-full bg-blue-500"
+        className="absolute size-8 rounded-full bg-blue-500 sm:size-12"
         style={{ x, y }}
       />
     </div>

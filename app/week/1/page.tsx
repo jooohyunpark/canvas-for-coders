@@ -3,10 +3,11 @@ import { Link } from "@/components/site/link"
 import { Section } from "@/components/site/section"
 import { Content } from "@/components/site/content"
 import { Article } from "@/components/site/article"
-import { ClickToMove } from "@/components/site/click-to-move"
+import { CursorBall } from "@/components/site/cursor-ball"
 import { CodeBlock } from "@/components/site/code-block"
 import { H1, H2, H3 } from "@/components/site/heading"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Button } from "@/components/ui/button"
 
 export const metadata: Metadata = {
   title: "W1: Intro",
@@ -34,7 +35,7 @@ export default function Week1Page() {
               type and scrambled it to make a type specimen book.
             </p>
 
-            <ClickToMove />
+            <CursorBall />
 
             <H2>Thinking in xyz</H2>
             <p>
@@ -203,6 +204,37 @@ mesh.scale.setScalar(2)
 
 scene.add(mesh)`}
               lang="ts"
+            />
+
+            <hr />
+
+            <h2>Assignment</h2>
+            <ul>
+              <li>
+                Read{" "}
+                <Link href="https://threejs.org/manual/#en/fundamentals">
+                  Three.js fundamentals
+                </Link>{" "}
+                article.
+              </li>
+              <li>
+                Explore creative coding projects and share a few that resonates
+                with you. Describe what makes it stand out and how it connects
+                to you.
+              </li>
+              <li>Start sketching out ideas for your final project.</li>
+            </ul>
+
+            <Button
+              render={
+                <Link
+                  href="https://github.com/jooohyunpark/canvas-for-coders/discussions/categories/assignments"
+                  className="no-underline"
+                >
+                  Submit here
+                </Link>
+              }
+              nativeButton={false}
             />
           </Article>
         </Content>

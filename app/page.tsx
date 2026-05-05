@@ -58,15 +58,6 @@ export default function Page() {
               <dt>Office hours</dt>
               <dd>After class, same room</dd>
             </dl>
-
-            <h2>Assignment</h2>
-            <p>
-              Submit your weekly assignments in the{" "}
-              <Link href="https://github.com/jooohyunpark/canvas-for-coders/discussions/categories/assignments">
-                discussions section of our class repo
-              </Link>
-              .
-            </p>
           </Article>
         </Content>
       </Section>

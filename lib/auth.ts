@@ -22,6 +22,17 @@ export async function authToken(): Promise<string> {
   return hmacHex(secret, password)
 }
 
+export function safePath(input: unknown): string {
+  if (typeof input !== "string") return "/"
+  try {
+    const url = new URL(input, "http://_")
+    if (url.origin !== "http://_") return "/"
+    return url.pathname + url.search + url.hash
+  } catch {
+    return "/"
+  }
+}
+
 export function constantTimeEqual(a: string, b: string): boolean {
   if (a.length !== b.length) return false
   let result = 0

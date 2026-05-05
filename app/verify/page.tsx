@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import { Section } from "@/components/site/section"
 import { Content } from "@/components/site/content"
+import { safePath } from "@/lib/auth"
 import { PasswordForm } from "./PasswordForm"
 
 export const metadata: Metadata = {
@@ -14,9 +15,7 @@ export default async function VerifyPage({
   searchParams: Promise<{ from?: string }>
 }) {
   const { from } = await searchParams
-
-  const redirectTo =
-    from && from.startsWith("/") && !from.startsWith("//") ? from : "/"
+  const redirectTo = safePath(from)
 
   return (
     <Section>

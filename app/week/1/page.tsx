@@ -8,6 +8,7 @@ import { CodeBlock } from "@/components/site/code-block"
 import { H1, H2, H3 } from "@/components/site/heading"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Button } from "@/components/ui/button"
+import { Door } from "@/components/demo/door"
 
 export const metadata: Metadata = {
   title: "W1: Intro",
@@ -36,6 +37,15 @@ export default function Week1Page() {
             </p>
 
             <CursorBall />
+
+            <p>
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industry’s standard dummy text
+              ever since the 1500s, when an unknown printer took a galley of
+              type and scrambled it to make a type specimen book.
+            </p>
+
+            <Door />
 
             <H2>Thinking in xyz</H2>
             <p>

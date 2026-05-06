@@ -20,10 +20,20 @@ export default function Page() {
               The web browser is a twenty-first century canvas.
             </blockquote>
             <p>
-              For the next seven weeks, we’ll explore Three.js and React Three
-              Fiberas tools for your creative practice on the web. Each class is
-              split in two: we’ll cover the week’s topic in the first half, then
-              put it into practice with a hands-on exercise in the second.
+              Over seven weeks, we&apos;ll explore a spectrum of tools for
+              creative practice on the web: from 3D foundations in{" "}
+              <Link href="https://threejs.org/">Three.js</Link>,{" "}
+              <Link href="https://github.com/pmndrs/react-three-fiber">
+                React Three Fiber
+              </Link>
+              , to animation with <Link href="https://gsap.com/">GSAP</Link> and{" "}
+              <Link href="https://www.react-spring.dev/">React Spring</Link>, to
+              advanced interactions with{" "}
+              <Link href="https://github.com/pmndrs/drei">Drei</Link> and{" "}
+              <Link href="https://github.com/pmndrs/react-three-rapier">
+                React Three Rapier
+              </Link>
+              . Each class covers the concept, followed by a hands-on exercise.
             </p>
             <p>
               Bring your curiosity, your questions, and whatever you’ve been

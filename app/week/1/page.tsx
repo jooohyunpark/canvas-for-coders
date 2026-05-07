@@ -8,7 +8,7 @@ import { CodeBlock } from "@/components/site/code-block"
 import { H1, H2, H3 } from "@/components/site/heading"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Button } from "@/components/ui/button"
-import { Door } from "@/components/demo/door"
+import { Doors } from "@/components/demo/doors"
 
 export const metadata: Metadata = {
   title: "W1: Intro",
@@ -29,23 +29,27 @@ export default function Week1Page() {
           <Article>
             <H1>Week 1: Intro</H1>
 
+            <p>But what makes web so unique as a expressive medium?</p>
+
             <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry’s standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book.
+              <strong>First, it is interactive.</strong>
             </p>
+
+            <p>Some dscription...</p>
 
             <CursorBall />
 
             <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry’s standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book.
+              <strong>Second, it is computational.</strong>
             </p>
+            <p>Some dscription...</p>
 
-            <Door />
+            <Doors />
+
+            <p>
+              <strong>Lastly, It’s accessible.</strong>
+            </p>
+            <p>Some dscription...</p>
 
             <H2>Thinking in xyz</H2>
             <p>

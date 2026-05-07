@@ -15,7 +15,7 @@ const LIGHT_HEIGHT = HEIGHT * 2.5
 const SHADOW_RADIUS = Math.hypot(WIDTH / 2, LIGHT_HEIGHT)
 const MIN_DISTANCE = SHADOW_RADIUS * 2
 const X_RANGE = MIN_DISTANCE
-const DOOR_COLORS = ["#ffff00", "#ff5cf3", "#5cfff0"]
+const DOOR_COLORS = ["#00ff00", "#0000ff", "#ff0000"]
 
 type DoorConfig = {
   position: [number, number, number]

@@ -31,25 +31,32 @@ export default function Week1Page() {
 
             <p>But what makes web so unique as a expressive medium?</p>
 
-            <p>
-              <strong>First, it is interactive.</strong>
-            </p>
+            <H3>1. It’s interactive.</H3>
 
             <p>Some dscription...</p>
 
             <CursorBall />
 
+            <H3>2. It’s computational.</H3>
             <p>
-              <strong>Second, it is computational.</strong>
+              Every pixel on the screen is the result of code. That means your
+              work can do things traditional mediums can’t — generate a
+              different composition every time someone visits, respond to live
+              data, or evolve based on audience input.
             </p>
-            <p>Some dscription...</p>
+            <p>
+              Below is my work from 2022, Doors. Each door is placed at a random
+              position on every render. Refresh the browser to see the
+              composition rearrange.
+            </p>
 
             <Doors />
 
+            <H3>3. It’s accessible.</H3>
             <p>
-              <strong>Lastly, It’s accessible.</strong>
+              Web media dones't have a limit to. ~~~ You can experience it
+              anytime anywhere with your computer or phone.
             </p>
-            <p>Some dscription...</p>
 
             <H2>Thinking in xyz</H2>
             <p>

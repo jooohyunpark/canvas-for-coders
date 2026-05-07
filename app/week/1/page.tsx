@@ -32,8 +32,12 @@ export default function Week1Page() {
             <p>But what makes web so unique as a expressive medium?</p>
 
             <H3>1. It’s interactive.</H3>
-
-            <p>Some dscription...</p>
+            <p>
+              A web page can react to a click, a scroll, or a keystroke — every
+              interaction draws the audience deeper into the work. The demo
+              below is a simple example: a ball that follows your cursor. It’s
+              simple, but somehow very engaging.
+            </p>
 
             <CursorBall />
 
@@ -45,8 +49,8 @@ export default function Week1Page() {
               data, or evolve based on audience input.
             </p>
             <p>
-              Below is my work from 2022, Doors. Each door is placed at a random
-              position on every render. Refresh the browser to see the
+              Below is my work, Doors, from 2022. Each door is placed at a
+              random position every time. Refresh the browser to see the
               composition rearrange.
             </p>
 

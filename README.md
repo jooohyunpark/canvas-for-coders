@@ -16,7 +16,7 @@ The web browser is a twenty-first century canvas. This course explores it as a c
 
 By the end of this course, you'll:
 
-1. Build a creative practice on the web with Three.js and React Three Fiber.
+1. Build a creative practice on the web with [Three.js](https://threejs.org/) and [React Three Fiber](https://r3f.docs.pmnd.rs/).
 2. Ship a 3D web project of your own.
 
 ## Course Structure

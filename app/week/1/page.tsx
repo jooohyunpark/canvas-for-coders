@@ -39,7 +39,7 @@ export default function Week1Page() {
             <p>
               Since then, my practice has centered on making creative work with
               web-based media. Of all the tools I’ve tried, it’s the one I keep
-              coming back to — and these are the characteristics that make it
+              coming back to, and these are the characteristics that make it
               feel uniquely expressive to me.
             </p>
 
@@ -71,9 +71,9 @@ export default function Week1Page() {
             <H3>3. It’s universal.</H3>
             <p>
               The web page is one of the most universal mediums there is. Anyone
-              with a computer and an internet can reach it with a URL, anytime,
-              from anywhere in the world. No other medium offers that kind of
-              reach.
+              with a computer and an internet connection can reach it with a
+              URL, anytime, from anywhere in the world. No other medium offers
+              that kind of reach.
             </p>
 
             <H2>Thinking in xyz</H2>

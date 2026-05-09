@@ -47,8 +47,9 @@ export default function Week1Page() {
             <p>
               A web page can react to a click, a scroll, or a keystroke — every
               interaction draws the audience deeper into the work. The demo
-              below is a simple example: a ball that follows your cursor. It’s
-              simple, but somehow very engaging.
+              below is one example: a ball that follows your cursor. It’s
+              simple, but engaging. You can participate immediately without any
+              context.
             </p>
 
             <CursorBall />
@@ -61,9 +62,10 @@ export default function Week1Page() {
               data, or evolve based on audience input.
             </p>
             <p>
-              Below is my work, Doors, from 2022. Each door is placed at a
-              random position every time. Refresh the browser to see the
-              composition rearrange.
+              Below is my work,{" "}
+              <Link href="https://doors.joohyun.dev">Doors</Link>, from 2022.
+              Each door is placed at a random position every time. Refresh the
+              browser to see the composition rearrange.
             </p>
 
             <Doors />

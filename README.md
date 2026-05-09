@@ -10,36 +10,31 @@
 
 ## Course Description
 
-Web browser is a twenty-first century canvas.
-
-As one of today’s most common media, web offers new forms of computational expression and aesthetics. This course explores the creative practice of Three.js and React Three Fiber, guiding students in crafting visual and conceptual experiences that exist natively on the web.
+The web browser is a twenty-first century canvas. This course explores it as a creative medium — using Three.js and React Three Fiber to think in three dimensions, prototype quickly, and shape ideas into interactive experiences that live natively on the web.
 
 ## Course Objectives
 
-At the completion of this course, the students will:
+By the end of this course, you'll:
 
-1. Develop perspectives on using web as a creative medium.
-2. Be comfortable prototyping web 3D experience with [Three.js](https://threejs.org/) and [React Three Fiber](https://github.com/pmndrs/react-three-fiber).
-
-## Course Values
-
-### 🤝 Create together
-
-We works as a team. We value every perspective and encourage open creativity through collaboration.
-
-### 💻 Learn and iterate
-
-Ideate, research, prototype, and iterate. Jump into code, embrace mistakes, and learn by doing.
-
-### 👀 Discuss
-
-Bring your questions, curiosities, and perspectives to the table. Thoughtful dialogue and constructive exchange help everyone grow.
+1. Build a creative practice on the web with Three.js and React Three Fiber.
+2. Ship a 3D web project of your own.
 
 ## Course Structure
-
-- Group discussion (15 minutes)
-- First half content (60 minutes)
+- Opening discussion + first half content (75 minutes)
 - Second half content or class exercise (60 minutes)
+
+## Tools
+
+- [Three.js](https://threejs.org/) — JavaScript 3D library
+- [React](https://react.dev/) — JavaScript library for building user interfaces
+- [@react-three/fiber](https://github.com/pmndrs/react-three-fiber) — React renderer for Three.js
+- [@react-three/drei](https://github.com/pmndrs/drei) — helpers and abstractions for React Three Fiber
+- [@react-spring/three](https://github.com/pmndrs/react-spring) — spring-based animation for React
+- [@react-three/rapier](https://github.com/pmndrs/react-three-rapier) — physics engine for React Three Fiber
+- [GSAP](https://gsap.com/) — timeline-based animation library
+- [Vite](https://vitejs.dev/) — build tool and dev server
+- [Vercel](https://vercel.com/) — deployment platform
+- [GitHub](https://github.com/) — code respository and version control
 
 ## Prerequisites
 
@@ -140,18 +135,6 @@ npm run dev
 
 Submit your weekly assignments [here](https://github.com/jooohyunpark/itp-canvas-for-coders/discussions/categories/assignments)
 
-## Tools
-
-- [Three.js](https://threejs.org/) - Javascript 3D library
-- [Vite](https://vitejs.dev/) - Javascript build tool
-- [GSAP](https://greensock.com/gsap/) - Animation library
-- [React](https://react.dev/) - JavaScript library for building UI
-- [@react-three/fiber](https://github.com/pmndrs/react-three-fiber) - A React renderer for Three.js
-- [@react-three/drei](https://github.com/pmndrs/drei) - Ready-to-use helpers for r3f
-- [@react-spring/three](https://github.com/pmndrs/react-spring) - Spring-based React animation library
-- [@react-three/rapier](https://github.com/pmndrs/react-three-rapier) - Rapier physics in r3f
-- [Three.js editor](https://threejs.org/editor/)
-- [Three.js devtools](https://chromewebstore.google.com/detail/threejs-devtools/jechbjkglifdaldbdbigibihfaclnkbo)
 
 ## Resources
 

@@ -111,7 +111,7 @@ export function Doors() {
         flat
         orthographic
         camera={{
-          position: [-10, 5, -10],
+          position: [-20, 10, -10],
           zoom: 20,
           near: 0,
           far: 1000,

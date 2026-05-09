@@ -28,6 +28,10 @@ export default function Week1Page() {
         <Content>
           <Article>
             <H1>Week 1: Intro</H1>
+            <p>
+              Hi, I’m Joohyun. I’m ITP class of 2019 and work as a design
+              engineer.
+            </p>
 
             <p>
               I remember the moment I was first introduced to p5.js in ICM.
@@ -78,11 +82,14 @@ export default function Week1Page() {
               that kind of reach.
             </p>
 
+            <p>Now, let’s get into Three.js.</p>
+
             <H2>Thinking in xyz</H2>
             <p>
-              Three.js is a 3D engine for the web. It gives you a virtual space
-              where you place objects, point a camera at them, and render the
-              result to a canvas. Open the{" "}
+              <Link href="https://threejs.org/">Three.js</Link> is a 3D engine
+              for the web. It gives you a virtual space where you place objects,
+              point a camera at them, and render the result to a canvas. Open
+              the{" "}
               <Link href="https://threejs.org/editor/">Three.js editor</Link>{" "}
               and see what that looks like.
             </p>

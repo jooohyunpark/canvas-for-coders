@@ -257,11 +257,10 @@ scene.add(mesh)`}
                 article.
               </li>
               <li>
-                Explore creative coding projects and share a few that resonates
-                with you. Describe what makes it stand out and how it connects
-                to you.
+                Share a few web projects that inspire you. What makes them stand
+                out? How do they connect to your own work or interests?
               </li>
-              <li>Start sketching out ideas for your final project.</li>
+              <li>Start sketching ideas for your final project.</li>
             </ul>
 
             <Button

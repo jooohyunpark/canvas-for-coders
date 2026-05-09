@@ -43,12 +43,13 @@ Bring your questions, curiosities, and perspectives to the table. Thoughtful dia
 
 ## Prerequisites
 
-Please setup belows on your machine before the first class.
+Please complete the following before the first class:
 
-- Code editor such as [Visual Studio Code](https://code.visualstudio.com/) or [Cursor](https://cursor.com/)
-- [Node](https://nodejs.org/en/)
-- [npm](https://www.npmjs.com/) (Comes with Node.js installation)
+- Code editor: [Visual Studio Code](https://code.visualstudio.com/) or [Cursor](https://cursor.com/)
+- [Node.js](https://nodejs.org/en/)
+- [npm](https://www.npmjs.com/) (included with Node.js)
 - [Git](https://github.com/git-guides/install-git)
+- [GitHub account](https://github.com/signup)
 
 ## Get Started
 

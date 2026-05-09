@@ -29,7 +29,19 @@ export default function Week1Page() {
           <Article>
             <H1>Week 1: Intro</H1>
 
-            <p>But what makes web so unique as a expressive medium?</p>
+            <p>
+              I remember the moment I was first introduced to p5.js in ICM.
+              Until then, websites for me were just places to search for
+              information, write documents, and so on. It was mind-blowing to
+              realize I could do unconventional things in the browser.
+            </p>
+
+            <p>
+              Since then, my practice has centered on making creative work with
+              web-based media. Of all the tools I’ve tried, it’s the one I keep
+              coming back to — and these are the characteristics that make it
+              feel uniquely expressive to me.
+            </p>
 
             <H3>1. It’s interactive.</H3>
             <p>
@@ -56,10 +68,12 @@ export default function Week1Page() {
 
             <Doors />
 
-            <H3>3. It’s accessible.</H3>
+            <H3>3. It’s universal.</H3>
             <p>
-              Web media dones't have a limit to. ~~~ You can experience it
-              anytime anywhere with your computer or phone.
+              The web page is one of the most universal mediums there is. Anyone
+              with a computer and an internet can reach it with a URL, anytime,
+              from anywhere in the world. No other medium offers that kind of
+              reach.
             </p>
 
             <H2>Thinking in xyz</H2>

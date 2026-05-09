@@ -59,6 +59,31 @@ export default function Page() {
               <dd>After class, same room</dd>
             </dl>
 
+            <h2>Prerequisites</h2>
+            <p>Please complete the following before the first class:</p>
+            <ul>
+              <li>
+                Code editor:{" "}
+                <Link href="https://code.visualstudio.com/">
+                  Visual Studio Code
+                </Link>{" "}
+                or <Link href="https://www.cursor.com/">Cursor</Link>
+              </li>
+              <li>
+                <Link href="https://nodejs.org/">Node.js</Link>
+              </li>
+              <li>
+                <Link href="https://www.npmjs.com/">npm</Link> (included with
+                Node.js)
+              </li>
+              <li>
+                <Link href="https://git-scm.com/">Git</Link>
+              </li>
+              <li>
+                <Link href="https://github.com/">GitHub</Link> account
+              </li>
+            </ul>
+
             <h2>Tools</h2>
             <ul>
               <li>
@@ -70,9 +95,7 @@ export default function Page() {
                 library for building user interfaces
               </li>
               <li>
-                <Link href="https://r3f.docs.pmnd.rs/">
-                  React Three Fiber
-                </Link>{" "}
+                <Link href="https://r3f.docs.pmnd.rs/">React Three Fiber</Link>{" "}
                 &mdash; React renderer for Three.js
               </li>
               <li>

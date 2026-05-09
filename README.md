@@ -47,30 +47,6 @@ Please complete the following before the first class:
 - [Git](https://github.com/git-guides/install-git)
 - [GitHub account](https://github.com/signup)
 
-## Get Started
-
-Clone this repo. It has weekly code examples in each folder.
-
-```sh
-# Clone the repo
-git clone https://github.com/jooohyunpark/itp-canvas-for-coders.git
-
-# Go to the project folder
-cd itp-canvas-for-coders
-```
-
-To run weekly codebase, navigate to the folder, install dependencies (once), and start the dev server.
-
-```sh
-# Navigate to the weekly project folder
-cd week1
-
-# Install dependencies
-npm install
-
-# Start the dev server
-npm run dev
-```
 
 ## Weekly Topics
 

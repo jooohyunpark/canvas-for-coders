@@ -62,40 +62,48 @@ export default function Page() {
             <h2>Tools</h2>
             <ul>
               <li>
-                <Link href="https://vitejs.dev/">Vite</Link> &mdash; a fast
-                build tool and dev server for modern web projects
+                <Link href="https://threejs.org/">Three.js</Link> &mdash;
+                JavaScript 3D library
               </li>
               <li>
-                <Link href="https://vercel.com/">Vercel</Link> &mdash; a
-                platform for deploying and hosting web projects
+                <Link href="https://react.dev/">React</Link> &mdash; JavaScript
+                library for building user interfaces
               </li>
               <li>
-                <Link href="https://threejs.org/">Three.js</Link> &mdash; the
-                foundational library for 3D graphics in the browser
-              </li>
-              <li>
-                <Link href="https://github.com/pmndrs/react-three-fiber">
+                <Link href="https://r3f.docs.pmnd.rs/">
                   React Three Fiber
                 </Link>{" "}
-                &mdash; a React renderer for Three.js
+                &mdash; React renderer for Three.js
               </li>
               <li>
                 <Link href="https://github.com/pmndrs/drei">Drei</Link> &mdash;
                 helpers and abstractions for React Three Fiber
               </li>
               <li>
-                <Link href="https://gsap.com/">GSAP</Link> &mdash; a
-                timeline-based animation library
-              </li>
-              <li>
                 <Link href="https://www.react-spring.dev/">React Spring</Link>{" "}
-                &mdash; physics-based animation for React
+                &mdash; spring-based animation for React
               </li>
               <li>
                 <Link href="https://github.com/pmndrs/react-three-rapier">
                   React Three Rapier
                 </Link>{" "}
-                &mdash; a physics engine for realistic motion and collisions
+                &mdash; physics engine for React Three Fiber
+              </li>
+              <li>
+                <Link href="https://gsap.com/">GSAP</Link> &mdash;
+                timeline-based animation library
+              </li>
+              <li>
+                <Link href="https://vitejs.dev/">Vite</Link> &mdash; build tool
+                and dev server
+              </li>
+              <li>
+                <Link href="https://vercel.com/">Vercel</Link> &mdash;
+                deployment platform
+              </li>
+              <li>
+                <Link href="https://github.com/">GitHub</Link> &mdash; code
+                repository
               </li>
             </ul>
           </Article>

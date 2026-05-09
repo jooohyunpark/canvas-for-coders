@@ -27,15 +27,16 @@ By the end of this course, you'll:
 
 - [Three.js](https://threejs.org/) — JavaScript 3D library
 - [React](https://react.dev/) — JavaScript library for building user interfaces
-- [@react-three/fiber](https://github.com/pmndrs/react-three-fiber) — React renderer for Three.js
-- [@react-three/drei](https://github.com/pmndrs/drei) — helpers and abstractions for React Three Fiber
-- [@react-spring/three](https://github.com/pmndrs/react-spring) — spring-based animation for React
-- [@react-three/rapier](https://github.com/pmndrs/react-three-rapier) — physics engine for React Three Fiber
+- [React Three Fiber](https://r3f.docs.pmnd.rs/) — React renderer for Three.js
+- [Drei](https://github.com/pmndrs/drei) — helpers and abstractions for React Three Fiber
+- [React Spring](https://www.react-spring.dev/) — spring-based animation for React
+- [React Three Rapier](https://github.com/pmndrs/react-three-rapier) — physics engine for React Three Fiber
 - [GSAP](https://gsap.com/) — timeline-based animation library
 - [Vite](https://vitejs.dev/) — build tool and dev server
 - [Vercel](https://vercel.com/) — deployment platform
-- [GitHub](https://github.com/) — code respository and version control
+- [GitHub](https://github.com/) — code repository
 
+  
 ## Prerequisites
 
 Please complete the following before the first class:

@@ -23,6 +23,18 @@ By the end of this course, you'll:
 - Opening discussion + first half content (75 minutes)
 - Second half content or class exercise (60 minutes)
 
+  
+## Prerequisites
+
+Please complete the following before the first class:
+
+- Code editor: [Visual Studio Code](https://code.visualstudio.com/) or [Cursor](https://cursor.com/)
+- [Node.js](https://nodejs.org/en/)
+- [npm](https://www.npmjs.com/) (included with Node.js)
+- [Git](https://github.com/git-guides/install-git)
+- [GitHub account](https://github.com/signup)
+
+
 ## Tools
 
 - [Three.js](https://threejs.org/) — JavaScript 3D library
@@ -37,16 +49,6 @@ By the end of this course, you'll:
 - [GitHub](https://github.com/) — code repository
 
   
-## Prerequisites
-
-Please complete the following before the first class:
-
-- Code editor: [Visual Studio Code](https://code.visualstudio.com/) or [Cursor](https://cursor.com/)
-- [Node.js](https://nodejs.org/en/)
-- [npm](https://www.npmjs.com/) (included with Node.js)
-- [Git](https://github.com/git-guides/install-git)
-- [GitHub account](https://github.com/signup)
-
 
 ## Weekly Topics
 

@@ -4,6 +4,7 @@ import { ThemeProvider } from "next-themes"
 import { Nav } from "@/components/site/nav"
 import { siteUrl } from "@/lib/site"
 import { cn } from "@/lib/utils"
+import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-sans" })
@@ -49,6 +50,8 @@ export default function RootLayout({
           <Nav />
           <main className="flex-1 lg:py-8 lg:pl-64">{children}</main>
         </ThemeProvider>
+
+        <Analytics />
       </body>
     </html>
   )

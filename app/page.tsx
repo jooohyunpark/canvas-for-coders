@@ -29,8 +29,7 @@ export default function Page() {
               Bring your curiosity, your questions, and whatever you’ve been
               wanting to make. I’m looking forward to building with you.
             </p>
-            <p>:)</p>
-            <p>Joohyun</p>
+            <p>— Joohyun</p>
           </Article>
         </Content>
       </Section>

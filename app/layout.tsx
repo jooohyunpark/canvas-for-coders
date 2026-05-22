@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     template: "%s | Canvas for Coders",
   },
   description:
-    "Web browser is a twenty-first century canvas. A creative practice course exploring Three.js and React Three Fiber at NYU ITP.",
+    "An NYU ITP course on reimagining the web as a creative medium with Three.js and React Three Fiber, taught by Joohyun Park.",
 }
 
 export default function RootLayout({

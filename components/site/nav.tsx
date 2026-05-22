@@ -15,9 +15,9 @@ import { ThemeToggle } from "@/components/site/theme-toggle"
 const navLinks = [
   { href: "/week/1", label: "W1: Intro" },
   { href: "/week/2", label: "W2: Scene" },
-  { href: "/week/3", label: "W3: Motion/Depth" },
-  { href: "/week/4", label: "W4: React " },
-  { href: "/week/5", label: "W5: React Three Fiber" },
+  { href: "/week/3", label: "W3: Motion / Assets" },
+  { href: "/week/4", label: "W4: React" },
+  { href: "/week/5", label: "W5: Components in Space" },
   { href: "/week/6", label: "W6: Interaction" },
 ] as const
 

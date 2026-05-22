@@ -1,5 +1,6 @@
 {
   "name": "canvas-for-coders",
+  "description": "An NYU ITP course on reimagining the web as a creative medium with Three.js and React Three Fiber, taught by Joohyun Park.",
   "author": "Joohyun Park",
   "version": "0.0.1",
   "type": "module",

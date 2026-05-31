@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/button"
 import { Doors } from "@/components/demo/doors"
 
 export const metadata: Metadata = {
-  title: "W1: Intro",
+  title: "Week 1",
 }
 
 const INSTALL_COMMANDS = [

@@ -120,6 +120,9 @@ export function Doors() {
         <OrbitControls
           minPolarAngle={Math.PI * 0.5 * 0.75}
           maxPolarAngle={Math.PI * 0.5 * 0.75}
+          enableDamping
+          dampingFactor={0.05}
+          rotateSpeed={0.5}
           enablePan={false}
           enableZoom={false}
         />

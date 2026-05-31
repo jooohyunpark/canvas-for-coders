@@ -3,12 +3,12 @@ import { Link } from "@/components/site/link"
 import { Section } from "@/components/site/section"
 import { Content } from "@/components/site/content"
 import { Article } from "@/components/site/article"
-import { CursorBall } from "@/components/demo/cursor-ball"
+import { CursorBall } from "./_components/cursor-ball"
 import { CodeBlock } from "@/components/site/code-block"
 import { H1, H2, H3 } from "@/components/site/heading"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Button } from "@/components/ui/button"
-import { Doors } from "@/components/demo/doors"
+import { Doors } from "./_components/doors"
 
 export const metadata: Metadata = {
   title: "Week 1",

@@ -6,6 +6,7 @@ import { CodeBlock } from "@/components/site/code-block"
 import { H1, H2, H3 } from "@/components/site/heading"
 import { BasicScene } from "./_components/basic-scene"
 import { BasicSceneWithControls } from "./_components/basic-scene-with-controls"
+import { BasicSceneWithDebugUI } from "./_components/basic-scene-with-debug-ui"
 
 export const metadata: Metadata = {
   title: "Week 2",
@@ -130,28 +131,28 @@ document.body.appendChild(renderer.domElement);`}
             lang="js"
           />
 
-          <p>Congratulations. You’ve rendered your first scene.</p>
+          <p>Congratulations. You’ve rendered your first Three.js scene.</p>
           <BasicScene />
 
           <H2>Around the scene</H2>
           <p>
-            With the scene in place, two tools make development easier. Controls
-            let you move the camera around, instead of leaving it fixed in one
-            spot. A debug UI lets you tweak values as you build &mdash; handy
-            during development, though you’ll usually remove it before shipping.
+            With the scene in place, a few tools make it more interactive and
+            development process smoother.
           </p>
 
           <H3>Controls</H3>
           <p>
-            Right now the camera is fixed. <code>OrbitControls</code> lets you
-            orbit, pan, and zoom by dragging the mouse &mdash; great for viewing
-            a scene from every angle. It isn’t part of the core library, so you
-            import it separately and pass it the camera and the element to
-            listen on (the renderer’s canvas).
+            Right now the camera is fixed. Three.js ships several control types,
+            each moving the camera in a different way.{" "}
+            <code>OrbitControls</code> is the most common: it lets you orbit,
+            pan, and zoom by dragging the mouse, great for viewing a scene from
+            every angle.
           </p>
           <p>
+            Controls live outside the core Three.js library, so import the one
+            you want and pass it the camera and the renderer’s canvas.{" "}
             <code>enableDamping</code> smooths out the motion, so the camera
-            eases to a stop instead of snapping. When it’s on, call{" "}
+            eases to a stop instead of snapping &mdash; just call{" "}
             <code>controls.update()</code> each frame inside your{" "}
             <code>animate</code> loop.
           </p>
@@ -190,17 +191,15 @@ window.addEventListener('resize', onResize);`}
 
           <H3>Debug UI</H3>
           <p>
-            While building, you’ll constantly want to nudge values &mdash; a
-            color, a position, an intensity &mdash; without editing code and
-            refreshing. A debug UI gives you live controls. <code>lil-gui</code>{" "}
+            A debug UI lets you tweak values live, such as a color, position, or
+            intensity, without editing code and refreshing. <code>lil-gui</code>{" "}
             is the common choice in Three.js.
           </p>
           <p>
-            You create a panel, then add controls bound to an object’s
-            properties. <code>add</code> works for numbers, booleans, and
-            strings (with <code>min</code>, <code>max</code>, and{" "}
-            <code>step</code> for sliders); <code>addColor</code> handles
-            colors.
+            Create a panel, then bind controls to an object’s properties.{" "}
+            <code>add</code> handles numbers, booleans, and strings (pass{" "}
+            <code>min</code>, <code>max</code>, and <code>step</code> for a
+            slider); <code>addColor</code> handles colors.
           </p>
           <CodeBlock
             code={`import GUI from 'three/addons/libs/lil-gui.module.min.js'
@@ -211,6 +210,8 @@ gui.add(material, 'wireframe')
 gui.addColor(material, 'color')`}
             lang="js"
           />
+
+          <BasicSceneWithDebugUI className="mt-8" />
         </Article>
       </Content>
     </Section>

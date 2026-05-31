@@ -1,12 +1,15 @@
 import { codeToHtml } from "shiki"
 import { CodeBlockCopyButton } from "@/components/site/code-block-copy-button"
+import { cn } from "@/lib/utils"
 
 export async function CodeBlock({
   code,
   lang = "tsx",
+  className,
 }: {
   code: string
   lang?: string
+  className?: string
 }) {
   const html = await codeToHtml(code, {
     lang,
@@ -18,7 +21,7 @@ export async function CodeBlock({
   })
 
   return (
-    <div className="relative">
+    <div className={cn("relative", className)}>
       <div className="absolute top-4 right-2 hidden h-lh items-center text-sm leading-relaxed md:inline-flex">
         <CodeBlockCopyButton text={code} />
       </div>

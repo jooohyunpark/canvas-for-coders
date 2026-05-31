@@ -4,6 +4,8 @@ import { Content } from "@/components/site/content"
 import { Article } from "@/components/site/article"
 import { CodeBlock } from "@/components/site/code-block"
 import { H1, H2, H3 } from "@/components/site/heading"
+import { BasicScene } from "./_components/basic-scene"
+import { BasicSceneWithControls } from "./_components/basic-scene-with-controls"
 
 export const metadata: Metadata = {
   title: "Week 2",
@@ -83,8 +85,8 @@ scene.add(mesh)`}
             </li>
           </ul>
           <CodeBlock
-            code={`const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight)
-              
+            code={`const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight)
+camera.position.z = 5
 scene.add(camera)`}
             lang="js"
           />
@@ -128,6 +130,9 @@ document.body.appendChild(renderer.domElement);`}
             lang="js"
           />
 
+          <p>Congratulations. You’ve rendered your first scene.</p>
+          <BasicScene />
+
           <H2>Around the scene</H2>
           <p>
             With the scene in place, two tools make development easier. Controls
@@ -139,15 +144,16 @@ document.body.appendChild(renderer.domElement);`}
           <H3>Controls</H3>
           <p>
             Right now the camera is fixed. <code>OrbitControls</code> lets you
-            orbit, pan, and zoom by dragging the mouse &mdash; great for
-            inspecting a scene from every angle. It isn’t part of the core
-            library, so you import it separately and pass it the camera and the
-            element to listen on (the renderer’s canvas).
+            orbit, pan, and zoom by dragging the mouse &mdash; great for viewing
+            a scene from every angle. It isn’t part of the core library, so you
+            import it separately and pass it the camera and the element to
+            listen on (the renderer’s canvas).
           </p>
           <p>
-            <code>enableDamping</code> adds a little inertia so movement feels
-            smooth. When damping is on, call <code>controls.update()</code> each
-            frame inside your <code>animate</code> loop.
+            <code>enableDamping</code> smooths out the motion, so the camera
+            eases to a stop instead of snapping. When it’s on, call{" "}
+            <code>controls.update()</code> each frame inside your{" "}
+            <code>animate</code> loop.
           </p>
           <CodeBlock
             code={`import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
@@ -161,6 +167,8 @@ function animate() {
 }`}
             lang="js"
           />
+
+          <BasicSceneWithControls className="mt-8" />
 
           <H3>Resize</H3>
           <p>

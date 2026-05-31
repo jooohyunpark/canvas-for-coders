@@ -91,29 +91,26 @@ scene.add(camera)`}
           <H3>Renderer</H3>
           <p>
             The renderer takes the scene and the camera and paints the result
-            onto a canvas. We’ll supply that canvas in the markup &mdash; in{" "}
-            <code>index.html</code>, swap the <code>&lt;h1&gt;</code> for a
-            canvas, placed before your scripts:
+            onto a canvas. With this approach, you let Three.js create the
+            canvas for you and add it to the page yourself.
           </p>
-          <CodeBlock code={`<canvas class="webgl"></canvas>`} lang="html" />
           <p>
-            Select that canvas with <code>document.querySelector(...)</code> and
-            store it in a variable &mdash; we’ll need it again later. Hand it to
-            a <code>WebGLRenderer</code>, then call <code>setSize(...)</code>{" "}
-            with your <code>sizes</code> to match the canvas to the scene.
+            <code>antialias: true</code> smooths jagged edges.{" "}
+            <code>setPixelRatio</code> keeps the render crisp on high-DPI
+            screens, <code>setSize</code> fills the window, and{" "}
+            <code>setAnimationLoop(animate)</code> runs your{" "}
+            <code>animate</code> function every frame. Three.js builds its own
+            canvas as <code>renderer.domElement</code> &mdash; append it to the
+            body to show it.
           </p>
           <CodeBlock
-            code={`const canvas = document.querySelector('canvas.webgl')
-
-const renderer = new THREE.WebGLRenderer({ canvas })
-renderer.setSize(sizes.width, sizes.height)`}
+            code={`const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setPixelRatio(window.devicePixelRatio);
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setAnimationLoop(animate);
+document.body.appendChild(renderer.domElement);`}
             lang="js"
           />
-          <p>
-            The screen still looks empty, but the canvas now exists at the right
-            size &mdash; open the Developer Tools to inspect it if you’re
-            curious.
-          </p>
         </Article>
       </Content>
     </Section>

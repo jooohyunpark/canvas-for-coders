@@ -17,12 +17,13 @@ export default function Week2Page() {
           <H1>Week 2: Scene</H1>
 
           <H2>First scene</H2>
-          <p>Let’s create our scene. Four pieces get us started:</p>
+          <p>Let’s create our scene. We’ll need these to get started:</p>
           <ul>
-            <li>A scene</li>
-            <li>Some objects</li>
-            <li>A camera</li>
-            <li>A renderer</li>
+            <li>Scene</li>
+            <li>Objects</li>
+            <li>Camera</li>
+            <li>Renderer</li>
+            <li>Animation loop</li>
           </ul>
 
           <H3>Scene</H3>
@@ -109,6 +110,97 @@ renderer.setPixelRatio(window.devicePixelRatio);
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setAnimationLoop(animate);
 document.body.appendChild(renderer.domElement);`}
+            lang="js"
+          />
+
+          <H3>Animation loop</H3>
+          <p>
+            The animation loop runs every frame and renders the scene. We pass
+            it to <code>setAnimationLoop</code> as a function &mdash; here we
+            call it <code>animate</code>, but the name is up to you. Later we’ll
+            use it to animate objects, update controls, and more.
+          </p>
+
+          <CodeBlock
+            code={`const animate = () => {
+  renderer.render(scene, camera);
+};`}
+            lang="js"
+          />
+
+          <H2>Around the scene</H2>
+          <p>
+            With the scene in place, two tools make development easier. Controls
+            let you move the camera around, instead of leaving it fixed in one
+            spot. A debug UI lets you tweak values as you build &mdash; handy
+            during development, though you’ll usually remove it before shipping.
+          </p>
+
+          <H3>Controls</H3>
+          <p>
+            Right now the camera is fixed. <code>OrbitControls</code> lets you
+            orbit, pan, and zoom by dragging the mouse &mdash; great for
+            inspecting a scene from every angle. It isn’t part of the core
+            library, so you import it separately and pass it the camera and the
+            element to listen on (the renderer’s canvas).
+          </p>
+          <p>
+            <code>enableDamping</code> adds a little inertia so movement feels
+            smooth. When damping is on, call <code>controls.update()</code> each
+            frame inside your <code>animate</code> loop.
+          </p>
+          <CodeBlock
+            code={`import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
+
+const controls = new OrbitControls(camera, renderer.domElement)
+controls.enableDamping = true
+
+function animate() {
+  controls.update()
+  renderer.render(scene, camera)
+}`}
+            lang="js"
+          />
+
+          <H3>Resize</H3>
+          <p>
+            Make the scene responsive to the viewport. On resize, update the
+            camera’s aspect ratio and the renderer’s size, and call{" "}
+            <code>updateProjectionMatrix()</code> so the new aspect takes
+            effect.
+          </p>
+          <CodeBlock
+            code={`const onResize = () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+};
+
+window.addEventListener('resize', onResize);`}
+            lang="js"
+          />
+
+          <H3>Debug UI</H3>
+          <p>
+            While building, you’ll constantly want to nudge values &mdash; a
+            color, a position, an intensity &mdash; without editing code and
+            refreshing. A debug UI gives you live controls. <code>lil-gui</code>{" "}
+            is the common choice in Three.js.
+          </p>
+          <p>
+            You create a panel, then add controls bound to an object’s
+            properties. <code>add</code> works for numbers, booleans, and
+            strings (with <code>min</code>, <code>max</code>, and{" "}
+            <code>step</code> for sliders); <code>addColor</code> handles
+            colors.
+          </p>
+          <CodeBlock
+            code={`import GUI from 'three/addons/libs/lil-gui.module.min.js'
+
+const gui = new GUI()
+gui.add(mesh.position, 'y', -3, 3, 0.01)
+gui.add(material, 'wireframe')
+gui.addColor(material, 'color')`}
             lang="js"
           />
         </Article>

@@ -7,6 +7,7 @@ import { H1, H2, H3 } from "@/components/site/heading"
 import { BasicScene } from "./_components/basic-scene"
 import { BasicSceneWithControls } from "./_components/basic-scene-with-controls"
 import { BasicSceneWithDebugUI } from "./_components/basic-scene-with-debug-ui"
+import Link from "next/link"
 
 export const metadata: Metadata = {
   title: "Week 2",
@@ -212,6 +213,47 @@ gui.addColor(material, 'color')`}
           />
 
           <BasicSceneWithDebugUI className="mt-8" />
+
+          <H2>Geometries</H2>
+
+          <H3>What is a geometry?</H3>
+          <p>
+            In Three.js, geometries are made of <strong>vertices</strong> (point
+            coordinates in 3D space) and <strong>faces</strong> (triangles that
+            connect those vertices into a surface). Geometries are mostly used
+            to build meshes, but they can also form particles.
+          </p>
+
+          <H3>Types of geometries</H3>
+          <p>
+            Three.js has many built-in geometries. Check the{" "}
+            <Link href="https://threejs.org/docs/">Three.js docs</Link> for a
+            specific geometry and its API.
+          </p>
+          <p>
+            <code>BoxGeometry</code> takes the box’s width, height, and depth,
+            plus optional segment counts that subdivide each face.
+          </p>
+          <CodeBlock
+            code={`const geometry = new THREE.BoxGeometry(1, 1, 1)`}
+            lang="js"
+          />
+          <p>
+            <code>SphereGeometry</code> takes a radius and the number of
+            segments around (<code>widthSegments</code>) and top to bottom (
+            <code>heightSegments</code>). More segments mean a smoother sphere
+            at the cost of more vertices.
+          </p>
+          <p>
+            A handy rule: keep <code>widthSegments</code> at double{" "}
+            <code>heightSegments</code>, since the equator wraps 360° while the
+            vertical span is only 180°. So 32/16 → 64/32 → 128/64. Most of the
+            time, 64/32 is enough for a clean, round sphere.
+          </p>
+          <CodeBlock
+            code={`const geometry = new THREE.SphereGeometry(1, 64, 32)`}
+            lang="js"
+          />
         </Article>
       </Content>
     </Section>

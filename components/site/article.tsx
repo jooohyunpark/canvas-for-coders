@@ -8,7 +8,7 @@ export function Article({
     <article
       data-slot="article"
       className={cn(
-        "prose max-w-none prose-neutral dark:prose-invert",
+        "mx-auto prose prose-neutral dark:prose-invert",
         "prose-headings:font-medium prose-headings:tracking-tight",
         "prose-hr:border-border",
         "marker:text-foreground",

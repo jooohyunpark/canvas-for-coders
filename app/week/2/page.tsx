@@ -216,42 +216,30 @@ gui.addColor(material, 'color')`}
           <BasicSceneWithDebugUI className="mt-8" />
 
           <H2>Geometries</H2>
-
-          <H3>What is a geometry?</H3>
           <p>
-            In Three.js, geometries are made of <strong>vertices</strong> (point
-            coordinates in 3D space) and <strong>faces</strong> (triangles that
-            connect those vertices into a surface). Geometries are mostly used
-            to build meshes, but they can also form particles.
-          </p>
-
-          <H3>Types of geometries</H3>
-          <p>
-            Three.js has many built-in geometries. Check the{" "}
+            Geometries are made of <strong>vertices</strong> (points in 3D
+            space) and <strong>faces</strong> (triangles connecting them into a
+            surface). Three.js has many built-in geometries — see the{" "}
             <Link href="https://threejs.org/manual/#en/primitives">
               primitives article
             </Link>{" "}
-            for a specific geometry and its API.
+            for the full list.
           </p>
-          <p>
-            <code>BoxGeometry</code> takes the box’s width, height, and depth,
-            plus optional segment counts that subdivide each face.
-          </p>
+
+          <H3>BoxGeometry</H3>
+          <p>Takes width, height, and depth.</p>
           <CodeBlock
             code={`const geometry = new THREE.BoxGeometry(1, 1, 1)`}
             lang="js"
           />
+
+          <H3>SphereGeometry</H3>
           <p>
-            <code>SphereGeometry</code> takes a radius and the number of
-            segments around (<code>widthSegments</code>) and top to bottom (
-            <code>heightSegments</code>). More segments mean a smoother sphere
-            at the cost of more vertices.
-          </p>
-          <p>
-            A handy rule: keep <code>widthSegments</code> at double{" "}
-            <code>heightSegments</code>, since the equator wraps 360° while the
-            vertical span is only 180°. So 32/16 → 64/32 → 128/64. Most of the
-            time, 64/32 is enough for a clean, round sphere.
+            Takes a radius, <code>widthSegments</code>, and{" "}
+            <code>heightSegments</code>. More segments mean a smoother sphere at
+            the cost of more vertices. A good rule: keep{" "}
+            <code>widthSegments</code> at double <code>heightSegments</code>{" "}
+            (64/32 is enough for most cases).
           </p>
           <CodeBlock
             code={`const geometry = new THREE.SphereGeometry(1, 64, 32)`}
@@ -338,6 +326,55 @@ scene.add(mesh)`}
             using its{" "}
             <Link href="/week/1#object-properties">object properties</Link>.
           </p>
+
+          <H2>Lights</H2>
+          <p>
+            Lights are required for any material that reacts to shading. Beyond
+            visibility, they’re also essential for setting the tone of your
+            experience. (<code>MeshBasicMaterial</code> and{" "}
+            <code>MeshNormalMaterial</code> ignore lights.)
+          </p>
+
+          <H3>AmbientLight</H3>
+          <p>
+            Lights every surface equally from all directions — no shadows, no
+            shading, just a flat brightness boost across the scene. Use it to
+            lift the darkest areas, not as your only light.
+          </p>
+          <CodeBlock
+            code={`const ambientLight = new THREE.AmbientLight(0xffffff, 1)
+scene.add(ambientLight)`}
+            lang="js"
+          />
+
+          <H3>DirectionalLight</H3>
+          <p>
+            Emits parallel rays in one direction, like sunlight. It has only a
+            direction and no position, so moving it changes the angle, not the
+            distance. Good for outdoor scenes or a primary key light.
+          </p>
+          <CodeBlock
+            code={`const directionalLight = new THREE.DirectionalLight(0xffffff, 2)
+directionalLight.position.set(5, 5, 5)
+scene.add(directionalLight)`}
+            lang="js"
+          />
+
+          <H3>PointLight</H3>
+          <p>
+            Emits light in all directions from a single point, like a bare
+            bulb, with intensity falling off over distance. Use it for lamps,
+            candles, or any localized light source.
+          </p>
+          <CodeBlock
+            code={`// PointLight(color, intensity, distance, decay)
+// distance: max range, 0 = infinite
+// decay: falloff rate, default 2 (physically correct)
+const pointLight = new THREE.PointLight(0xffffff, 10)
+pointLight.position.set(2, 3, 2)
+scene.add(pointLight)`}
+            lang="js"
+          />
         </Article>
       </Content>
     </Section>

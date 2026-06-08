@@ -3,7 +3,6 @@
 import { cn } from "@/lib/utils"
 import { useEffect, useRef } from "react"
 import * as THREE from "three"
-import { OrbitControls } from "three/addons/controls/OrbitControls.js"
 
 export function MaterialsScene({ className }: { className?: string }) {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -50,11 +49,7 @@ export function MaterialsScene({ className }: { className?: string }) {
     renderer.setSize(container.clientWidth, container.clientHeight)
     container.appendChild(renderer.domElement)
 
-    const controls = new OrbitControls(camera, renderer.domElement)
-    controls.enableDamping = true
-
     const animate = () => {
-      controls.update()
       renderer.render(scene, camera)
     }
     renderer.setAnimationLoop(animate)
@@ -70,7 +65,6 @@ export function MaterialsScene({ className }: { className?: string }) {
     return () => {
       resizeObserver.disconnect()
       renderer.setAnimationLoop(null)
-      controls.dispose()
       renderer.dispose()
       geometry.dispose()
       basicMaterial.dispose()

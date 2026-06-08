@@ -9,6 +9,7 @@ import { BasicSceneWithControls } from "./_components/basic-scene-with-controls"
 import { BasicSceneWithDebugUI } from "./_components/basic-scene-with-debug-ui"
 import { MaterialsScene } from "./_components/materials-scene"
 import { LightsScene } from "./_components/lights-scene"
+import { TexturesScene } from "./_components/textures-scene"
 import { Link } from "@/components/site/link"
 
 export const metadata: Metadata = {
@@ -333,7 +334,11 @@ scene.add(mesh)`}
             Lights are required for any material that reacts to shading. Beyond
             visibility, they’re also essential for setting the tone of your
             experience. (<code>MeshBasicMaterial</code> and{" "}
-            <code>MeshNormalMaterial</code> ignore lights.)
+            <code>MeshNormalMaterial</code> ignore lights.) The{" "}
+            <Link href="https://threejs.org/manual/?q=light#en/lights">
+              lights article
+            </Link>{" "}
+            covers lighting in more details.
           </p>
 
           <H3>AmbientLight</H3>
@@ -363,9 +368,9 @@ scene.add(directionalLight)`}
 
           <H3>PointLight</H3>
           <p>
-            Emits light in all directions from a single point, like a bare
-            bulb, with intensity falling off over distance. Use it for lamps,
-            candles, or any localized light source.
+            Emits light in all directions from a single point, like a bare bulb,
+            with intensity falling off over distance. Use it for lamps, candles,
+            or any localized light source.
           </p>
           <CodeBlock
             code={`// PointLight(color, intensity, distance, decay)
@@ -376,7 +381,26 @@ pointLight.position.set(-3, 2, 0)
 scene.add(pointLight)`}
             lang="js"
           />
-          <LightsScene className="mt-8" />
+          <LightsScene className="mt-6" />
+
+          <H2>Textures</H2>
+          <p>
+            A texture is an image wrapped onto the surface of a mesh. Load it
+            with <code>TextureLoader</code> and pass it to a material through
+            the <code>map</code> property. For photos, set the color space to{" "}
+            <code>SRGBColorSpace</code>, or the colors will look washed out. The{" "}
+            <Link href="https://threejs.org/manual/?q=texture#en/textures">
+              textures article
+            </Link>{" "}
+            covers texturing in depth.
+          </p>
+          <CodeBlock
+            code={`const texture = new THREE.TextureLoader().load('/hubble_telescope_picture.jpg')
+texture.colorSpace = THREE.SRGBColorSpace
+const material = new THREE.MeshBasicMaterial({ map: texture })`}
+            lang="js"
+          />
+          <TexturesScene className="mt-6" />
         </Article>
       </Content>
     </Section>

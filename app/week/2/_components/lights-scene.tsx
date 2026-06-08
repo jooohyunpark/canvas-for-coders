@@ -44,7 +44,7 @@ export function LightsScene({ className }: { className?: string }) {
     const ambientLight = new THREE.AmbientLight("white", 0.2)
     scene.add(ambientLight)
 
-    const directionalLight = new THREE.DirectionalLight("blue", 5)
+    const directionalLight = new THREE.DirectionalLight("blue", 3)
     directionalLight.position.set(5, 5, 5)
     scene.add(directionalLight)
 

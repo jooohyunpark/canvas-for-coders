@@ -131,12 +131,14 @@ export function Nav() {
                 transition={{ duration: 0.2, ease: "easeOut" }}
                 className="fixed inset-x-0 top-[calc(var(--header-height)+1px)] z-50 h-[calc(100dvh-var(--header-height)-1px)] bg-background"
               >
-                <div className="flex h-full flex-col gap-6 overflow-y-auto overscroll-contain px-6 py-6">
-                  <NavLinks onNavigate={close} />
-                  <div className="mt-auto">
-                    <ThemeToggle />
+                <Content className="h-full py-8">
+                  <div className="flex h-full flex-col overflow-y-auto overscroll-contain">
+                    <NavLinks onNavigate={close} />
+                    <div className="mt-auto">
+                      <ThemeToggle />
+                    </div>
                   </div>
-                </div>
+                </Content>
               </motion.nav>
             )}
           </AnimatePresence>

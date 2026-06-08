@@ -11,6 +11,7 @@ import { MaterialsScene } from "./_components/materials-scene"
 import { LightsScene } from "./_components/lights-scene"
 import { TexturesScene } from "./_components/textures-scene"
 import { Link } from "@/components/site/link"
+import { Button } from "@/components/ui/button"
 
 export const metadata: Metadata = {
   title: "Week 2",
@@ -401,6 +402,32 @@ const material = new THREE.MeshBasicMaterial({ map: texture })`}
             lang="js"
           />
           <TexturesScene className="mt-6" />
+
+          <hr />
+
+          <H2>Assignment</H2>
+          <ul>
+            <li>
+              Build a scaffold for your project with the basics in place:
+              lights, controls, and a few objects.
+            </li>
+            <li>
+              Develop your final project idea: decide on the statement, concept,
+              and aesthetic.
+            </li>
+          </ul>
+
+          <Button
+            render={
+              <Link
+                href="https://github.com/jooohyunpark/canvas-for-coders/discussions/categories/assignments"
+                className="no-underline"
+              >
+                Submit here
+              </Link>
+            }
+            nativeButton={false}
+          />
         </Article>
       </Content>
     </Section>

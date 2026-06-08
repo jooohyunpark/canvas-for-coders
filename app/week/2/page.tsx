@@ -7,7 +7,8 @@ import { H1, H2, H3 } from "@/components/site/heading"
 import { BasicScene } from "./_components/basic-scene"
 import { BasicSceneWithControls } from "./_components/basic-scene-with-controls"
 import { BasicSceneWithDebugUI } from "./_components/basic-scene-with-debug-ui"
-import Link from "next/link"
+import { MaterialsScene } from "./_components/materials-scene"
+import { Link } from "@/components/site/link"
 
 export const metadata: Metadata = {
   title: "Week 2",
@@ -51,7 +52,7 @@ export default function Week2Page() {
             <code>MeshBasicMaterial</code> takes an options object &mdash; here
             just a <code>color</code>, which can be a hex number (
             <code>0x0000ff</code>), a hex string (
-            <code>&apos;#0000ff&apos;</code>), or a name (
+            <code>&apos;#2563eb&apos;</code>), or a name (
             <code>&apos;blue&apos;</code>).
           </p>
           <p>
@@ -227,8 +228,10 @@ gui.addColor(material, 'color')`}
           <H3>Types of geometries</H3>
           <p>
             Three.js has many built-in geometries. Check the{" "}
-            <Link href="https://threejs.org/docs/">Three.js docs</Link> for a
-            specific geometry and its API.
+            <Link href="https://threejs.org/manual/#en/primitives">
+              primitives article
+            </Link>{" "}
+            for a specific geometry and its API.
           </p>
           <p>
             <code>BoxGeometry</code> takes the box’s width, height, and depth,
@@ -254,6 +257,87 @@ gui.addColor(material, 'color')`}
             code={`const geometry = new THREE.SphereGeometry(1, 64, 32)`}
             lang="js"
           />
+
+          <H2>Materials</H2>
+          <p>
+            Materials define how a surface looks. The same geometry can appear
+            flat, shaded, metallic, or glassy depending solely on the material
+            you pair it with.
+          </p>
+
+          <H3>MeshBasicMaterial</H3>
+          <p>
+            The simplest material. It renders a solid color and ignores all
+            lights in the scene, so every face looks the same regardless of
+            where the light is. Useful for wireframes, helpers, or UI elements
+            that should never be shaded.
+          </p>
+          <CodeBlock
+            code={`const material = new THREE.MeshBasicMaterial({ color: 0x0000ff })`}
+            lang="js"
+          />
+
+          <H3>MeshStandardMaterial</H3>
+          <p>
+            A physically-based material that responds to lights. Two properties
+            control its look:
+          </p>
+          <ul>
+            <li>
+              <strong>roughness</strong> &mdash; 0 is a perfect mirror, 1 is
+              completely matte.
+            </li>
+            <li>
+              <strong>metalness</strong> &mdash; 0 is non-metal (plastic,
+              fabric), 1 is fully metallic.
+            </li>
+          </ul>
+          <p>
+            Because it reacts to light, you need at least one light in the scene
+            or the mesh will appear black.
+          </p>
+          <CodeBlock
+            code={`const material = new THREE.MeshStandardMaterial({
+  color: 0x0000ff,
+  roughness: 0.8,
+  metalness: 0.2,
+})`}
+            lang="js"
+          />
+
+          <p>
+            The difference is clear side by side. The left sphere uses{" "}
+            <code>MeshBasicMaterial</code> and is flat. The right uses{" "}
+            <code>MeshStandardMaterial</code> and picks up the directional
+            light.
+          </p>
+          <MaterialsScene className="mt-2" />
+          <p>
+            Three.js has many more materials worth knowing. This{" "}
+            <Link href="https://threejs.org/manual/?q=material#en/materials">
+              materials article
+            </Link>{" "}
+            in the Three.js manual covers them well.
+          </p>
+
+          <H2>Mesh</H2>
+          <p>
+            A <code>Mesh</code> brings together two things: a geometry and a
+            material. On their own, neither can appear in the scene—you have to
+            combine them into a mesh before anything renders.
+          </p>
+          <CodeBlock
+            code={`const geometry = new THREE.BoxGeometry(1, 1, 1)
+const material = new THREE.MeshStandardMaterial({ color: 0x0000ff })
+const mesh = new THREE.Mesh(geometry, material)
+scene.add(mesh)`}
+            lang="js"
+          />
+          <p>
+            Once the mesh is constructed, you can move, rotate, or scale it
+            using its{" "}
+            <Link href="/week/1#object-properties">object properties</Link>.
+          </p>
         </Article>
       </Content>
     </Section>

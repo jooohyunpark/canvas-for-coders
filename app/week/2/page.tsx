@@ -8,6 +8,7 @@ import { BasicScene } from "./_components/basic-scene"
 import { BasicSceneWithControls } from "./_components/basic-scene-with-controls"
 import { BasicSceneWithDebugUI } from "./_components/basic-scene-with-debug-ui"
 import { MaterialsScene } from "./_components/materials-scene"
+import { LightsScene } from "./_components/lights-scene"
 import { Link } from "@/components/site/link"
 
 export const metadata: Metadata = {
@@ -342,7 +343,7 @@ scene.add(mesh)`}
             lift the darkest areas, not as your only light.
           </p>
           <CodeBlock
-            code={`const ambientLight = new THREE.AmbientLight(0xffffff, 1)
+            code={`const ambientLight = new THREE.AmbientLight('white', 0.2)
 scene.add(ambientLight)`}
             lang="js"
           />
@@ -354,7 +355,7 @@ scene.add(ambientLight)`}
             distance. Good for outdoor scenes or a primary key light.
           </p>
           <CodeBlock
-            code={`const directionalLight = new THREE.DirectionalLight(0xffffff, 2)
+            code={`const directionalLight = new THREE.DirectionalLight('blue', 5)
 directionalLight.position.set(5, 5, 5)
 scene.add(directionalLight)`}
             lang="js"
@@ -370,11 +371,12 @@ scene.add(directionalLight)`}
             code={`// PointLight(color, intensity, distance, decay)
 // distance: max range, 0 = infinite
 // decay: falloff rate, default 2 (physically correct)
-const pointLight = new THREE.PointLight(0xffffff, 10)
-pointLight.position.set(2, 3, 2)
+const pointLight = new THREE.PointLight('red', 5, 10, 1)
+pointLight.position.set(-3, 2, 0)
 scene.add(pointLight)`}
             lang="js"
           />
+          <LightsScene className="mt-8" />
         </Article>
       </Content>
     </Section>

@@ -45,12 +45,21 @@ export function LightsScene({ className }: { className?: string }) {
     scene.add(ambientLight)
 
     const directionalLight = new THREE.DirectionalLight("blue", 3)
-    directionalLight.position.set(5, 5, 5)
+    directionalLight.position.set(3, 3, 3)
     scene.add(directionalLight)
+
+    const directionalLightHelper = new THREE.DirectionalLightHelper(
+      directionalLight,
+      1
+    )
+    scene.add(directionalLightHelper)
 
     const pointLight = new THREE.PointLight("red", 5, 10, 1)
     pointLight.position.set(-3, 2, 0)
     scene.add(pointLight)
+
+    const pointLightHelper = new THREE.PointLightHelper(pointLight, 0.3)
+    scene.add(pointLightHelper)
 
     const renderer = new THREE.WebGLRenderer({ antialias: true })
     renderer.setPixelRatio(window.devicePixelRatio)
@@ -83,6 +92,8 @@ export function LightsScene({ className }: { className?: string }) {
       material.dispose()
       floorGeometry.dispose()
       floorMaterial.dispose()
+      directionalLightHelper.dispose()
+      pointLightHelper.dispose()
       container.removeChild(renderer.domElement)
     }
   }, [])

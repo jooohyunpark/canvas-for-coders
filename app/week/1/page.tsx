@@ -25,7 +25,7 @@ export default function Week1Page() {
   return (
     <div>
       <Section>
-        <Content>
+        <Content size="lg">
           <Article>
             <H1>Week 1: Intro</H1>
             <p>

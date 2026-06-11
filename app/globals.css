@@ -129,6 +129,10 @@
   }
 }
 
+@theme {
+  --container-8xl: 90rem;
+}
+
 .shiki {
   color: var(--shiki-light);
   background-color: var(--shiki-light-bg);

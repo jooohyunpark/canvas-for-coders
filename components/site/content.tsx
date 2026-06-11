@@ -1,15 +1,15 @@
 import { cn } from "@/lib/utils"
 
 const sizeMap = {
-  md: "max-w-3xl",
-  lg: "max-w-7xl",
+  md: "max-w-4xl",
+  lg: "max-w-8xl",
 } as const
 
 type ContentSize = keyof typeof sizeMap
 
 export function Content({
   className,
-  size = "lg",
+  size = "md",
   ...props
 }: React.ComponentProps<"div"> & { size?: ContentSize }) {
   return (

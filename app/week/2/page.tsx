@@ -4,7 +4,7 @@ import { Content } from "@/components/site/content"
 import { H1, H2, H3 } from "@/components/site/heading"
 import { Link } from "@/components/site/link"
 import { Section } from "@/components/site/section"
-import { StackBlitzEmbed } from "@/components/site/stackblitz-embed"
+import { Exercise } from "./_components/exercise"
 import { Button } from "@/components/ui/button"
 import type { Metadata } from "next"
 import { BasicScene } from "./_components/basic-scene"
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 export default function Week2Page() {
   return (
     <Section>
-      <Content>
+      <Content size="lg">
         <Article>
           <H1>Week 2: Scene</H1>
 
@@ -410,10 +410,7 @@ const material = new THREE.MeshBasicMaterial({ map: texture })`}
           <p>Build a scene together as a team. Theme is Door”.</p>
         </Article>
 
-        <StackBlitzEmbed
-          projectId="c4c-week2-exercise"
-          className="mt-8 mb-12"
-        />
+        <Exercise className="mt-8 mb-12" />
 
         <Article>
           <hr />

@@ -9,7 +9,7 @@ type ContentSize = keyof typeof sizeMap
 
 export function Content({
   className,
-  size = "md",
+  size = "lg",
   ...props
 }: React.ComponentProps<"div"> & { size?: ContentSize }) {
   return (

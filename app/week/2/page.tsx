@@ -1,17 +1,18 @@
-import type { Metadata } from "next"
-import { Section } from "@/components/site/section"
-import { Content } from "@/components/site/content"
 import { Article } from "@/components/site/article"
 import { CodeBlock } from "@/components/site/code-block"
+import { Content } from "@/components/site/content"
 import { H1, H2, H3 } from "@/components/site/heading"
+import { Link } from "@/components/site/link"
+import { Section } from "@/components/site/section"
+import { StackBlitzEmbed } from "@/components/site/stackblitz-embed"
+import { Button } from "@/components/ui/button"
+import type { Metadata } from "next"
 import { BasicScene } from "./_components/basic-scene"
 import { BasicSceneWithControls } from "./_components/basic-scene-with-controls"
 import { BasicSceneWithDebugUI } from "./_components/basic-scene-with-debug-ui"
-import { MaterialsScene } from "./_components/materials-scene"
 import { LightsScene } from "./_components/lights-scene"
+import { MaterialsScene } from "./_components/materials-scene"
 import { TexturesScene } from "./_components/textures-scene"
-import { Link } from "@/components/site/link"
-import { Button } from "@/components/ui/button"
 
 export const metadata: Metadata = {
   title: "Week 2",
@@ -403,6 +404,18 @@ const material = new THREE.MeshBasicMaterial({ map: texture })`}
           />
           <TexturesScene className="mt-6" />
 
+          <hr />
+
+          <H2>Exercise</H2>
+          <p>Build a scene together as a team. Theme is Door”.</p>
+        </Article>
+
+        <StackBlitzEmbed
+          projectId="c4c-week2-exercise"
+          className="mt-8 mb-12"
+        />
+
+        <Article>
           <hr />
 
           <H2>Assignment</H2>

@@ -55,22 +55,21 @@ export default function RootLayout({
           enableSystem={true}
         >
           <TooltipProvider>
-          <SidebarProvider>
-            <AppSidebar />
-            <SidebarInset>
-              {/* Mobile-only sticky header */}
-              <header className="sticky top-0 z-50 flex h-12 shrink-0 items-center gap-2 border-b bg-background/90 px-4 backdrop-blur-lg md:hidden">
-                <SidebarTrigger />
-                <Link
-                  href="/"
-                  className="text-sm font-medium tracking-tight text-balance"
-                >
-                  Canvas for Coders | Fall 2026
-                </Link>
-              </header>
-              <main className="flex-1 lg:py-8">{children}</main>
-            </SidebarInset>
-          </SidebarProvider>
+            <SidebarProvider>
+              <AppSidebar />
+              <SidebarInset>
+                <header className="sticky top-0 z-50 flex h-12 shrink-0 items-center gap-2 border-b bg-background/90 px-4 backdrop-blur-lg md:hidden">
+                  <SidebarTrigger />
+                  <Link
+                    href="/"
+                    className="text-sm font-medium tracking-tight text-balance"
+                  >
+                    Canvas for Coders | Fall 2026
+                  </Link>
+                </header>
+                <main className="flex-1 lg:py-8">{children}</main>
+              </SidebarInset>
+            </SidebarProvider>
           </TooltipProvider>
         </ThemeProvider>
 

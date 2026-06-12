@@ -1,7 +1,14 @@
 import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 import { ThemeProvider } from "next-themes"
-import { Nav } from "@/components/site/nav"
+import { TooltipProvider } from "@/components/ui/tooltip"
+import { AppSidebar } from "@/components/site/nav"
+import { Link } from "@/components/site/link"
+import {
+  SidebarInset,
+  SidebarProvider,
+  SidebarTrigger,
+} from "@/components/ui/sidebar"
 import { siteUrl } from "@/lib/site"
 import { cn } from "@/lib/utils"
 import { Analytics } from "@vercel/analytics/next"
@@ -40,15 +47,31 @@ export default function RootLayout({
         geist.variable
       )}
     >
-      <body className="flex min-h-svh flex-col">
+      <body>
         <ThemeProvider
           attribute="data-theme"
           defaultTheme="system"
           storageKey="itp-c4c-theme"
           enableSystem={true}
         >
-          <Nav />
-          <main className="flex-1 lg:py-8 lg:pl-64">{children}</main>
+          <TooltipProvider>
+          <SidebarProvider>
+            <AppSidebar />
+            <SidebarInset>
+              {/* Mobile-only sticky header */}
+              <header className="sticky top-0 z-50 flex h-12 shrink-0 items-center gap-2 border-b bg-background/90 px-4 backdrop-blur-lg md:hidden">
+                <SidebarTrigger />
+                <Link
+                  href="/"
+                  className="text-sm font-medium tracking-tight text-balance"
+                >
+                  Canvas for Coders | Fall 2026
+                </Link>
+              </header>
+              <main className="flex-1 lg:py-8">{children}</main>
+            </SidebarInset>
+          </SidebarProvider>
+          </TooltipProvider>
         </ThemeProvider>
 
         <Analytics />

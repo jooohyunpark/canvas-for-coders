@@ -2,12 +2,10 @@ import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 import { ThemeProvider } from "next-themes"
 import { TooltipProvider } from "@/components/ui/tooltip"
-import { AppSidebar } from "@/components/site/nav"
-import { Link } from "@/components/site/link"
+import { AppSidebar, NavMobile } from "@/components/site/nav"
 import {
   SidebarInset,
   SidebarProvider,
-  SidebarTrigger,
 } from "@/components/ui/sidebar"
 import { siteUrl } from "@/lib/site"
 import { cn } from "@/lib/utils"
@@ -56,17 +54,13 @@ export default function RootLayout({
         >
           <TooltipProvider>
             <SidebarProvider>
-              <AppSidebar />
+              <div className="hidden md:contents">
+                <AppSidebar />
+              </div>
               <SidebarInset>
-                <header className="sticky top-0 z-50 flex h-12 shrink-0 items-center gap-2 border-b bg-background/90 px-4 backdrop-blur-lg md:hidden">
-                  <SidebarTrigger />
-                  <Link
-                    href="/"
-                    className="text-sm font-medium tracking-tight text-balance"
-                  >
-                    Canvas for Coders | Fall 2026
-                  </Link>
-                </header>
+                <div className="md:hidden">
+                  <NavMobile />
+                </div>
                 <main className="flex-1 lg:py-8">{children}</main>
               </SidebarInset>
             </SidebarProvider>

@@ -50,12 +50,10 @@ export default function RootLayout({
           enableSystem={true}
         >
           <TooltipProvider>
-            <div className="md:hidden">
-              <NavMobile />
-            </div>
             <SidebarProvider>
               <AppSidebar />
               <SidebarInset>
+                <NavMobile />
                 <main className="flex-1 lg:py-8">{children}</main>
               </SidebarInset>
             </SidebarProvider>

@@ -133,7 +133,7 @@ export function NavMobile() {
       }}
     >
       <div
-        className="sticky top-0 z-50"
+        className="sticky top-0 z-50 md:hidden"
         style={{ "--header-height": "3rem" } as React.CSSProperties}
       >
         <header className={cn("border-b bg-background")}>

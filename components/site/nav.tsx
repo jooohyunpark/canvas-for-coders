@@ -91,7 +91,6 @@ export function AppSidebar() {
 // --- Mobile nav ---
 
 function MobileNavLinks({ onNavigate }: { onNavigate?: () => void }) {
-  const pathname = usePathname()
   return (
     <nav className="flex flex-col gap-1">
       {navLinks.map(({ href, label, week }) => (
@@ -99,10 +98,8 @@ function MobileNavLinks({ onNavigate }: { onNavigate?: () => void }) {
           key={href}
           variant="ghost"
           render={<Link href={href} onClick={onNavigate} />}
-          className={cn(
-            "w-full justify-start",
-            pathname.startsWith(href) && "bg-accent"
-          )}
+          nativeButton={false}
+          className={cn("w-full justify-start")}
         >
           <span className="font-mono text-xs font-semibold tabular-nums">
             {week}
@@ -115,14 +112,11 @@ function MobileNavLinks({ onNavigate }: { onNavigate?: () => void }) {
 }
 
 export function NavMobile() {
-  const [isOpen, setIsOpen] = useState(false)
+  const [openPath, setOpenPath] = useState<string | null>(null)
   const toggleRef = useRef<HTMLButtonElement>(null)
   const pathname = usePathname()
-  const close = useCallback(() => setIsOpen(false), [])
-
-  useEffect(() => {
-    close()
-  }, [pathname, close])
+  const isOpen = openPath === pathname
+  const close = useCallback(() => setOpenPath(null), [])
 
   useLockBodyScroll(isOpen)
 
@@ -142,12 +136,7 @@ export function NavMobile() {
         className="sticky top-0 z-50"
         style={{ "--header-height": "3rem" } as React.CSSProperties}
       >
-        <header
-          className={cn(
-            "border-b bg-background/90 backdrop-blur-lg transition-colors duration-150",
-            isOpen && "bg-background"
-          )}
-        >
+        <header className={cn("border-b bg-background")}>
           <Content>
             <div className="flex h-(--header-height) items-center justify-between">
               <Link
@@ -160,7 +149,11 @@ export function NavMobile() {
               <MobileToggle
                 ref={toggleRef}
                 isOpen={isOpen}
-                onToggle={() => setIsOpen((v) => !v)}
+                onToggle={() =>
+                  setOpenPath((current) =>
+                    current === pathname ? null : pathname
+                  )
+                }
               />
             </div>
           </Content>

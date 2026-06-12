@@ -3,10 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google"
 import { ThemeProvider } from "next-themes"
 import { TooltipProvider } from "@/components/ui/tooltip"
 import { AppSidebar, NavMobile } from "@/components/site/nav"
-import {
-  SidebarInset,
-  SidebarProvider,
-} from "@/components/ui/sidebar"
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
 import { siteUrl } from "@/lib/site"
 import { cn } from "@/lib/utils"
 import { Analytics } from "@vercel/analytics/next"
@@ -53,14 +50,12 @@ export default function RootLayout({
           enableSystem={true}
         >
           <TooltipProvider>
+            <div className="md:hidden">
+              <NavMobile />
+            </div>
             <SidebarProvider>
-              <div className="hidden md:contents">
-                <AppSidebar />
-              </div>
+              <AppSidebar />
               <SidebarInset>
-                <div className="md:hidden">
-                  <NavMobile />
-                </div>
                 <main className="flex-1 lg:py-8">{children}</main>
               </SidebarInset>
             </SidebarProvider>

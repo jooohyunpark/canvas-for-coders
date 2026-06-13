@@ -422,11 +422,14 @@ const material = new THREE.MeshBasicMaterial({ map: texture })`}
           <ul>
             <li>
               Build a scaffold for your project with the basics in place:
-              lights, controls, and a few objects.
+              lights, controls, and objects.
             </li>
             <li>
-              Develop your final project idea: decide on the statement, concept,
-              and aesthetic.
+              Develop and research your final project idea: define its
+              statement, concept, and aesthetic. Next class, we’ll do a group
+              exercise to discuss ideas, ask questions, and give feedback, so
+              come ready to share a question, a problem you’re stuck on, or
+              anything you’d like feedback on.
             </li>
           </ul>
 

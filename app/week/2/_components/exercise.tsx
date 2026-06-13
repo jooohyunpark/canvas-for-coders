@@ -18,9 +18,14 @@ const noopSubscribe = () => () => {}
 const STORAGE_KEY = "cfc-week2-exercise"
 
 const defaultFiles = {
-  "src/index.js": `import './style.css';
-import * as THREE from 'three';
-import { OrbitControls } from 'three/addons/controls/OrbitControls';
+  "index.html": {
+    code: `<!DOCTYPE html><html><body><div id="app"></div><script src="./index.js" type="module"></script></body></html>`,
+    hidden: true,
+  },
+  "index.js": `import * as THREE from 'three';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+
+document.body.style.cssText = 'margin:0;overflow:hidden';
 
 const app = document.querySelector('#app');
 
@@ -72,14 +77,6 @@ const animate = (timestamp) => {
   controls.update();
 };
 renderer.setAnimationLoop(animate);`,
-  "src/style.css": `* {
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  overflow: hidden;
-}`,
 }
 
 export function Exercise({ className }: { className?: string }) {
@@ -119,9 +116,9 @@ export function Exercise({ className }: { className?: string }) {
         template="vanilla"
         theme="dark"
         files={loadSandpackFiles(STORAGE_KEY, defaultFiles)}
-        customSetup={{ dependencies: { three: "latest" } }}
+        customSetup={{ dependencies: { three: "0.163.0" } }}
       >
-        <SandpackPersistence storageKey={STORAGE_KEY} />
+        <SandpackPersistence storageKey={STORAGE_KEY} defaultFiles={defaultFiles} />
         <SandpackLayout className="!rounded-lg">
           <SandpackCodeEditor showLineNumbers style={{ height: 700 }} />
           <SandpackPreview

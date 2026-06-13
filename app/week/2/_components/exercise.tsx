@@ -6,12 +6,18 @@ import {
   SandpackCodeEditor,
   SandpackPreview,
 } from "@codesandbox/sandpack-react"
-import { useSyncExternalStore } from "react"
+import { useSyncExternalStore, useState } from "react"
 import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
+import {
+  loadSandpackFiles,
+  SandpackPersistence,
+} from "@/components/site/sandpack-persistence"
 
 const noopSubscribe = () => () => {}
+const STORAGE_KEY = "cfc-week2-exercise"
 
-const files = {
+const defaultFiles = {
   "src/index.js": `import './style.css';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls';
@@ -83,6 +89,15 @@ export function Exercise({ className }: { className?: string }) {
     () => false
   )
 
+  const [resetKey, setResetKey] = useState(0)
+
+  const handleReset = () => {
+    try {
+      localStorage.removeItem(STORAGE_KEY)
+    } catch {}
+    setResetKey((k) => k + 1)
+  }
+
   if (!mounted) {
     return (
       <div
@@ -93,20 +108,29 @@ export function Exercise({ className }: { className?: string }) {
   }
 
   return (
-    <SandpackProvider
-      template="vanilla"
-      theme="dark"
-      files={files}
-      customSetup={{ dependencies: { three: "latest" } }}
-    >
-      <SandpackLayout className={cn("!rounded-lg", className)}>
-        <SandpackCodeEditor showLineNumbers style={{ height: 700 }} />
-        <SandpackPreview
-          showOpenInCodeSandbox={false}
-          showRefreshButton
-          style={{ height: 700 }}
-        />
-      </SandpackLayout>
-    </SandpackProvider>
+    <div className={cn("flex flex-col gap-2", className)}>
+      <div className="flex justify-end">
+        <Button variant="ghost" size="xs" onClick={handleReset}>
+          Reset
+        </Button>
+      </div>
+      <SandpackProvider
+        key={resetKey}
+        template="vanilla"
+        theme="dark"
+        files={loadSandpackFiles(STORAGE_KEY, defaultFiles)}
+        customSetup={{ dependencies: { three: "latest" } }}
+      >
+        <SandpackPersistence storageKey={STORAGE_KEY} />
+        <SandpackLayout className="!rounded-lg">
+          <SandpackCodeEditor showLineNumbers style={{ height: 700 }} />
+          <SandpackPreview
+            showOpenInCodeSandbox={false}
+            showRefreshButton
+            style={{ height: 700 }}
+          />
+        </SandpackLayout>
+      </SandpackProvider>
+    </div>
   )
 }

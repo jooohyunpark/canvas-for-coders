@@ -4,6 +4,8 @@ import { cn } from "@/lib/utils"
 import { useEffect, useRef } from "react"
 import * as THREE from "three"
 import { OrbitControls } from "three/addons/controls/OrbitControls.js"
+import { RectAreaLightHelper } from "three/addons/helpers/RectAreaLightHelper.js"
+import { RectAreaLightUniformsLib } from "three/addons/lights/RectAreaLightUniformsLib.js"
 
 export function LightsScene({ className }: { className?: string }) {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -61,6 +63,16 @@ export function LightsScene({ className }: { className?: string }) {
     const pointLightHelper = new THREE.PointLightHelper(pointLight, 0.3)
     scene.add(pointLightHelper)
 
+    RectAreaLightUniformsLib.init()
+
+    const rectLight = new THREE.RectAreaLight("white", 5, 1, 1.618)
+    rectLight.position.set(0, -0.191, -3)
+    rectLight.lookAt(0, 0, 0)
+    scene.add(rectLight)
+
+    const rectLightHelper = new RectAreaLightHelper(rectLight)
+    scene.add(rectLightHelper)
+
     const renderer = new THREE.WebGLRenderer({ antialias: true })
     renderer.setPixelRatio(window.devicePixelRatio)
     renderer.setSize(container.clientWidth, container.clientHeight)
@@ -94,6 +106,7 @@ export function LightsScene({ className }: { className?: string }) {
       floorMaterial.dispose()
       directionalLightHelper.dispose()
       pointLightHelper.dispose()
+      rectLightHelper.dispose()
       container.removeChild(renderer.domElement)
     }
   }, [])

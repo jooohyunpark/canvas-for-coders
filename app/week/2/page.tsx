@@ -383,6 +383,27 @@ pointLight.position.set(-3, 2, 0)
 scene.add(pointLight)`}
             lang="js"
           />
+          <H3>RectAreaLight</H3>
+          <p>
+            Emits light from a flat rectangular area, like film lighting.
+            Produces soft, area-based lighting with a natural falloff across the
+            surface. It requires{" "}
+            <code>RectAreaLightUniformsLib.init()</code> to be called once
+            before use.
+          </p>
+          <CodeBlock
+            code={`import { RectAreaLightUniformsLib } from 'three/addons/lights/RectAreaLightUniformsLib.js'
+
+RectAreaLightUniformsLib.init()
+
+// RectAreaLight(color, intensity, width, height)
+const rectLight = new THREE.RectAreaLight('white', 5, 1, 1.618)
+rectLight.position.set(0, -0.191, -3)
+rectLight.lookAt(0, 0, 0)
+scene.add(rectLight)`}
+            lang="js"
+          />
+
           <LightsScene className="mt-6" />
 
           <H2>Textures</H2>
@@ -408,8 +429,8 @@ const material = new THREE.MeshBasicMaterial({ map: texture })`}
 
           <H2>Exercise</H2>
           <p>
-            Work together as a team to build a scene around the theme
-            &ldquo;Door.&rdquo;
+            As a team, build a scene using only BoxGeometry. You’re free to use
+            any materials, lights, or textures. The theme is “Doors”.
           </p>
         </Article>
 

@@ -407,7 +407,10 @@ const material = new THREE.MeshBasicMaterial({ map: texture })`}
           <hr />
 
           <H2>Exercise</H2>
-          <p>Build a scene together as a team. Theme is Door”.</p>
+          <p>
+            Work together as a team to build a scene around the theme
+            &ldquo;Door.&rdquo;
+          </p>
         </Article>
 
         <Exercise className="mt-8 mb-12" />
@@ -429,14 +432,12 @@ const material = new THREE.MeshBasicMaterial({ map: texture })`}
 
           <Button
             render={
-              <Link
-                href="https://github.com/jooohyunpark/canvas-for-coders/discussions/categories/assignments"
-                className="no-underline"
-              >
+              <Link href="https://github.com/jooohyunpark/canvas-for-coders/discussions/categories/assignments">
                 Submit here
               </Link>
             }
             nativeButton={false}
+            className="no-underline"
           />
         </Article>
       </Content>

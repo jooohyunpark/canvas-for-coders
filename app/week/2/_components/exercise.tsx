@@ -7,6 +7,7 @@ import {
   SandpackPreview,
 } from "@codesandbox/sandpack-react"
 import { useSyncExternalStore, useState } from "react"
+import { useTheme } from "next-themes"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import {
@@ -19,13 +20,11 @@ const STORAGE_KEY = "cfc-week2-exercise"
 
 const defaultFiles = {
   "index.html": {
-    code: `<!DOCTYPE html><html><body><div id="app"></div><script src="./index.js" type="module"></script></body></html>`,
+    code: `<!DOCTYPE html><html><head><style>body{margin:0;overflow:hidden}</style></head><body><div id="app"></div><script src="./index.js" type="module"></script></body></html>`,
     hidden: true,
   },
   "index.js": `import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-
-document.body.style.cssText = 'margin:0;overflow:hidden';
 
 const app = document.querySelector('#app');
 
@@ -86,6 +85,7 @@ export function Exercise({ className }: { className?: string }) {
     () => false
   )
 
+  const { resolvedTheme } = useTheme()
   const [resetKey, setResetKey] = useState(0)
 
   const handleReset = () => {
@@ -107,19 +107,22 @@ export function Exercise({ className }: { className?: string }) {
   return (
     <div className={cn("flex flex-col gap-2", className)}>
       <div className="flex justify-end">
-        <Button variant="ghost" size="xs" onClick={handleReset}>
+        <Button variant="outline" size="xs" onClick={handleReset}>
           Reset
         </Button>
       </div>
       <SandpackProvider
         key={resetKey}
         template="vanilla"
-        theme="dark"
+        theme={resolvedTheme === "dark" ? "dark" : "light"}
         files={loadSandpackFiles(STORAGE_KEY, defaultFiles)}
         customSetup={{ dependencies: { three: "0.163.0" } }}
       >
-        <SandpackPersistence storageKey={STORAGE_KEY} defaultFiles={defaultFiles} />
-        <SandpackLayout className="!rounded-lg">
+        <SandpackPersistence
+          storageKey={STORAGE_KEY}
+          defaultFiles={defaultFiles}
+        />
+        <SandpackLayout className="rounded-lg!">
           <SandpackCodeEditor showLineNumbers style={{ height: 700 }} />
           <SandpackPreview
             showOpenInCodeSandbox={false}

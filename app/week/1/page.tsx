@@ -272,14 +272,12 @@ scene.add(mesh)`}
 
             <Button
               render={
-                <Link
-                  href="https://github.com/jooohyunpark/canvas-for-coders/discussions/categories/assignments"
-                  className="no-underline"
-                >
+                <Link href="https://github.com/jooohyunpark/canvas-for-coders/discussions/categories/assignments">
                   Submit here
                 </Link>
               }
               nativeButton={false}
+              className="no-underline"
             />
           </Article>
         </Content>

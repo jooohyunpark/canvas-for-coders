@@ -5,7 +5,7 @@ import { Article } from "@/components/site/article"
 import { H1 } from "@/components/site/heading"
 
 export const metadata: Metadata = {
-  title: "W3: Motion / Assets",
+  title: "Week 3",
 }
 
 export default function Week3Page() {

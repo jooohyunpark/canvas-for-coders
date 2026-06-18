@@ -79,8 +79,11 @@ export default function Week1Page() {
               The web page is one of the most universal mediums there is. Anyone
               with a computer and an internet connection can reach it with a
               URL, anytime, from anywhere in the world. No other medium offers
-              that kind of reach.
+              that kind of reach. For example, here’s my work{" "}
+              <Link href="https://doors.joohyun.dev/">Doors</Link>.
             </p>
+
+            <p></p>
 
             <p>Now, let’s get into Three.js.</p>
 

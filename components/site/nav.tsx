@@ -69,7 +69,7 @@ export function AppSidebar() {
         <div className="flex items-center gap-2 py-1 group-data-[collapsible=icon]:gap-0">
           <Link
             href="/"
-            className="flex max-w-48 flex-col overflow-hidden px-2 tracking-tight whitespace-nowrap transition-[max-width,padding,opacity] duration-200 ease-linear group-data-[collapsible=icon]:pointer-events-none group-data-[collapsible=icon]:max-w-0 group-data-[collapsible=icon]:px-0 group-data-[collapsible=icon]:opacity-0"
+            className="flex max-w-48 flex-col overflow-hidden px-2 tracking-tight whitespace-nowrap transition-[max-width,padding,opacity] duration-150 ease-out group-data-[collapsible=icon]:pointer-events-none group-data-[collapsible=icon]:max-w-0 group-data-[collapsible=icon]:px-0 group-data-[collapsible=icon]:opacity-0"
           >
             <span className="text-sm font-medium">Canvas for Coders</span>
           </Link>

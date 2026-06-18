@@ -42,7 +42,7 @@ export default function Week3Page() {
             The pattern is simple: update your objects, then render, and repeat.
             The torus knot rotates on its own axis. The sphere sits inside a{" "}
             <code>Group</code> offset from center, so rotating the group makes
-            it orbit. <code>Math.cos(t)</code> drives the vertical bobbing.
+            it orbit.
           </p>
           <p>
             The callback receives a <code>time</code> argument: milliseconds

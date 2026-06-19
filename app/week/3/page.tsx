@@ -7,6 +7,7 @@ import { CodeBlock } from "@/components/site/code-block"
 import { H1, H2, H3 } from "@/components/site/heading"
 import { Button } from "@/components/ui/button"
 import { AnimationLoopScene } from "./_components/animation-loop-scene"
+import { GsapScene } from "./_components/gsap-scene"
 
 export const metadata: Metadata = {
   title: "Week 3",
@@ -75,17 +76,20 @@ renderer.setAnimationLoop((time) => {
           <H2>GSAP</H2>
           <p>
             <Link href="https://gsap.com/">GSAP</Link> (GreenSock Animation
-            Platform) is a JavaScript animation library that gives you precise
-            control over tweens — animated transitions between two states.
-            Instead of manually updating values in a loop, you describe where
-            something should go and GSAP handles the rest.
+            Platform) is a JavaScript animation library for animating objects in
+            a scene. It gives you precise control over tweens, the transitions
+            an object makes between two states, through a clean API so you never
+            have to update values by hand inside a loop.
           </p>
 
           <H3>gsap.to()</H3>
           <p>
-            <code>gsap.to()</code> animates an object from its current state to
-            a target. Pass the object, then an options object with the target
-            values and a <code>duration</code>.
+            <Link href="https://gsap.com/docs/v3/GSAP/gsap.to()/">
+              <code>gsap.to()</code>
+            </Link>{" "}
+            animates an object from its current state to a target. Pass the
+            object, then an options object with the target values and a{" "}
+            <code>duration</code>.
           </p>
           <CodeBlock
             code={`import gsap from "gsap"
@@ -98,7 +102,7 @@ gsap.to(mesh.position, {
             lang="js"
           />
 
-          {/* TODO: add gsap example scene component */}
+          <GsapScene />
 
           <hr />
 

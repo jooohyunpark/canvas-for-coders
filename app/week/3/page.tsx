@@ -94,10 +94,23 @@ renderer.setAnimationLoop((time) => {
           <CodeBlock
             code={`import gsap from "gsap"
 
-gsap.to(mesh.position, {
-  x: 2,
-  duration: 1,
-  ease: "power2.out",
+// Tween x back and forth
+gsap.to(sphere.position, {
+  x: 10,
+  duration: 2,
+  ease: "power4.inOut",
+  yoyo: true,
+  repeat: -1,
+})
+
+// Wander to a new random position each repeat
+gsap.to(wanderer.position, {
+  x: "random(-15, 15)",
+  z: "random(-15, 15)",
+  duration: 3,
+  ease: "power4.inOut",
+  repeat: -1,
+  repeatRefresh: true,
 })`}
             lang="js"
           />

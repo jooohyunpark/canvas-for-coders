@@ -19,28 +19,31 @@ export function AnimationLoopScene({ className }: { className?: string }) {
       35,
       container.clientWidth / container.clientHeight
     )
-    camera.position.set(0, 5, 15)
+    camera.position.set(0, 10, 30)
     camera.lookAt(0, 0, 0)
     scene.add(camera)
 
-    const grid = new THREE.GridHelper(15, 15, 0x444444, 0x444444)
+    const grid = new THREE.GridHelper(30, 30, 0x444444, 0x444444)
     grid.position.y = -0.01
     scene.add(grid)
 
+    const axes = new THREE.AxesHelper(5)
+    scene.add(axes)
+
     const material = new THREE.MeshNormalMaterial()
 
-    const knotGeo = new THREE.TorusKnotGeometry(0.7, 0.25, 120, 16)
+    const knotGeo = new THREE.TorusKnotGeometry(1, 0.3, 120, 16)
     const knot = new THREE.Mesh(knotGeo, material)
-    knot.position.y = 1.5
+    knot.position.y = 2
     scene.add(knot)
 
     const orbitGroup = new THREE.Group()
 
     scene.add(orbitGroup)
 
-    const sphereGeo = new THREE.SphereGeometry(0.3, 64, 32)
+    const sphereGeo = new THREE.SphereGeometry(1, 64, 32)
     const sphere = new THREE.Mesh(sphereGeo, material)
-    sphere.position.set(5, 1.5, 0)
+    sphere.position.set(10, 2, 0)
     orbitGroup.add(sphere)
 
     const renderer = new THREE.WebGLRenderer({ antialias: true })
@@ -57,7 +60,7 @@ export function AnimationLoopScene({ className }: { className?: string }) {
       knot.rotation.y -= 0.005
 
       orbitGroup.rotation.y += 0.01
-      sphere.position.y = 1.5 + Math.cos(t) * 1
+      sphere.position.y = 2 + Math.cos(t) * 1
 
       controls.update()
       renderer.render(scene, camera)

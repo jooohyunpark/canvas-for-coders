@@ -28,10 +28,13 @@ export function GsapScene({ className }: { className?: string }) {
     grid.position.y = -0.01
     scene.add(grid)
 
+    const axes = new THREE.AxesHelper(5)
+    scene.add(axes)
+
     const sphereGeo = new THREE.SphereGeometry(1, 64, 32)
     const sphereMat = new THREE.MeshNormalMaterial()
     const sphere = new THREE.Mesh(sphereGeo, sphereMat)
-    sphere.position.x = -10
+    sphere.position.set(-10, 1, 0)
     scene.add(sphere)
 
     const renderer = new THREE.WebGLRenderer({ antialias: true })
@@ -50,6 +53,22 @@ export function GsapScene({ className }: { className?: string }) {
       repeat: -1,
     })
 
+    const wanderGeo = new THREE.SphereGeometry(1, 64, 32)
+    const wanderMat = new THREE.MeshNormalMaterial()
+    const wanderer = new THREE.Mesh(wanderGeo, wanderMat)
+    wanderer.position.set(0, 1, 0)
+    scene.add(wanderer)
+
+    const wanderTween = gsap.to(wanderer.position, {
+      x: "random(-15, 15)",
+      y: "random(-15, 15)",
+      z: "random(-15, 15)",
+      duration: 3,
+      ease: "power4.inOut",
+      repeat: -1,
+      repeatRefresh: true,
+    })
+
     renderer.setAnimationLoop(() => {
       controls.update()
       renderer.render(scene, camera)
@@ -65,12 +84,15 @@ export function GsapScene({ className }: { className?: string }) {
 
     return () => {
       tween.kill()
+      wanderTween?.kill()
       resizeObserver.disconnect()
       renderer.setAnimationLoop(null)
       controls.dispose()
       renderer.dispose()
       sphereGeo.dispose()
       sphereMat.dispose()
+      wanderGeo.dispose()
+      wanderMat.dispose()
       container.removeChild(renderer.domElement)
     }
   }, [])

@@ -24,12 +24,9 @@ export function GsapScene({ className }: { className?: string }) {
     camera.lookAt(0, 0, 0)
     scene.add(camera)
 
-    const floorGeo = new THREE.PlaneGeometry(30, 30)
-    const floorMat = new THREE.MeshBasicMaterial({ color: 0x999999 })
-    const floor = new THREE.Mesh(floorGeo, floorMat)
-    floor.rotation.x = -Math.PI / 2
-    floor.position.y = -1.5
-    scene.add(floor)
+    const grid = new THREE.GridHelper(30, 30, 0x444444, 0x444444)
+    grid.position.y = -0.01
+    scene.add(grid)
 
     const sphereGeo = new THREE.SphereGeometry(1, 64, 32)
     const sphereMat = new THREE.MeshNormalMaterial()
@@ -47,8 +44,8 @@ export function GsapScene({ className }: { className?: string }) {
 
     const tween = gsap.to(sphere.position, {
       x: 10,
-      duration: 1.5,
-      ease: "power1.inOut",
+      duration: 2,
+      ease: "power4.inOut",
       yoyo: true,
       repeat: -1,
     })
@@ -72,8 +69,6 @@ export function GsapScene({ className }: { className?: string }) {
       renderer.setAnimationLoop(null)
       controls.dispose()
       renderer.dispose()
-      floorGeo.dispose()
-      floorMat.dispose()
       sphereGeo.dispose()
       sphereMat.dispose()
       container.removeChild(renderer.domElement)

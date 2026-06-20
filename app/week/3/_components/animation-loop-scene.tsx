@@ -23,28 +23,24 @@ export function AnimationLoopScene({ className }: { className?: string }) {
     camera.lookAt(0, 0, 0)
     scene.add(camera)
 
-    // Floor
-    const floorGeo = new THREE.PlaneGeometry(15, 15)
-    const floorMat = new THREE.MeshBasicMaterial({
-      color: 0x999999,
-    })
-    const floor = new THREE.Mesh(floorGeo, floorMat)
-    floor.rotation.x = -Math.PI / 2
-    floor.position.y = -1.5
-    scene.add(floor)
+    const grid = new THREE.GridHelper(15, 15, 0x444444, 0x444444)
+    grid.position.y = -0.01
+    scene.add(grid)
 
     const material = new THREE.MeshNormalMaterial()
 
     const knotGeo = new THREE.TorusKnotGeometry(0.7, 0.25, 120, 16)
     const knot = new THREE.Mesh(knotGeo, material)
+    knot.position.y = 1.5
     scene.add(knot)
 
     const orbitGroup = new THREE.Group()
+
     scene.add(orbitGroup)
 
     const sphereGeo = new THREE.SphereGeometry(0.3, 64, 32)
     const sphere = new THREE.Mesh(sphereGeo, material)
-    sphere.position.x = 5
+    sphere.position.set(5, 1.5, 0)
     orbitGroup.add(sphere)
 
     const renderer = new THREE.WebGLRenderer({ antialias: true })
@@ -61,7 +57,7 @@ export function AnimationLoopScene({ className }: { className?: string }) {
       knot.rotation.y -= 0.005
 
       orbitGroup.rotation.y += 0.01
-      sphere.position.y = Math.cos(t) * 1
+      sphere.position.y = 1.5 + Math.cos(t) * 1
 
       controls.update()
       renderer.render(scene, camera)
@@ -82,8 +78,6 @@ export function AnimationLoopScene({ className }: { className?: string }) {
       renderer.dispose()
       knotGeo.dispose()
       sphereGeo.dispose()
-      floorGeo.dispose()
-      floorMat.dispose()
       container.removeChild(renderer.domElement)
     }
   }, [])

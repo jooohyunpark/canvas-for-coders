@@ -303,7 +303,7 @@ gui.addColor(material, 'color')`}
             <code>MeshStandardMaterial</code> and picks up the directional
             light.
           </p>
-          <MaterialsScene className="mt-2" />
+          <MaterialsScene className="mt-8" />
           <p>
             Three.js has many more materials worth knowing. This{" "}
             <Link href="https://threejs.org/manual/?q=material#en/materials">
@@ -387,9 +387,8 @@ scene.add(pointLight)`}
           <p>
             Emits light from a flat rectangular area, like film lighting.
             Produces soft, area-based lighting with a natural falloff across the
-            surface. It requires{" "}
-            <code>RectAreaLightUniformsLib.init()</code> to be called once
-            before use.
+            surface. It requires <code>RectAreaLightUniformsLib.init()</code> to
+            be called once before use.
           </p>
           <CodeBlock
             code={`import { RectAreaLightUniformsLib } from 'three/addons/lights/RectAreaLightUniformsLib.js'
@@ -404,7 +403,7 @@ scene.add(rectLight)`}
             lang="js"
           />
 
-          <LightsScene className="mt-6" />
+          <LightsScene className="mt-8" />
 
           <H2>Textures</H2>
           <p>
@@ -423,7 +422,7 @@ texture.colorSpace = THREE.SRGBColorSpace
 const material = new THREE.MeshBasicMaterial({ map: texture })`}
             lang="js"
           />
-          <TexturesScene className="mt-6" />
+          <TexturesScene className="mt-8" />
 
           <hr />
 

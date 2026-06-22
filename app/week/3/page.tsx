@@ -8,6 +8,7 @@ import { H1, H2, H3 } from "@/components/site/heading"
 import { Button } from "@/components/ui/button"
 import { AnimationLoopScene } from "./_components/animation-loop-scene"
 import { GsapScene } from "./_components/gsap-scene"
+import { ModelScene } from "./_components/model-scene"
 
 export const metadata: Metadata = {
   title: "Week 3",
@@ -71,7 +72,7 @@ renderer.setAnimationLoop((time) => {
             lang="js"
           />
 
-          <AnimationLoopScene />
+          <AnimationLoopScene className="mt-8" />
 
           <H2>GSAP</H2>
           <p>
@@ -103,9 +104,10 @@ gsap.to(sphere.position, {
   repeat: -1,
 })
 
-// Wander to a new random position each repeat
+// Move to a new random position each repeat
 gsap.to(wanderer.position, {
   x: "random(-15, 15)",
+  y: "random(-15, 15)",
   z: "random(-15, 15)",
   duration: 3,
   ease: "power4.inOut",
@@ -115,7 +117,39 @@ gsap.to(wanderer.position, {
             lang="js"
           />
 
-          <GsapScene />
+          <GsapScene className="mt-8" />
+
+          <H2>Models</H2>
+          <p>
+            Three.js can load external 3D model files using loaders from{" "}
+            <code>three/addons</code>. The most common format is{" "}
+            <Link href="https://en.wikipedia.org/wiki/GlTF">glTF</Link> (
+            <code>.gltf</code> / <code>.glb</code>), an open standard designed
+            for efficient transmission of 3D scenes. <code>GLTFLoader</code>{" "}
+            parses the file and returns a <code>gltf</code> object. The scene
+            graph lives at <code>gltf.scene</code>, which you can add directly
+            to your Three.js scene.
+          </p>
+
+          <H3>Example</H3>
+          <p>
+            Place your <code>.glb</code> file in the <code>/public</code> folder
+            so it's served as a static asset, then load it with{" "}
+            <code>GLTFLoader</code>. The callback fires once the file is ready.
+          </p>
+          <CodeBlock
+            code={`import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js"
+
+const loader = new GLTFLoader()
+
+loader.load("/LeePerrySmith.glb", (gltf) => {
+  const model = gltf.scene
+  scene.add(model)
+})`}
+            lang="js"
+          />
+
+          <ModelScene className="mt-8" />
 
           <hr />
 

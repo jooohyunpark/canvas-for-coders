@@ -142,7 +142,7 @@ gsap.to(wanderer.position, {
 
 const loader = new GLTFLoader()
 
-loader.load("/LeePerrySmith.glb", (gltf) => {
+loader.load("/Voyager.glb", (gltf) => {
   const model = gltf.scene
   scene.add(model)
 })`}
@@ -150,6 +150,41 @@ loader.load("/LeePerrySmith.glb", (gltf) => {
           />
 
           <ModelScene className="mt-8" />
+
+          <H3>Environment map</H3>
+          <p>
+            An environment map is a texture that wraps around the entire scene
+            and gets sampled by materials for reflections and ambient lighting.
+            Setting <code>scene.environment</code> is enough to make metallic
+            and glossy surfaces react to it.
+          </p>
+          <p>
+            Three.js ships with{" "}
+            <Link href="https://threejs.org/docs/#examples/en/environments/RoomEnvironment">
+              <code>RoomEnvironment</code>
+            </Link>
+            , a built-in procedural studio light that needs no external files.
+            For a custom HDR image, swap in{" "}
+            <Link href="https://threejs.org/docs/#examples/en/loaders/RGBELoader">
+              <code>RGBELoader</code>
+            </Link>{" "}
+            and pass the loaded texture to{" "}
+            <code>pmrem.fromEquirectangular()</code>. Either way,{" "}
+            <Link href="https://threejs.org/docs/#api/en/extras/PMREMGenerator">
+              <code>PMREMGenerator</code>
+            </Link>{" "}
+            converts the source into a format optimized for real-time
+            physically-based rendering.
+          </p>
+          <CodeBlock
+            code={`import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js"
+
+const pmrem = new THREE.PMREMGenerator(renderer)
+scene.environment = pmrem.fromScene(new RoomEnvironment()).texture
+pmrem.dispose()
+`}
+            lang="js"
+          />
 
           <hr />
 

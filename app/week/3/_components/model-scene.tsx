@@ -47,7 +47,6 @@ export function ModelScene({ className }: { className?: string }) {
 
     loader.load("/Voyager.glb", (gltf) => {
       model = gltf.scene
-      model.scale.setScalar(1)
       scene.add(model)
     })
 

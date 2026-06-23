@@ -5,6 +5,7 @@ import { useEffect, useRef } from "react"
 import * as THREE from "three"
 import { OrbitControls } from "three/addons/controls/OrbitControls.js"
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js"
+import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js"
 
 export function ModelScene({ className }: { className?: string }) {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -14,20 +15,16 @@ export function ModelScene({ className }: { className?: string }) {
     if (!container) return
 
     const scene = new THREE.Scene()
-    scene.background = new THREE.Color(0x111111)
 
     const camera = new THREE.PerspectiveCamera(
       35,
       container.clientWidth / container.clientHeight
     )
-    camera.position.set(0, 2, 8)
+    camera.position.set(-10, 5, 10)
     camera.lookAt(0, 1, 0)
     scene.add(camera)
 
-    const ambientLight = new THREE.AmbientLight(0xffffff, 1)
-    scene.add(ambientLight)
-
-    const dirLight = new THREE.DirectionalLight(0xffffff, 3)
+    const dirLight = new THREE.DirectionalLight(0xffffff, 1)
     dirLight.position.set(5, 10, 5)
     scene.add(dirLight)
 
@@ -36,6 +33,11 @@ export function ModelScene({ className }: { className?: string }) {
     renderer.setSize(container.clientWidth, container.clientHeight)
     container.appendChild(renderer.domElement)
 
+    const pmrem = new THREE.PMREMGenerator(renderer)
+    const envTexture = pmrem.fromScene(new RoomEnvironment()).texture
+    scene.environment = envTexture
+    pmrem.dispose()
+
     const controls = new OrbitControls(camera, renderer.domElement)
     controls.enableDamping = true
     controls.target.set(0, 1, 0)
@@ -43,13 +45,13 @@ export function ModelScene({ className }: { className?: string }) {
     const loader = new GLTFLoader()
     let model: THREE.Group | null = null
 
-    loader.load("/LeePerrySmith.glb", (gltf) => {
+    loader.load("/Voyager.glb", (gltf) => {
       model = gltf.scene
+      model.scale.setScalar(1)
       scene.add(model)
     })
 
     renderer.setAnimationLoop(() => {
-      if (model) model.rotation.y += 0.005
       controls.update()
       renderer.render(scene, camera)
     })

@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button"
 import { AnimationLoopScene } from "./_components/animation-loop-scene"
 import { GsapScene } from "./_components/gsap-scene"
 import { ModelScene } from "./_components/model-scene"
+import { AnimatedModelScene } from "./_components/animated-model-scene"
 
 export const metadata: Metadata = {
   title: "Week 3",
@@ -134,7 +135,7 @@ gsap.to(wanderer.position, {
           <H3>Example</H3>
           <p>
             Place your <code>.glb</code> file in the <code>/public</code> folder
-            so it's served as a static asset, then load it with{" "}
+            so it’s served as a static asset, then load it with{" "}
             <code>GLTFLoader</code>. The callback fires once the file is ready.
           </p>
           <CodeBlock
@@ -151,7 +152,41 @@ loader.load("/Voyager.glb", (gltf) => {
 
           <ModelScene className="mt-8" />
 
-          <H3>Environment map</H3>
+          <H3>Animated model</H3>
+          <p>
+            glTF files can bundle animation clips alongside the geometry.{" "}
+            <Link href="https://threejs.org/docs/#api/en/animation/AnimationMixer">
+              <code>AnimationMixer</code>
+            </Link>{" "}
+            is the playback engine: bind it to the model, create an action from
+            a clip, and call <code>.play()</code>. Then call{" "}
+            <code>mixer.update(delta)</code> on every frame with the time
+            elapsed since the last frame.
+          </p>
+          <CodeBlock
+            code={`const clock = new THREE.Clock()
+let mixer
+
+loader.load("/fish.glb", (gltf) => {
+  const model = gltf.scene
+  scene.add(model)
+
+  mixer = new THREE.AnimationMixer(model)
+  const action = mixer.clipAction(gltf.animations[0])
+  action.timeScale = 0.5
+  action.play()
+})
+
+renderer.setAnimationLoop(() => {
+  mixer?.update(clock.getDelta())
+  renderer.render(scene, camera)
+})`}
+            lang="js"
+          />
+
+          <AnimatedModelScene className="mt-8" />
+
+          <H2>Environment map</H2>
           <p>
             An environment map is a texture that wraps around the entire scene
             and gets sampled by materials for reflections and ambient lighting.
@@ -175,7 +210,7 @@ loader.load("/Voyager.glb", (gltf) => {
 
 const pmrem = new THREE.PMREMGenerator(renderer)
 scene.environment = pmrem.fromScene(new RoomEnvironment()).texture
-pmrem.dispose()
+pmrem.dispose() // free GPU resources after conversion
 `}
             lang="js"
           />

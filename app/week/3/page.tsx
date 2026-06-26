@@ -163,13 +163,7 @@ loader.load("/Voyager.glb", (gltf) => {
             <Link href="https://threejs.org/docs/#examples/en/environments/RoomEnvironment">
               <code>RoomEnvironment</code>
             </Link>
-            , a built-in procedural studio light that needs no external files.
-            For a custom HDR image, swap in{" "}
-            <Link href="https://threejs.org/docs/#examples/en/loaders/RGBELoader">
-              <code>RGBELoader</code>
-            </Link>{" "}
-            and pass the loaded texture to{" "}
-            <code>pmrem.fromEquirectangular()</code>. Either way,{" "}
+            , a built-in procedural studio light that needs no external files.{" "}
             <Link href="https://threejs.org/docs/#api/en/extras/PMREMGenerator">
               <code>PMREMGenerator</code>
             </Link>{" "}
@@ -183,6 +177,28 @@ const pmrem = new THREE.PMREMGenerator(renderer)
 scene.environment = pmrem.fromScene(new RoomEnvironment()).texture
 pmrem.dispose()
 `}
+            lang="js"
+          />
+          <p>
+            For a custom HDRI, place your <code>.hdr</code> file in{" "}
+            <code>/public</code> and load it with{" "}
+            <Link href="https://threejs.org/docs/#examples/en/loaders/RGBELoader">
+              <code>RGBELoader</code>
+            </Link>
+            . The rest of the pipeline is the same: pass the texture through{" "}
+            <code>PMREMGenerator</code> and assign it to{" "}
+            <code>scene.environment</code>.
+          </p>
+          <CodeBlock
+            code={`import { RGBELoader } from "three/addons/loaders/RGBELoader.js"
+
+const pmrem = new THREE.PMREMGenerator(renderer)
+
+new RGBELoader().load("/studio.hdr", (texture) => {
+  scene.environment = pmrem.fromEquirectangular(texture).texture
+  texture.dispose()
+  pmrem.dispose()
+})`}
             lang="js"
           />
 

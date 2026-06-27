@@ -84,6 +84,7 @@ export function SpatialAudioScene({ className }: { className?: string }) {
 
     const controls = new OrbitControls(camera, renderer.domElement)
     controls.enableDamping = true
+    controls.target.set(0, 3, 0)
 
     renderer.setAnimationLoop((time) => {
       const t = time * 0.001

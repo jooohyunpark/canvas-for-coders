@@ -267,13 +267,14 @@ const sound = new THREE.PositionalAudio(listener)
 const audioLoader = new THREE.AudioLoader()
 audioLoader.load('/underwater.mp3', (buffer) => {
   sound.setBuffer(buffer)
-  sound.setRefDistance(10)
+  sound.setRefDistance(10) // full volume within 10 units 
   sound.setRolloffFactor(3) // how fast volume drops beyond that
   sound.setVolume(0.5)
   sound.setLoop(true)
   sound.play()
 })
 
+// Attaching sound to a mesh gives it a position in 3D space
 const mesh = new THREE.Mesh(geo, mat)
 mesh.add(sound)
 scene.add(mesh)`}

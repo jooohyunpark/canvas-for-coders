@@ -10,6 +10,7 @@ import { AnimationLoopScene } from "./_components/animation-loop-scene"
 import { GsapScene } from "./_components/gsap-scene"
 import { ModelScene } from "./_components/model-scene"
 import { AnimatedModelScene } from "./_components/animated-model-scene"
+import { SpatialAudioScene } from "./_components/spatial-audio-scene"
 
 export const metadata: Metadata = {
   title: "Week 3",
@@ -236,6 +237,55 @@ new RGBELoader().load("/studio.hdr", (texture) => {
 })`}
             lang="js"
           />
+
+          <H2>Spatial audio</H2>
+          <p>
+            Three.js wraps the Web Audio API so you can place sounds in 3D
+            space. The key idea is a listener attached to the camera and sources
+            attached to objects in the scene. As the listener moves, volume and
+            stereo panning update automatically.
+          </p>
+          <p>
+            <Link href="https://threejs.org/docs/#api/en/audio/AudioListener">
+              <code>AudioListener</code>
+            </Link>{" "}
+            is the listener. Add it to the camera so it moves with you.{" "}
+            <Link href="https://threejs.org/docs/#api/en/audio/PositionalAudio">
+              <code>PositionalAudio</code>
+            </Link>{" "}
+            is a sound source that lives at a position in the scene. Attach it
+            to a mesh and it travels with the object.{" "}
+            <code>setRefDistance()</code> sets the distance at which the volume
+            is at full level and starts to roll off beyond.
+          </p>
+          <CodeBlock
+            code={`const listener = new THREE.AudioListener()
+camera.add(listener)
+
+const sound = new THREE.PositionalAudio(listener)
+
+const audioLoader = new THREE.AudioLoader()
+audioLoader.load('/underwater.mp3', (buffer) => {
+  sound.setBuffer(buffer)
+  sound.setRefDistance(10)
+  sound.setRolloffFactor(3) // how fast volume drops beyond that
+  sound.setVolume(0.5)
+  sound.setLoop(true)
+  sound.play()
+})
+
+const mesh = new THREE.Mesh(geo, mat)
+mesh.add(sound)
+scene.add(mesh)`}
+            lang="js"
+          />
+          <p>
+            Pan around the scene to move the listener relative to the source. As
+            you drift closer the volume rises; move left or right and you hear
+            it shift between ears.
+          </p>
+
+          <SpatialAudioScene className="mt-8" />
 
           <hr />
 

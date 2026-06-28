@@ -46,16 +46,21 @@ function buildDefaultFiles(modelUrl: string) {
   transform: translateX(-50%);
   display: flex;
   gap: 8px;
-}
 
-#ui button {
-  padding: 8px 16px;
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 999px;
-  cursor: pointer;
-  font-size: 13px;
-  white-space: nowrap;
+  button {
+    padding: 6px 12px;
+    background: white;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+    font-size: 13px;
+    white-space: nowrap;
+    transition: background 0.15s ease-out;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.85);
+    }
+  }
 }`,
     "index.js": `import './styles.css';
 import * as THREE from 'three';

@@ -11,6 +11,7 @@ import { GsapScene } from "./_components/gsap-scene"
 import { ModelScene } from "./_components/model-scene"
 import { AnimatedModelScene } from "./_components/animated-model-scene"
 import { SpatialAudioScene } from "./_components/spatial-audio-scene"
+import { Exercise } from "./_components/exercise"
 
 export const metadata: Metadata = {
   title: "Week 3",
@@ -288,6 +289,23 @@ scene.add(mesh)`}
 
           <SpatialAudioScene className="mt-8" />
 
+          <hr />
+
+          <H2>Exercise</H2>
+          <p>
+            Re-create a scene like the one in the video. Load the Voyager model
+            and animate the camera to three specific points on it when each
+            button is clicked. Use <code>gsap.to()</code> to tween both{" "}
+            <code>camera.position</code> and <code>controls.target</code> to the
+            new viewpoint.
+          </p>
+
+          <div className="mt-8 aspect-video w-full overflow-hidden rounded-lg bg-muted" />
+        </Article>
+
+        <Exercise className="mt-4 mb-12" />
+
+        <Article>
           <hr />
 
           <H2>Assignment</H2>

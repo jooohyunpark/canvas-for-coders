@@ -18,9 +18,11 @@ import {
 const noopSubscribe = () => () => {}
 const STORAGE_KEY = "cfc-week3-exercise"
 
-function buildDefaultFiles(modelUrl: string) {
-  return {
-    "index.html": `<!DOCTYPE html>
+const MODEL_URL =
+  "https://cdn.jsdelivr.net/gh/jooohyunpark/canvas-for-coders@main/public/Voyager.glb"
+
+const defaultFiles = {
+  "index.html": `<!DOCTYPE html>
 <html>
   <head></head>
   <body>
@@ -28,13 +30,13 @@ function buildDefaultFiles(modelUrl: string) {
       <div id="ui">
         <button data-point="overview">Overview</button>
         <button data-point="antenna">Antenna</button>
-        <button data-point="body">Body</button>
+        <button data-point="golden-record">Golden Record</button>
       </div>
     </div>
     <script src="./index.js" type="module"></script>
   </body>
 </html>`,
-    "styles.css": `body {
+  "styles.css": `body {
   margin: 0;
   overflow: hidden;
 }
@@ -62,7 +64,7 @@ function buildDefaultFiles(modelUrl: string) {
     }
   }
 }`,
-    "index.js": `import './styles.css';
+  "index.js": `import './styles.css';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
@@ -83,15 +85,15 @@ scene.environment = pmrem.fromScene(new RoomEnvironment()).texture;
 pmrem.dispose();
 
 const camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight, 0.1, 1000);
-camera.position.set(-10, 5, 10);
+camera.position.set(-15, 10, 15);
 
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
-controls.target.set(0, 1, 0);
 controls.update();
 
 const loader = new GLTFLoader();
-loader.load('${modelUrl}', (gltf) => {
+// CDN URL required — Sandpack's preview runs on a different HTTPS origin
+loader.load('${MODEL_URL}', (gltf) => {
   scene.add(gltf.scene);
 });
 
@@ -99,7 +101,7 @@ loader.load('${modelUrl}', (gltf) => {
 const points = {
   overview: { position: { x: -10, y: 5, z: 10 }, target: { x: 0, y: 1, z: 0 } },
   antenna:  { position: { x: 2,   y: 7, z: 3  }, target: { x: 0, y: 4, z: 0 } },
-  body:     { position: { x: -3,  y: 2, z: 6  }, target: { x: 0, y: 1, z: 0 } },
+  "golden-record": { position: { x: -3,  y: 2, z: 6  }, target: { x: 0, y: 1, z: 0 } },
 };
 
 document.querySelectorAll('#ui button').forEach((btn) => {
@@ -122,7 +124,6 @@ window.addEventListener('resize', () => {
   camera.updateProjectionMatrix();
   renderer.setSize(window.innerWidth, window.innerHeight);
 });`,
-  }
 }
 
 export function Exercise({ className }: { className?: string }) {
@@ -134,14 +135,6 @@ export function Exercise({ className }: { className?: string }) {
 
   const { resolvedTheme } = useTheme()
   const [resetKey, setResetKey] = useState(0)
-
-  const [defaultFiles] = useState(() => {
-    const origin =
-      typeof window !== "undefined"
-        ? window.location.origin
-        : "http://localhost:3000"
-    return buildDefaultFiles(`${origin}/Voyager.glb`)
-  })
 
   const handleReset = () => {
     try {

@@ -99,17 +99,17 @@ loader.load('${MODEL_URL}', (gltf) => {
 
 // Three points to navigate to
 const points = {
-  overview: { position: { x: -10, y: 5, z: 10 }, target: { x: 0, y: 1, z: 0 } },
-  antenna:  { position: { x: 2,   y: 7, z: 3  }, target: { x: 0, y: 4, z: 0 } },
-  "golden-record": { position: { x: -3,  y: 2, z: 6  }, target: { x: 0, y: 1, z: 0 } },
+  overview:      { position: { x: -10, y: 5, z: 10 }, controlTarget: { x: 0, y: 1, z: 0 } },
+  antenna:       { position: { x: 2,   y: 7, z: 3  }, controlTarget: { x: 0, y: 4, z: 0 } },
+  "golden-record": { position: { x: -3,  y: 2, z: 6  }, controlTarget: { x: 0, y: 1, z: 0 } },
 };
 
 document.querySelectorAll('#ui button').forEach((btn) => {
   btn.addEventListener('click', () => {
-    const { position, target } = points[btn.dataset.point];
+    const { position, controlTarget } = points[btn.dataset.point];
 
     // TODO: use gsap.to() to animate camera.position to position
-    // and controls.target to target
+    // and controls.target to controlTarget
     // Hint: add onUpdate: () => controls.update() to each tween
   });
 });

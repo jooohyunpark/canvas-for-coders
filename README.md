@@ -20,10 +20,10 @@ By the end of this course, you'll:
 2. Ship a 3D web project of your own.
 
 ## Course Structure
+
 - Opening discussion + first half content (75 minutes)
 - Second half content or class exercise (60 minutes)
 
-  
 ## Prerequisites
 
 Please complete the following before the first class:
@@ -33,7 +33,6 @@ Please complete the following before the first class:
 - [npm](https://www.npmjs.com/) (included with Node.js)
 - [Git](https://github.com/git-guides/install-git)
 - [GitHub account](https://github.com/signup)
-
 
 ## Tools
 
@@ -47,8 +46,6 @@ Please complete the following before the first class:
 - [Vite](https://vitejs.dev/) — build tool and dev server
 - [Vercel](https://vercel.com/) — deployment platform
 - [GitHub](https://github.com/) — code repository
-
-  
 
 ## Weekly Topics
 
@@ -113,14 +110,6 @@ Please complete the following before the first class:
 ## Assignments
 
 Submit your weekly assignments [here](https://github.com/jooohyunpark/itp-canvas-for-coders/discussions/categories/assignments)
-
-
-## Resources
-
-- [Three.js fundamentals](https://threejs.org/manual/#en/fundamentals)
-- [Three.js Mentor GPT](https://chatgpt.com/g/g-jGjqAMvED-three-js-mentor)
-- [Three.js examples](https://threejs.org/examples/)
-- [React, visualized](https://react.gg/visualized)
 
 ## Equipment
 

@@ -300,7 +300,13 @@ scene.add(mesh)`}
             new viewpoint.
           </p>
 
-          <div className="mt-8 aspect-video w-full overflow-hidden rounded-lg bg-muted" />
+          <video
+            src="/week3-exercise.mp4"
+            loop
+            playsInline
+            controls
+            className="mt-8 w-full rounded-lg"
+          />
         </Article>
 
         <Exercise className="mt-4 mb-12" />

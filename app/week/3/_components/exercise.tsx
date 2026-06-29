@@ -18,8 +18,10 @@ import {
 const noopSubscribe = () => () => {}
 const STORAGE_KEY = "cfc-week3-exercise"
 
-const MODEL_URL =
-  "https://cdn.jsdelivr.net/gh/jooohyunpark/canvas-for-coders@main/public/Voyager.glb"
+const CDN =
+  "https://cdn.jsdelivr.net/gh/jooohyunpark/canvas-for-coders@main/public"
+const MODEL_URL = `${CDN}/Voyager.glb`
+const MOON_TEXTURE_URL = `${CDN}/moon-texture.jpg`
 
 const defaultFiles = {
   "index.html": `<!DOCTYPE html>
@@ -68,7 +70,6 @@ const defaultFiles = {
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment';
 import gsap from 'gsap';
 
 const app = document.querySelector('#app');
@@ -80,37 +81,34 @@ app.appendChild(renderer.domElement);
 
 const scene = new THREE.Scene();
 
-const pmrem = new THREE.PMREMGenerator(renderer);
-scene.environment = pmrem.fromScene(new RoomEnvironment()).texture;
-pmrem.dispose();
+const light = new THREE.DirectionalLight('white', 15);
+light.position.set(1, 1, -1);
+scene.add(light);
 
 const camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight, 0.1, 1000);
-camera.position.set(-15, 10, 15);
+camera.position.set(15, 10, 15);
 
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
-controls.update();
+
+// CDN URLs required — Sandpack's preview runs on a different HTTPS origin
+const MOON_TEXTURE_URL = '${MOON_TEXTURE_URL}';
 
 const loader = new GLTFLoader();
-// CDN URL required — Sandpack's preview runs on a different HTTPS origin
 loader.load('${MODEL_URL}', (gltf) => {
+  gltf.scene.rotation.y = Math.PI / 2;
   scene.add(gltf.scene);
 });
 
-// Three points to navigate to
 const points = {
-  overview:      { position: { x: -10, y: 5, z: 10 }, controlTarget: { x: 0, y: 1, z: 0 } },
-  antenna:       { position: { x: 2,   y: 7, z: 3  }, controlTarget: { x: 0, y: 4, z: 0 } },
-  "golden-record": { position: { x: -3,  y: 2, z: 6  }, controlTarget: { x: 0, y: 1, z: 0 } },
+  overview: { position: { x: 15, y: 10, z: 15 }, controlTarget: { x: 0, y: 0,   z: 0  } },
+  antenna: { position: { x: -3, y: 5,  z: 6  }, controlTarget: { x: 0, y: 1.5, z: 0  } },
+  "golden-record": { position: { x: 0,  y: 0,  z: -3 }, controlTarget: { x: 0, y: 0,   z: 0  } },
 };
 
-document.querySelectorAll('#ui button').forEach((btn) => {
+document.querySelectorAll('[data-point]').forEach((btn) => {
   btn.addEventListener('click', () => {
     const { position, controlTarget } = points[btn.dataset.point];
-
-    // TODO: use gsap.to() to animate camera.position to position
-    // and controls.target to controlTarget
-    // Hint: add onUpdate: () => controls.update() to each tween
   });
 });
 

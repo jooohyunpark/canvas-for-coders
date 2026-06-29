@@ -293,11 +293,11 @@ scene.add(mesh)`}
 
           <H2>Exercise</H2>
           <p>
-            Re-create a scene like the one in the video. Load the Voyager model
-            and animate the camera to three specific points on it when each
-            button is clicked. Use <code>gsap.to()</code> to tween both{" "}
-            <code>camera.position</code> and <code>controls.target</code> to the
-            new viewpoint.
+            Re-create the scene from the video. Load the Voyager model and add
+            a moon orbiting it using the animation loop —{" "}
+            <code>/moon-texture.jpg</code> is in the public folder for the
+            surface. Then wire up the three buttons to fly the camera to each
+            viewpoint using <code>gsap.to()</code>.
           </p>
 
           <video

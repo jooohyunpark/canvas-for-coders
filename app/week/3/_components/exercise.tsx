@@ -72,6 +72,10 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import gsap from 'gsap';
 
+// hosted externally so the preview can fetch them
+const MOON_TEXTURE_URL = '${MOON_TEXTURE_URL}';
+const MODEL_URL = '${MODEL_URL}';
+
 const app = document.querySelector('#app');
 
 const renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -81,7 +85,7 @@ app.appendChild(renderer.domElement);
 
 const scene = new THREE.Scene();
 
-const light = new THREE.DirectionalLight('white', 15);
+const light = new THREE.DirectionalLight('white', 10);
 light.position.set(1, 1, -1);
 scene.add(light);
 
@@ -91,11 +95,8 @@ camera.position.set(15, 10, 15);
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
 
-// CDN URLs required — Sandpack's preview runs on a different HTTPS origin
-const MOON_TEXTURE_URL = '${MOON_TEXTURE_URL}';
-
 const loader = new GLTFLoader();
-loader.load('${MODEL_URL}', (gltf) => {
+loader.load(MODEL_URL, (gltf) => {
   gltf.scene.rotation.y = Math.PI / 2;
   scene.add(gltf.scene);
 });

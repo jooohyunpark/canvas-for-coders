@@ -44,12 +44,13 @@ const defaultFiles = {
 }
 
 #ui {
-  position: absolute;
+  position: fixed;
   bottom: 24px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   gap: 8px;
+  z-index: 1;
 
   button {
     padding: 6px 12px;

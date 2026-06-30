@@ -293,8 +293,8 @@ scene.add(mesh)`}
 
           <H2>Exercise</H2>
           <p>
-            Re-create the scene from the video. Load the Voyager model and add
-            a moon orbiting it using the animation loop —{" "}
+            Re-create the scene from the video. Load the Voyager model and add a
+            moon orbiting it using the animation loop —{" "}
             <code>/moon-texture.jpg</code> is in the public folder for the
             surface. Then wire up the three buttons to fly the camera to each
             viewpoint using <code>gsap.to()</code>.
@@ -317,10 +317,18 @@ scene.add(mesh)`}
           <H2>Assignment</H2>
           <ul>
             <li>
-              Animate at least one object using the animation loop and at least
-              one using GSAP.
+              Continue developing your project based on feedback from the group
+              discussion.
             </li>
-            <li>Try grouping objects and animating the group as a whole.</li>
+            <li>
+              Read the article:{" "}
+              <Link href="https://react.gg/visualized">React, visualized</Link>,
+              from the beginning through the{" "}
+              <Link href="https://react.gg/visualized#managing-effects">
+                Managing Effects
+              </Link>{" "}
+              section.
+            </li>
           </ul>
 
           <Button

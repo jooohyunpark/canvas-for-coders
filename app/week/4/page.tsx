@@ -309,8 +309,8 @@ npm run dev`}
             lang="jsx"
           />
           <p>
-            The same component now covers four looks, based on the prop you
-            pass:
+            One component with variations for different use cases, based on the
+            prop you pass:
           </p>
           <CodeBlock
             code={`<div>

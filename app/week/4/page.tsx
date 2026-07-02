@@ -222,6 +222,76 @@ npm run dev`}
 ))}`}
             lang="jsx"
           />
+
+          <H2>Components &amp; props</H2>
+          <p>
+            A component is a function that returns JSX. That&apos;s the whole
+            idea: you write a function, it returns some markup, and you use it
+            like an HTML tag.
+          </p>
+          <CodeBlock
+            code={`function Greeting() {
+  return <h1>Hello!</h1>
+}
+
+// use it like a tag
+<Greeting />`}
+            lang="jsx"
+          />
+          <p>
+            Component names must be written in PascalCase. React uses the
+            casing to tell your components apart from built-in HTML tags:{" "}
+            <code>&lt;button&gt;</code> is a DOM element,{" "}
+            <code>&lt;Greeting /&gt;</code> is your component.
+          </p>
+
+          <H3>Props</H3>
+          <p>
+            Props let you pass data into a component. They arrive as a single
+            object, the function&apos;s parameter, and you use them like any
+            other variable, with curly braces.
+          </p>
+          <CodeBlock
+            code={`function Greeting(props) {
+  return <h1>Hello, {props.name}!</h1>
+}
+
+<Greeting name="Ada" />`}
+            lang="jsx"
+          />
+          <p>
+            It&apos;s common to destructure them right in the function signature,
+            so you can write <code>name</code> instead of <code>props.name</code>:
+          </p>
+          <CodeBlock
+            code={`function Greeting({ name }) {
+  return <h1>Hello, {name}!</h1>
+}`}
+            lang="jsx"
+          />
+          <p>
+            Props are read-only. A component should never change what it
+            receives. Treat them like arguments passed into a function, not
+            variables to reassign.
+          </p>
+
+          <H3>Children</H3>
+          <p>
+            Whatever you put between a component&apos;s opening and closing tags
+            shows up as a special prop called <code>children</code>. This is how
+            you nest components the way you nest HTML.
+          </p>
+          <CodeBlock
+            code={`function Card({ children }) {
+  return <div className="card">{children}</div>
+}
+
+<Card>
+  <h2>Title</h2>
+  <p>Some text inside the card.</p>
+</Card>`}
+            lang="jsx"
+          />
         </Article>
       </Content>
     </Section>

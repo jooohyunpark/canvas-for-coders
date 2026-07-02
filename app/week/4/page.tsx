@@ -142,6 +142,86 @@ npm install
 npm run dev`}
             lang="bash"
           />
+
+          <H2>JSX</H2>
+          <p>
+            Before we build anything, one piece of syntax you&apos;ll see
+            everywhere in React: JSX.
+          </p>
+          <p>
+            JSX looks like HTML, but it&apos;s actually JavaScript. It lets you
+            write markup directly inside your code, and a build step turns it
+            into plain JavaScript objects that describe the UI. It&apos;s not a
+            template language, it&apos;s JavaScript wearing HTML. And because
+            it&apos;s JavaScript, curly braces let you drop an expression right
+            into the markup:
+          </p>
+          <CodeBlock
+            code={`function Greeting() {
+  const name = "Ada"
+
+  return <h1>Hello, {name}!</h1>
+}`}
+            lang="jsx"
+          />
+          <p>A few rules follow when using JSX.</p>
+
+          <H3>One root element</H3>
+          <p>
+            A component can only return a single element. To return siblings
+            without adding an extra <code>div</code> to the DOM, wrap them in a
+            fragment: <code>&lt;&gt;...&lt;/&gt;</code>.
+          </p>
+          <CodeBlock
+            code={`return (
+  <>
+    <h1>Title</h1>
+    <p>Some text</p>
+  </>
+)`}
+            lang="jsx"
+          />
+
+          <H3>Attributes</H3>
+          <p>
+            <code>class</code> is a reserved word in JavaScript, so JSX uses{" "}
+            <code>className</code> instead. Multi-word attributes are camelCase
+            (<code>onClick</code>, <code>tabIndex</code>), and tags with no
+            children must self-close.
+          </p>
+          <CodeBlock
+            code={`<div className="card" tabIndex={0}>
+  <img src="/cover.jpg" alt="" />
+  <br />
+</div>`}
+            lang="jsx"
+          />
+
+          <H3>Conditional rendering</H3>
+          <p>
+            There&apos;s no <code>if</code> inside JSX, only expressions. A
+            ternary picks between two elements, and <code>&&</code> renders
+            something or nothing.
+          </p>
+          <CodeBlock
+            code={`{isLoggedIn ? <Dashboard /> : <Login />}
+
+{hasError && <ErrorBanner />}`}
+            lang="jsx"
+          />
+
+          <H3>Rendering lists</H3>
+          <p>
+            Use <code>.map()</code> to turn an array into elements. Each item
+            needs a <code>key</code> prop, a stable, unique identifier that
+            helps React track items across re-renders.
+          </p>
+          <CodeBlock
+            code={`{items.map((item) => (
+  <li key={item.id}>{item.label}</li>
+))}`}
+            lang="jsx"
+          />
         </Article>
       </Content>
     </Section>

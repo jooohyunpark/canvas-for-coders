@@ -5,6 +5,7 @@ import { Article } from "@/components/site/article"
 import { H1, H2, H3 } from "@/components/site/heading"
 import { CodeBlock } from "@/components/site/code-block"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { ButtonDemo } from "./_components/button-demo"
 
 export const metadata: Metadata = {
   title: "W4: React",
@@ -239,8 +240,8 @@ npm run dev`}
             lang="jsx"
           />
           <p>
-            Component names must be written in PascalCase. React uses the
-            casing to tell your components apart from built-in HTML tags:{" "}
+            Component names must be written in PascalCase. React uses the casing
+            to tell your components apart from built-in HTML tags:{" "}
             <code>&lt;button&gt;</code> is a DOM element,{" "}
             <code>&lt;Greeting /&gt;</code> is your component.
           </p>
@@ -260,8 +261,9 @@ npm run dev`}
             lang="jsx"
           />
           <p>
-            It&apos;s common to destructure them right in the function signature,
-            so you can write <code>name</code> instead of <code>props.name</code>:
+            It&apos;s common to destructure them right in the function
+            signature, so you can write <code>name</code> instead of{" "}
+            <code>props.name</code>:
           </p>
           <CodeBlock
             code={`function Greeting({ name }) {
@@ -292,6 +294,34 @@ npm run dev`}
 </Card>`}
             lang="jsx"
           />
+
+          <H3>Example</H3>
+          <p>
+            A button demonstrates these concepts together. It uses a{" "}
+            <code>variant</code> prop to determine its visual style (defaulting
+            to <code>&quot;default&quot;</code> if omitted) and uses{" "}
+            <code>children</code> to render its inner text or label.
+          </p>
+          <CodeBlock
+            code={`function Button({ variant = "default", children }) {
+  return <button className={\`btn \${variant}\`}>{children}</button>
+}`}
+            lang="jsx"
+          />
+          <p>
+            The same component now covers four looks, based on the prop you
+            pass:
+          </p>
+          <CodeBlock
+            code={`<div>
+  <Button>Submit</Button>
+  <Button variant="outline">Cancel</Button>
+  <Button variant="ghost">Learn more</Button>
+  <Button variant="destructive">Delete</Button>
+</div>`}
+            lang="jsx"
+          />
+          <ButtonDemo className="mt-4" />
         </Article>
       </Content>
     </Section>

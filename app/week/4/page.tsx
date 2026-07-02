@@ -322,6 +322,36 @@ npm run dev`}
             lang="jsx"
           />
           <ButtonDemo className="mt-4" />
+
+          <H2>Event handlers</H2>
+          <p>
+            Components respond to input through event handlers like{" "}
+            <code>onClick</code>, <code>onChange</code>, and{" "}
+            <code>onSubmit</code>. Pass a reference to your function, not a call
+            to it.
+          </p>
+          <CodeBlock
+            code={`<button onClick={handleClick}>Save</button>   // ✅ reference
+<button onClick={handleClick()}>Save</button> // ❌ runs on render`}
+            lang="jsx"
+          />
+          <p>To pass an argument, wrap it in an inline arrow:</p>
+          <CodeBlock
+            code={`<button onClick={() => handleDelete(id)}>Delete</button>`}
+            lang="jsx"
+          />
+          <p>
+            The same pattern works for any event. Pointer and keyboard events
+            like <code>onMouseEnter</code>, <code>onMouseMove</code>, and{" "}
+            <code>onKeyDown</code> receive an event object with details about
+            what happened:
+          </p>
+          <CodeBlock
+            code={`<div onMouseMove={(e) => console.log(e.clientX, e.clientY)}>
+  Move your mouse here
+</div>`}
+            lang="jsx"
+          />
         </Article>
       </Content>
     </Section>

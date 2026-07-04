@@ -8,6 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ButtonDemo } from "./_components/button-demo"
 import { CounterDemo } from "./_components/counter-demo"
 import { LiftStateDemo } from "./_components/lift-state-demo"
+import { EffectDemo } from "./_components/effect-demo"
 
 export const metadata: Metadata = {
   title: "W4: React",
@@ -479,6 +480,126 @@ setItems([...items, newItem])`}
             a function, never by editing a prop directly.
           </p>
           <LiftStateDemo className="mt-4" />
+
+          <H2>Hooks</H2>
+          <p>
+            You&apos;ve already used one hook: <code>useState</code>. Hooks are
+            functions that let a component tap into React features, and they all
+            start with <code>use</code>. Two more will carry you into next
+            week&apos;s Three.js work: <code>useEffect</code>, for running code
+            around a render, and <code>useRef</code>, for holding onto a DOM
+            node.
+          </p>
+
+          <H3>Rules of hooks</H3>
+          <p>
+            Hooks come with two rules. React&apos;s tooling warns you when you
+            break them:
+          </p>
+          <ul>
+            <li>
+              Call them at the top level of your component &mdash; never inside a
+              loop, condition, or nested function. React tracks hooks by the
+              order they run, so that order has to stay the same on every render.
+            </li>
+            <li>
+              Call them only from React functions: components or your own custom
+              hooks, never plain JavaScript functions.
+            </li>
+          </ul>
+
+          <H3>useEffect</H3>
+          <p>
+            Some work doesn&apos;t belong in the middle of rendering: starting a
+            timer, fetching data, subscribing to an event, drawing to a canvas.
+            These are side effects &mdash; things that reach outside the
+            component. <code>useEffect</code> runs them after React has rendered,
+            keeping your render a clean <code>UI = f(state)</code>.
+          </p>
+          <CodeBlock
+            code={`import { useEffect, useState } from "react"
+
+function Clock() {
+  const [time, setTime] = useState(new Date())
+
+  useEffect(() => {
+    const id = setInterval(() => setTime(new Date()), 1000)
+    return () => clearInterval(id)
+  }, [])
+
+  return <p>{time.toLocaleTimeString()}</p>
+}`}
+            lang="jsx"
+          />
+          <EffectDemo className="mt-4" />
+          <p>
+            Two parts do the work. The function you pass is the effect itself.
+            The second argument &mdash; the dependency array &mdash; tells React
+            when to re-run it:
+          </p>
+          <ul>
+            <li>
+              <code>[]</code>: run once, after the first render. Good for
+              one-time setup.
+            </li>
+            <li>
+              <code>[count]</code>: run again whenever a listed value changes.
+            </li>
+            <li>omitted: run after every render. Rarely what you want.</li>
+          </ul>
+          <p>
+            If an effect sets up something that keeps running, like the interval
+            above, it has to clean up after itself. Return a function from the
+            effect, and React runs it before the next effect and when the
+            component is removed. Skip it, and the interval keeps firing after
+            the component is gone.
+          </p>
+          <CodeBlock
+            code={`useEffect(() => {
+  const handleResize = () => console.log(window.innerWidth)
+  window.addEventListener("resize", handleResize)
+
+  return () => window.removeEventListener("resize", handleResize)
+}, [])`}
+            lang="jsx"
+          />
+
+          <H3>useRef</H3>
+          <p>
+            <code>useRef</code> gives you a handle to a real DOM node. Pass a ref
+            to an element&apos;s <code>ref</code> attribute, and React points{" "}
+            <code>.current</code> at the actual node once it&apos;s on the page
+            &mdash; an escape hatch to the DOM for when you need it.
+          </p>
+          <CodeBlock
+            code={`function TextField() {
+  const inputRef = useRef(null)
+
+  const focusInput = () => inputRef.current.focus()
+
+  return (
+    <>
+      <input ref={inputRef} />
+      <button onClick={focusInput}>Focus</button>
+    </>
+  )
+}`}
+            lang="jsx"
+          />
+          <p>
+            A ref can also hold a value that survives re-renders without
+            triggering one, but the DOM handle is what you&apos;ll reach for
+            most. It&apos;s exactly how you&apos;ll wire up Three.js next week: a
+            ref points at a <code>&lt;canvas&gt;</code>, and a{" "}
+            <code>useEffect</code> runs once after render to attach the renderer
+            and start the animation loop, with a cleanup function to tear it down
+            when the component leaves.
+          </p>
+          <p>
+            That&apos;s the full toolkit &mdash; state, effects, and refs &mdash;
+            for putting an imperative library like Three.js inside a declarative
+            React app.
+          </p>
         </Article>
       </Content>
     </Section>

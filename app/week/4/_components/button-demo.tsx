@@ -5,7 +5,7 @@ export function ButtonDemo({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        "flex flex-wrap justify-center gap-4 rounded-lg border border-border bg-muted/30 p-6",
+        "flex flex-wrap justify-center gap-4 rounded-lg border p-6",
         className
       )}
     >

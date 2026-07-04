@@ -10,12 +10,7 @@ export function CounterDemo({ className }: { className?: string }) {
   const handleClick = () => setCount(count + 1)
 
   return (
-    <div
-      className={cn(
-        "flex justify-center rounded-lg border border-border bg-muted/30 p-6",
-        className
-      )}
-    >
+    <div className={cn("flex justify-center rounded-lg border p-6", className)}>
       <Button onClick={handleClick}>{count}</Button>
     </div>
   )

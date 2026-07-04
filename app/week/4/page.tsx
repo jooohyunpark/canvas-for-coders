@@ -7,6 +7,7 @@ import { CodeBlock } from "@/components/site/code-block"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ButtonDemo } from "./_components/button-demo"
 import { CounterDemo } from "./_components/counter-demo"
+import { LiftStateDemo } from "./_components/lift-state-demo"
 
 export const metadata: Metadata = {
   title: "W4: React",
@@ -411,28 +412,40 @@ function Counter() {
 
           <H3>Don&apos;t mutate state directly</H3>
           <p>
-            Always update state through its setter, and give it a new value
-            rather than editing the old one in place.
+            State often holds an array or object, not just a single value. Say
+            you&apos;re keeping a list:
           </p>
           <CodeBlock
-            code={`// wrong — changes the existing array
+            code={`const [items, setItems] = useState([])`}
+            lang="jsx"
+          />
+          <p>
+            To add an item, your instinct might be to push onto the array. But
+            that mutates it (changes the existing array in place), and React
+            won&apos;t notice:
+          </p>
+          <CodeBlock
+            code={`// wrong — mutates the existing array
 items.push(newItem)
-setItems(items)
-
-// right — creates a new array
+setItems(items)`}
+            lang="jsx"
+          />
+          <p>
+            React decides whether to re-render by checking if the value is a
+            different one than before. <code>push</code> keeps the same array,
+            so React assumes nothing changed and skips the update. Instead,
+            build a new array with the old items plus the new one:
+          </p>
+          <CodeBlock
+            code={`// right — creates a new array
 setItems([...items, newItem])`}
             lang="jsx"
           />
           <p>
-            React checks whether to re-render by comparing the new value against
-            the old one. If you change the same array or object in place, React
-            sees the same thing and assumes nothing happened. A fresh value is
-            how it knows to update.
-          </p>
-          <p>
-            React may also batch several updates together, so state won&apos;t
-            have changed the instant after you call the setter. The new value
-            shows up on the next render, not the next line.
+            The <code>...</code> spreads the existing items into a fresh array.
+            React sees something new and re-renders. Same rule for objects: make
+            a new one with <code>{`{ ...old, key: value }`}</code> rather than
+            editing the old.
           </p>
 
           <H3>Lifting state up</H3>
@@ -448,7 +461,11 @@ setItems([...items, newItem])`}
   return (
     <>
       <Display count={count} />
-      <Controls onIncrement={() => setCount(count + 1)} />
+      <Controls
+        onIncrement={() => setCount(count + 1)}
+        onDecrement={() => setCount(count - 1)}
+        onReset={() => setCount(0)}
+      />
     </>
   )
 }`}
@@ -461,6 +478,7 @@ setItems([...items, newItem])`}
             flows down, and a child changes the parent&apos;s state only through
             a function, never by editing a prop directly.
           </p>
+          <LiftStateDemo className="mt-4" />
         </Article>
       </Content>
     </Section>

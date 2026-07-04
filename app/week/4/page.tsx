@@ -498,9 +498,10 @@ setItems([...items, newItem])`}
           </p>
           <ul>
             <li>
-              Call them at the top level of your component &mdash; never inside a
-              loop, condition, or nested function. React tracks hooks by the
-              order they run, so that order has to stay the same on every render.
+              Call them at the top level of your component &mdash; never inside
+              a loop, condition, or nested function. React tracks hooks by the
+              order they run, so that order has to stay the same on every
+              render.
             </li>
             <li>
               Call them only from React functions: components or your own custom
@@ -513,8 +514,8 @@ setItems([...items, newItem])`}
             Some work doesn&apos;t belong in the middle of rendering: starting a
             timer, fetching data, subscribing to an event, drawing to a canvas.
             These are side effects &mdash; things that reach outside the
-            component. <code>useEffect</code> runs them after React has rendered,
-            keeping your render a clean <code>UI = f(state)</code>.
+            component. <code>useEffect</code> runs them after React has
+            rendered, keeping your render a clean <code>UI = f(state)</code>.
           </p>
           <CodeBlock
             code={`import { useEffect, useState } from "react"
@@ -566,10 +567,10 @@ function Clock() {
 
           <H3>useRef</H3>
           <p>
-            <code>useRef</code> gives you a handle to a real DOM node. Pass a ref
-            to an element&apos;s <code>ref</code> attribute, and React points{" "}
-            <code>.current</code> at the actual node once it&apos;s on the page
-            &mdash; an escape hatch to the DOM for when you need it.
+            <code>useRef</code> gives you a handle to a real DOM node. Pass a
+            ref to an element&apos;s <code>ref</code> attribute, and React
+            points <code>.current</code> at the actual node once it&apos;s on
+            the page &mdash; an escape hatch to the DOM for when you need it.
           </p>
           <CodeBlock
             code={`function TextField() {
@@ -587,18 +588,8 @@ function Clock() {
             lang="jsx"
           />
           <p>
-            A ref can also hold a value that survives re-renders without
-            triggering one, but the DOM handle is what you&apos;ll reach for
-            most. It&apos;s exactly how you&apos;ll wire up Three.js next week: a
-            ref points at a <code>&lt;canvas&gt;</code>, and a{" "}
-            <code>useEffect</code> runs once after render to attach the renderer
-            and start the animation loop, with a cleanup function to tear it down
-            when the component leaves.
-          </p>
-          <p>
-            That&apos;s the full toolkit &mdash; state, effects, and refs &mdash;
-            for putting an imperative library like Three.js inside a declarative
-            React app.
+            A ref can also hold onto a value between renders without triggering
+            one, but reaching the DOM is what you&apos;ll use it for most.
           </p>
         </Article>
       </Content>

@@ -10,6 +10,7 @@ export function ButtonDemo({ className }: { className?: string }) {
       )}
     >
       <Button>Submit</Button>
+      <Button variant="secondary">Preview</Button>
       <Button variant="outline">Cancel</Button>
       <Button variant="ghost">Learn more</Button>
       <Button variant="destructive">Delete</Button>

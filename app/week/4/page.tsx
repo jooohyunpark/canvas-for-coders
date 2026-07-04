@@ -6,6 +6,7 @@ import { H1, H2, H3 } from "@/components/site/heading"
 import { CodeBlock } from "@/components/site/code-block"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ButtonDemo } from "./_components/button-demo"
+import { CounterDemo } from "./_components/counter-demo"
 
 export const metadata: Metadata = {
   title: "W4: React",
@@ -315,6 +316,7 @@ npm run dev`}
           <CodeBlock
             code={`<div>
   <Button>Submit</Button>
+  <Button variant="secondary">Preview</Button>
   <Button variant="outline">Cancel</Button>
   <Button variant="ghost">Learn more</Button>
   <Button variant="destructive">Delete</Button>
@@ -352,6 +354,113 @@ npm run dev`}
 </div>`}
             lang="jsx"
           />
+
+          <H2>State</H2>
+
+          <p>
+            State is the data a component remembers and controls on its own.
+            It&apos;s a big part of what makes React powerful: you can build
+            complex interfaces from small, self-contained pieces, each managing
+            its own part.
+          </p>
+
+          <H3>useState</H3>
+          <p>
+            A component is just a function, and it runs again on every render.
+            So a normal variable won’t work since it gets recreated and reset
+            each time. To keep a value between renders, React provides the{" "}
+            <code>useState</code> hook. The convention is{" "}
+            <code>[value, setValue]</code>.
+          </p>
+          <CodeBlock
+            code={`import { useState } from "react"
+
+function Counter() {
+  const [count, setCount] = useState(0)
+
+  const handleClick = () => setCount(count + 1)
+
+  return (
+    <button onClick={handleClick}>
+      {count}
+    </button>
+  )
+}`}
+            lang="jsx"
+          />
+          <CounterDemo className="mt-4" />
+          <p>
+            In the example above, <code>useState(0)</code> sets the starting
+            value and returns two things: the current value (<code>count</code>)
+            and a function to change it (<code>setCount</code>). The key is to
+            always update through the setter (<code>setCount</code>) rather than
+            reassigning <code>count</code> yourself.
+          </p>
+
+          <H3>State is local</H3>
+          <p>
+            State belongs to the component that declares it. Each{" "}
+            <code>&lt;Counter /&gt;</code> on the page keeps its own independent
+            count, so updating one doesn&apos;t touch the others.
+          </p>
+          <CodeBlock
+            code={`<Counter />   {/* has its own count */}
+<Counter />   {/* completely separate count */}`}
+            lang="jsx"
+          />
+
+          <H3>Don&apos;t mutate state directly</H3>
+          <p>
+            Always update state through its setter, and give it a new value
+            rather than editing the old one in place.
+          </p>
+          <CodeBlock
+            code={`// wrong — changes the existing array
+items.push(newItem)
+setItems(items)
+
+// right — creates a new array
+setItems([...items, newItem])`}
+            lang="jsx"
+          />
+          <p>
+            React checks whether to re-render by comparing the new value against
+            the old one. If you change the same array or object in place, React
+            sees the same thing and assumes nothing happened. A fresh value is
+            how it knows to update.
+          </p>
+          <p>
+            React may also batch several updates together, so state won&apos;t
+            have changed the instant after you call the setter. The new value
+            shows up on the next render, not the next line.
+          </p>
+
+          <H3>Lifting state up</H3>
+          <p>
+            When two sibling components need the same data, neither can own it:
+            siblings can&apos;t see each other&apos;s state. Move the state up
+            to their closest shared parent, then pass it down to both as props.
+          </p>
+          <CodeBlock
+            code={`function App() {
+  const [count, setCount] = useState(0)
+
+  return (
+    <>
+      <Display count={count} />
+      <Controls onIncrement={() => setCount(count + 1)} />
+    </>
+  )
+}`}
+            lang="jsx"
+          />
+          <p>
+            The parent owns the state. <code>Display</code> reads it through a
+            prop, and <code>Controls</code> changes it by calling a function the
+            parent passed down. It&apos;s the Props pattern in action: data
+            flows down, and a child changes the parent&apos;s state only through
+            a function, never by editing a prop directly.
+          </p>
         </Article>
       </Content>
     </Section>

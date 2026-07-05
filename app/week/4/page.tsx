@@ -9,9 +9,10 @@ import { ButtonDemo } from "./_components/button-demo"
 import { CounterDemo } from "./_components/counter-demo"
 import { LiftStateDemo } from "./_components/lift-state-demo"
 import { EffectDemo } from "./_components/effect-demo"
+import { Exercise } from "./_components/exercise"
 
 export const metadata: Metadata = {
-  title: "W4: React",
+  title: "Week 4",
 }
 
 const CREATE_COMMANDS = [
@@ -498,10 +499,9 @@ setItems([...items, newItem])`}
           </p>
           <ul>
             <li>
-              Call them at the top level of your component &mdash; never inside
-              a loop, condition, or nested function. React tracks hooks by the
-              order they run, so that order has to stay the same on every
-              render.
+              Call them at the top level of your component, never inside a loop,
+              condition, or nested function. React tracks hooks by the order
+              they run, so that order has to stay the same on every render.
             </li>
             <li>
               Call them only from React functions: components or your own custom
@@ -513,9 +513,9 @@ setItems([...items, newItem])`}
           <p>
             Some work doesn&apos;t belong in the middle of rendering: starting a
             timer, fetching data, subscribing to an event, drawing to a canvas.
-            These are side effects &mdash; things that reach outside the
+            These are called side effects, anything that reaches outside the
             component. <code>useEffect</code> runs them after React has
-            rendered, keeping your render a clean <code>UI = f(state)</code>.
+            rendered, so your render stays a clean <code>UI = f(state)</code>.
           </p>
           <CodeBlock
             code={`import { useEffect, useState } from "react"
@@ -535,8 +535,8 @@ function Clock() {
           <EffectDemo className="mt-4" />
           <p>
             Two parts do the work. The function you pass is the effect itself.
-            The second argument &mdash; the dependency array &mdash; tells React
-            when to re-run it:
+            The second argument is the dependency array, which tells React when
+            to re-run it:
           </p>
           <ul>
             <li>
@@ -546,7 +546,6 @@ function Clock() {
             <li>
               <code>[count]</code>: run again whenever a listed value changes.
             </li>
-            <li>omitted: run after every render. Rarely what you want.</li>
           </ul>
           <p>
             If an effect sets up something that keeps running, like the interval
@@ -591,7 +590,54 @@ function Clock() {
             A ref can also hold onto a value between renders without triggering
             one, but reaching the DOM is what you&apos;ll use it for most.
           </p>
+
+          <hr />
+
+          <H2>Exercise</H2>
+          <p>
+            Build a fictional chatbot that answers every prompt in emojis. The
+            starter is a single input sitting in the middle of the window. Turn
+            it into a working chat.
+          </p>
+          <p>
+            The bot&apos;s brain is already written for you in{" "}
+            <code>emoji-api.js</code>. It exports one function,{" "}
+            <code>sendMessage(prompt)</code>, that pretends to call an API: give
+            it text and it resolves, after a short delay, to a random string of
+            emojis. Import it and treat it like a real request.
+          </p>
+          <CodeBlock
+            code={`import { sendMessage } from "./emoji-api"
+
+const reply = await sendMessage("hello")
+// → something like "🚀✨🦄🎉"`}
+            lang="jsx"
+          />
+          <p>To get there, you&apos;ll want to:</p>
+          <ul>
+            <li>
+              Hold the input text in <code>state</code> and update it on{" "}
+              <code>onChange</code>, so React controls the field.
+            </li>
+            <li>
+              Keep the conversation in a second piece of state, an array of
+              messages. On submit, add the user&apos;s prompt, call{" "}
+              <code>sendMessage</code>, then add the emoji reply. Remember to
+              build a new array instead of mutating the old one.
+            </li>
+            <li>
+              Render the messages with <code>.map()</code>, each with a stable{" "}
+              <code>key</code>, and clear the input once a message is sent.
+            </li>
+          </ul>
+          <p>
+            Stretch goals: show a &ldquo;typing…&rdquo; state while the reply is
+            pending, or auto-scroll to the newest message with a{" "}
+            <code>ref</code> and <code>useEffect</code>.
+          </p>
         </Article>
+
+        <Exercise className="mt-4 mb-12" />
       </Content>
     </Section>
   )

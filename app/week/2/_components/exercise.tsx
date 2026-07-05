@@ -123,7 +123,7 @@ export function Exercise({ className }: { className?: string }) {
           defaultFiles={defaultFiles}
         />
         <SandpackLayout className="rounded-lg!">
-          <SandpackCodeEditor showLineNumbers style={{ height: 700 }} />
+          <SandpackCodeEditor style={{ height: 700 }} />
           <SandpackPreview
             showOpenInCodeSandbox={false}
             showRefreshButton

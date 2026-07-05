@@ -153,7 +153,7 @@ export function Bubble({ type = "agent", children }) {
 }
 `,
   "/components/Bubble/styles.module.css": `.bubble {
-  max-width: 70%;
+  max-width: 75%;
   width: fit-content;
   padding: 8px 16px;
   border-radius: 16px;

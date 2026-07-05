@@ -23,12 +23,15 @@ const defaultFiles = {
 import { Composer } from "./components/Composer"
 import { Bubble } from "./components/Bubble"
 
-// Your job: make this chatbot reply in emojis.
-//
-// Replies come from sendMessage() in emoji-api.js — give it a prompt,
-// await the result:
-//   import { sendMessage } from "./emoji-api"
-//   const reply = await sendMessage(prompt)
+/*
+  Your job: make this chatbot reply in emojis.
+
+  Replies come from sendMessage() in emoji-api.js — give it a prompt,
+  await the result:
+
+    import { sendMessage } from "./emoji-api"
+    const reply = await sendMessage(prompt)
+*/
 
 export default function App() {
   return (
@@ -159,7 +162,7 @@ export function Bubble({ type = "agent", children }) {
 
 .user {
   margin-left: auto;
-  background: #0b93f6;
+  background: #007aff;
   color: white;
 }
 

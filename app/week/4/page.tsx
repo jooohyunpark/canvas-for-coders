@@ -244,10 +244,10 @@ npm run dev`}
             lang="jsx"
           />
           <p>
-            Component names must be written in PascalCase. React uses the casing
-            to tell your components apart from built-in HTML tags:{" "}
-            <code>&lt;button&gt;</code> is a DOM element,{" "}
-            <code>&lt;Greeting /&gt;</code> is your component.
+            Component names must start with a capital letter (a convention
+            called PascalCase). React uses the casing to tell your components
+            apart from built-in HTML tags: <code>&lt;button&gt;</code> is a DOM
+            element, <code>&lt;Greeting /&gt;</code> is your component.
           </p>
 
           <H3>Props</H3>
@@ -327,6 +327,61 @@ npm run dev`}
             lang="jsx"
           />
           <ButtonDemo className="mt-4" />
+
+          <H3>Scoped styling</H3>
+          <p>
+            Plain CSS is global: a <code>.button</code> rule in one file styles
+            every <code>.button</code> on the page. Once you have a handful of
+            components, those names start to collide. CSS Modules solve this by
+            scoping styles to the component that imports them.
+          </p>
+          <p>
+            Name the stylesheet with a <code>.module.css</code> extension and
+            write ordinary CSS. That <code>.module.css</code> suffix is the
+            signal that turns on scoping.
+          </p>
+          <CodeBlock
+            code={`/* index.module.css */
+.button {
+  padding: 8px 16px;
+  border-radius: 6px;
+}`}
+            lang="css"
+          />
+          <p>
+            Import it as an object and access each class through a property.
+            During the build step, each class is rewritten to a unique name, so
+            the styles can&apos;t leak out to other components.
+          </p>
+          <CodeBlock
+            code={`import styles from "./index.module.css"
+
+function Button({ children }) {
+  return <button className={styles.button}>{children}</button>
+}`}
+            lang="jsx"
+          />
+          <p>
+            Since the styles belong to one component, keep them next to it. A
+            common layout is a folder per component, each holding its markup and
+            its stylesheet together:
+          </p>
+          <CodeBlock
+            code={`src/
+  components/
+    Button/
+      index.jsx
+      index.module.css
+    Card/
+      index.jsx
+      index.module.css`}
+            lang="text"
+          />
+          <p>
+            With this layout, importing a component points at its folder,{" "}
+            <code>import Button from &quot;./components/Button&quot;</code>, and
+            the <code>index.jsx</code> inside is picked up automatically.
+          </p>
 
           <H2>Event handlers</H2>
           <p>
@@ -595,7 +650,7 @@ function Clock() {
 
           <H2>Exercise</H2>
           <p>
-            Build a fictional chatbot that answers every prompt in emojis. The
+            Build an emoji chatbot that answers every prompt in emojis. The
             starter is a single input sitting in the middle of the window. Turn
             it into a working chat.
           </p>

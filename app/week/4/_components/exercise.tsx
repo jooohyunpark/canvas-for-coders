@@ -19,46 +19,154 @@ const noopSubscribe = () => () => {}
 const STORAGE_KEY = "cfc-week4-exercise"
 
 const defaultFiles = {
-  "/emoji-api.js": `// A pretend chatbot. Give it a prompt, get emojis back.
-// There's no real model here — it just picks a few at random.
-
-const EMOJIS = [
-  "😀", "😂", "🥳", "😎", "🤖", "👾", "🎉", "🔥", "✨", "🌈",
-  "🍕", "🍩", "🚀", "🌟", "💡", "🐙", "🦄", "🌮", "🪐", "💬",
-]
-
-function randomEmojis(count) {
-  let reply = ""
-  for (let i = 0; i < count; i++) {
-    reply += EMOJIS[Math.floor(Math.random() * EMOJIS.length)]
-  }
-  return reply
-}
-
-// Returns a promise, just like a real network request would.
-// Use it with await, or .then().
-export function sendMessage(prompt) {
-  const count = 3 + Math.floor(Math.random() * 4) // 3–6 emojis
-  return new Promise((resolve) => {
-    setTimeout(() => resolve(randomEmojis(count)), 600)
-  })
-}
-`,
   "/App.js": `import "./styles.css"
+import { Composer } from "./components/Composer"
+import { Bubble } from "./components/Bubble"
 
-// The chatbot lives here. Right now it's just an input.
-// Your job: make it talk back in emojis.
+// Your job: make this chatbot reply in emojis.
 //
-// The reply comes from sendMessage() in emoji-api.js:
+// Replies come from sendMessage() in emoji-api.js — give it a prompt,
+// await the result:
 //   import { sendMessage } from "./emoji-api"
 //   const reply = await sendMessage(prompt)
 
 export default function App() {
   return (
     <div className="app">
-      <input className="prompt" placeholder="What's on your mind?" />
+      <div className="messages">
+        <Bubble type="user">hello</Bubble>
+        <Bubble type="agent">👋</Bubble>
+      </div>
+      <Composer />
     </div>
   )
+}
+`,
+  "/components/Composer/index.js": `import { useEffect, useRef, useState } from "react"
+import { ArrowUp } from "lucide-react"
+import styles from "./styles.module.css"
+
+export function Composer({ onSend }) {
+  const [value, setValue] = useState("")
+  const textareaRef = useRef(null)
+
+  // Reset the height, then grow it to fit the content.
+  const resize = () => {
+    const el = textareaRef.current
+    el.style.height = "auto"
+    el.style.height = el.scrollHeight + "px"
+  }
+
+  // Re-fit whenever the text changes.
+  useEffect(() => resize(), [value])
+
+  const submit = () => {
+    if (!value.trim()) return
+    onSend?.(value)
+    setValue("")
+  }
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault()
+      submit()
+    }
+  }
+
+  return (
+    <form
+      className={styles.composer}
+      onSubmit={(e) => {
+        e.preventDefault()
+        submit()
+      }}
+    >
+      <textarea
+        ref={textareaRef}
+        className={styles.textarea}
+        placeholder="What's on your mind?"
+        rows={1}
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        onKeyDown={handleKeyDown}
+      />
+      <button className={styles.button} type="submit" aria-label="Send">
+        <ArrowUp size={16} />
+      </button>
+    </form>
+  )
+}
+`,
+  "/components/Composer/styles.module.css": `.composer {
+  position: relative;
+  border: 1px solid #ccc;
+  border-radius: 24px;
+  padding: 8px 12px;
+}
+
+.composer:focus-within {
+  border-color: #888;
+}
+
+.textarea {
+  display: block;
+  width: 100%;
+  max-height: 160px;
+  padding: 4px 40px 4px 4px;
+  font-size: 16px;
+  font-family: inherit;
+  line-height: 1.5;
+  border: none;
+  outline: none;
+  resize: none;
+  overflow-y: auto;
+  background: transparent;
+}
+
+.button {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background: black;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.button:hover {
+  background: #333;
+}
+`,
+  "/components/Bubble/index.js": `import styles from "./styles.module.css"
+
+export function Bubble({ type = "agent", children }) {
+  return <div className={\`\${styles.bubble} \${styles[type]}\`}>{children}</div>
+}
+`,
+  "/components/Bubble/styles.module.css": `.bubble {
+  max-width: 70%;
+  width: fit-content;
+  padding: 8px 16px;
+  border-radius: 16px;
+  font-size: 16px;
+}
+
+.user {
+  margin-left: auto;
+  background: #0b93f6;
+  color: white;
+}
+
+.agent {
+  margin-right: auto;
+  background: #e5e5ea;
+  color: black;
 }
 `,
   "/styles.css": `* {
@@ -71,23 +179,38 @@ body {
 }
 
 .app {
+  max-width: 480px;
+  margin: 0 auto;
   min-height: 100vh;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 40px;
+  padding: 24px;
 }
 
-.prompt {
-  width: 320px;
-  padding: 8px 16px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 999px;
-  outline: none;
+.messages {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
+`,
+  "/emoji-api.js": `const EMOJIS = [
+  "😀", "😂", "🥳", "😎", "🤖", "👾", "🎉", "🔥", "✨", "🌈",
+  "🍕", "🍩", "🚀", "🌟", "💡", "🐙", "🦄", "🌮", "🪐", "💬",
+  "😅", "😍", "🤩", "😜", "🤯", "😴", "🤔", "🙌", "👏", "💪",
+  "👀", "🧠", "❤️", "💥", "⭐", "👋", "🌊", "🍔", "🍟", "🍦",
+  "🍪", "🎸", "🎮", "🏆", "🎯", "🐱", "🐶", "🦊", "🐢", "🌸",
+]
 
-.prompt:focus {
-  border-color: #888;
+// Returns a promise, just like a real network request would.
+// Use it with await, or .then().
+export function sendMessage(prompt) {
+  const emoji = EMOJIS[Math.floor(Math.random() * EMOJIS.length)]
+  const delay = 300 + Math.random() * 700 // 300–1000ms
+  return new Promise((resolve) => {
+    setTimeout(() => resolve(emoji), delay)
+  })
 }
 `,
 }
@@ -130,13 +253,15 @@ export function Exercise({ className }: { className?: string }) {
         template="react"
         theme={resolvedTheme === "dark" ? "dark" : "light"}
         files={loadSandpackFiles(STORAGE_KEY, defaultFiles)}
+        customSetup={{ dependencies: { "lucide-react": "^1.14.0" } }}
+        options={{ activeFile: "/App.js" }}
       >
         <SandpackPersistence
           storageKey={STORAGE_KEY}
           defaultFiles={defaultFiles}
         />
         <SandpackLayout className="rounded-lg!">
-          <SandpackCodeEditor showLineNumbers style={{ height: 700 }} />
+          <SandpackCodeEditor style={{ height: 700 }} />
           <SandpackPreview
             showOpenInCodeSandbox={false}
             showRefreshButton

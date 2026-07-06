@@ -650,19 +650,20 @@ function Clock() {
 
           <H2>Exercise</H2>
           <p>
-            Build an emoji chatbot that answers every prompt in emojis. The
-            starter already has the pieces in place: a message list, a composer,
-            and a <code>handleSend</code> function in <code>App.js</code>. The
-            rest is up to you: turn it into a working chat.
+            In this exercise you&apos;ll create an emoji chatbot &mdash; a chat
+            app where every response comes back as emojis. The starter code
+            gives you the skeleton: a message list, an input composer, and a{" "}
+            <code>handleSend</code> function in <code>App.js</code>. Your job is
+            to wire these pieces together into a functioning chat.
           </p>
           <p>
-            The chatbot&apos;s brain is already written for you in{" "}
-            <code>emoji-api.js</code>. It exports one function,{" "}
-            <code>sendMessage(prompt)</code>, that pretends to call an API: give
-            it text and it resolves, after a short delay, to a random string of
-            emojis. <code>handleSend</code> already imports it and{" "}
-            <code>await</code>s the reply for you, so you can focus on the React
-            parts.
+            You don&apos;t need to write the logic &mdash; that lives in{" "}
+            <code>emoji-api.js</code>. It exposes a single function,{" "}
+            <code>sendMessage(prompt)</code>, which simulates an API call: pass
+            it some text and, after a brief delay, it resolves with a random
+            emoji string. Since <code>handleSend</code> already imports and{" "}
+            <code>await</code>s it, you&apos;re free to concentrate on the React
+            side of things.
           </p>
           <CodeBlock
             code={`import { sendMessage } from "./emoji-api"
@@ -671,27 +672,27 @@ const reply = await sendMessage("hello")
 // → something like "🚀✨🦄🎉"`}
             lang="jsx"
           />
-          <p>To get there, you&apos;ll want to:</p>
+          <p>Here&apos;s a roadmap:</p>
           <ul>
             <li>
-              Hold the input text in <code>state</code> and update it on{" "}
-              <code>onChange</code>, so React controls the field.
+              Make the input a controlled field: store its text in{" "}
+              <code>state</code> and update it via <code>onChange</code>.
             </li>
             <li>
-              Keep the conversation in a second piece of state, an array of
-              messages. On submit, add the user&apos;s prompt, call{" "}
-              <code>sendMessage</code>, then add the emoji reply. Remember to
-              build a new array instead of mutating the old one.
+              Track the conversation in a second state variable &mdash; an array
+              of messages. When the user submits, append their prompt, call{" "}
+              <code>sendMessage</code>, and append the emoji response. Always
+              create a fresh array rather than modifying the existing one.
             </li>
             <li>
-              Render the messages with <code>.map()</code>, each with a stable{" "}
-              <code>key</code>, and clear the input once a message is sent.
+              Use <code>.map()</code> to render the message list, giving each
+              item a stable <code>key</code>, and reset the input after sending.
             </li>
           </ul>
           <p>
-            Stretch goals: show a &ldquo;typing…&rdquo; state while the reply is
-            pending, or auto-scroll to the newest message with a{" "}
-            <code>ref</code> and <code>useEffect</code>.
+            Want to go further? Try displaying a &ldquo;typing…&rdquo; indicator
+            while waiting for the reply, or auto-scrolling to the latest message
+            using a <code>ref</code> with <code>useEffect</code>.
           </p>
         </Article>
 

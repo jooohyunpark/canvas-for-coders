@@ -158,6 +158,8 @@ export function Bubble({ type = "agent", children }) {
   padding: 8px 16px;
   border-radius: 16px;
   font-size: 16px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
 }
 
 .user {
@@ -210,7 +212,7 @@ body {
 // Use it with await, or .then().
 export function sendMessage(prompt) {
   const emoji = EMOJIS[Math.floor(Math.random() * EMOJIS.length)]
-  const delay = 300 + Math.random() * 700 // 300–1000ms
+  const delay = 200 + Math.random() * 1300 // 200–1500ms
   return new Promise((resolve) => {
     setTimeout(() => resolve(emoji), delay)
   })

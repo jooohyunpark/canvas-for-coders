@@ -651,15 +651,18 @@ function Clock() {
           <H2>Exercise</H2>
           <p>
             Build an emoji chatbot that answers every prompt in emojis. The
-            starter is a single input sitting in the middle of the window. Turn
-            it into a working chat.
+            starter already has the pieces in place: a message list, a composer,
+            and a <code>handleSend</code> function in <code>App.js</code>. The
+            rest is up to you: turn it into a working chat.
           </p>
           <p>
-            The bot&apos;s brain is already written for you in{" "}
+            The chatbot&apos;s brain is already written for you in{" "}
             <code>emoji-api.js</code>. It exports one function,{" "}
             <code>sendMessage(prompt)</code>, that pretends to call an API: give
             it text and it resolves, after a short delay, to a random string of
-            emojis. Import it and treat it like a real request.
+            emojis. <code>handleSend</code> already imports it and{" "}
+            <code>await</code>s the reply for you, so you can focus on the React
+            parts.
           </p>
           <CodeBlock
             code={`import { sendMessage } from "./emoji-api"

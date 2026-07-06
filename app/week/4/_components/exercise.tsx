@@ -20,20 +20,31 @@ const STORAGE_KEY = "cfc-week4-exercise"
 
 const defaultFiles = {
   "/App.js": `import "./styles.css"
+import { sendMessage } from "./emoji-api"
 import { Composer } from "./components/Composer"
 import { Bubble } from "./components/Bubble"
 
 /*
-  Your job: make this chatbot reply in emojis.
-
-  Replies come from sendMessage() in emoji-api.js — give it a prompt,
-  await the result:
-
-    import { sendMessage } from "./emoji-api"
-    const reply = await sendMessage(prompt)
+  App.js
+  styles.css
+  emoji-api.js
+  components/
+    Composer/
+      index.js
+      styles.module.css
+    Bubble/
+      index.js
+      styles.module.css
 */
 
 export default function App() {
+
+  const handleSend = async (prompt) => {
+    // The async part is done for you. "await" pauses here until the
+    // emoji bot replies (it fakes a network request, so it takes a moment).
+    const reply = await sendMessage(prompt)
+  }
+
   return (
     <div className="app">
       <div className="messages">

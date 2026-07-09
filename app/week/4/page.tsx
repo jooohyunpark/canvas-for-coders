@@ -21,7 +21,6 @@ const CREATE_COMMANDS = [
   { name: "npm", command: "npm create vite@latest" },
   { name: "pnpm", command: "pnpm create vite" },
   { name: "yarn", command: "yarn create vite" },
-  { name: "bun", command: "bun create vite" },
 ]
 
 export default function Week4Page() {

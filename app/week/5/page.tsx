@@ -3,7 +3,7 @@ import { Section } from "@/components/site/section"
 import { Content } from "@/components/site/content"
 import { Article } from "@/components/site/article"
 import { Link } from "@/components/site/link"
-import { H1, H2 } from "@/components/site/heading"
+import { H1, H2, H3 } from "@/components/site/heading"
 import { CodeBlock } from "@/components/site/code-block"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
@@ -100,8 +100,8 @@ export default function Week5Page() {
             <code>&lt;Canvas&gt;</code>. In Week 3, every sketch opened with the
             same ritual: create a <code>WebGLRenderer</code> and a{" "}
             <code>PerspectiveCamera</code>, size them to the window, append the
-            canvas, and start an animation loop. <code>&lt;Canvas&gt;</code> does
-            all of that for you.
+            canvas, and start an animation loop. <code>&lt;Canvas&gt;</code>{" "}
+            does all of that for you.
           </p>
           <CodeBlock
             code={`import { Canvas } from "@react-three/fiber"
@@ -123,6 +123,139 @@ export default function App() {
             <code>&lt;ambientLight&gt;</code>, and so on) are Three.js objects,
             not HTML. To size the scene, size that parent container, the way you
             would any other element.
+          </p>
+
+          <H2>Your first scene</H2>
+          <p>
+            An empty <code>&lt;Canvas&gt;</code> renders nothing. The smallest
+            thing worth looking at is a <em>mesh</em>: a shape (its geometry)
+            wrapped in a surface (its material). In R3F a mesh is a component
+            with two children, one for each part.
+          </p>
+          <CodeBlock
+            code={`<mesh>
+  <boxGeometry />
+  <meshStandardMaterial color="orange" />
+</mesh>`}
+            lang="jsx"
+          />
+          <p>
+            This is the same <code>new THREE.Mesh(geometry, material)</code>{" "}
+            from Week 3, only the geometry and material are passed as nested
+            tags instead of constructor arguments. R3F reads the children,
+            builds the two Three.js objects, and hands them to the mesh.
+          </p>
+
+          <H3>args and props</H3>
+          <p>
+            The <code>args</code> prop is the list of constructor arguments;
+            every other prop sets a property on the instance afterward.
+          </p>
+          <CodeBlock
+            code={`<boxGeometry args={[2, 1, 1]} />
+// → new THREE.BoxGeometry(2, 1, 1)`}
+            lang="jsx"
+          />
+          <p>
+            So <code>args</code> carries what a constructor needs up front, the
+            width, height, and depth of a box. Everything else is a normal prop:{" "}
+            <code>position</code>, <code>rotation</code>, and <code>scale</code>{" "}
+            on the mesh, <code>color</code> on the material. R3F accepts
+            shorthands here, so a plain array stands in for a vector and a CSS
+            color name for a <code>THREE.Color</code>.
+          </p>
+          <CodeBlock
+            code={`<mesh position={[0, 1, 0]} rotation={[0, Math.PI / 4, 0]}>
+  <boxGeometry args={[1, 1, 1]} />
+  <meshStandardMaterial color="orange" />
+</mesh>`}
+            lang="jsx"
+          />
+          <p>
+            Because these are just props, they can come from state or a parent,
+            which is the whole point of <code>scene = f(state)</code>: change
+            the value and R3F updates the underlying object for you.
+          </p>
+
+          <H3>Same scene, both ways</H3>
+          <p>
+            Here is a lit orange cube written both ways: same geometry, same
+            material, same lights. The Three.js version is what you wrote in
+            Week 3; the R3F version is the payoff.
+          </p>
+          <Tabs defaultValue="r3f">
+            <TabsList variant="line">
+              <TabsTrigger value="r3f">R3F</TabsTrigger>
+              <TabsTrigger value="three">Three.js</TabsTrigger>
+            </TabsList>
+            <TabsContent value="r3f">
+              <CodeBlock
+                code={`import { Canvas } from "@react-three/fiber"
+
+export default function App() {
+  return (
+    <Canvas camera={{ position: [0, 0, 5] }}>
+      <mesh>
+        <boxGeometry args={[1, 1, 1]} />
+        <meshStandardMaterial color="orange" />
+      </mesh>
+
+      <ambientLight intensity={0.5} />
+      <directionalLight position={[2, 3, 4]} intensity={2} />
+    </Canvas>
+  )
+}`}
+                lang="jsx"
+              />
+            </TabsContent>
+            <TabsContent value="three">
+              <CodeBlock
+                code={`import * as THREE from "three"
+
+const renderer = new THREE.WebGLRenderer({ antialias: true })
+renderer.setSize(window.innerWidth, window.innerHeight)
+renderer.setPixelRatio(window.devicePixelRatio)
+document.body.appendChild(renderer.domElement)
+
+const scene = new THREE.Scene()
+
+const camera = new THREE.PerspectiveCamera(
+  75,
+  window.innerWidth / window.innerHeight,
+  0.1,
+  1000,
+)
+camera.position.z = 5
+
+const geometry = new THREE.BoxGeometry(1, 1, 1)
+const material = new THREE.MeshStandardMaterial({ color: "orange" })
+const cube = new THREE.Mesh(geometry, material)
+scene.add(cube)
+
+const ambient = new THREE.AmbientLight(0xffffff, 0.5)
+scene.add(ambient)
+
+const directional = new THREE.DirectionalLight(0xffffff, 2)
+directional.position.set(2, 3, 4)
+scene.add(directional)
+
+window.addEventListener("resize", () => {
+  camera.aspect = window.innerWidth / window.innerHeight
+  camera.updateProjectionMatrix()
+  renderer.setSize(window.innerWidth, window.innerHeight)
+})
+
+renderer.setAnimationLoop(() => {
+  renderer.render(scene, camera)
+})`}
+                lang="js"
+              />
+            </TabsContent>
+          </Tabs>
+          <p>
+            Both render the same scene, but the R3F version is dramatically
+            cleaner, and it’s now a component you can reuse, compose, and drive
+            with props.
           </p>
         </Article>
       </Content>

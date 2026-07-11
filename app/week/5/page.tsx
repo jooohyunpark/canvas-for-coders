@@ -6,7 +6,9 @@ import { Link } from "@/components/site/link"
 import { H1, H2, H3 } from "@/components/site/heading"
 import { CodeBlock } from "@/components/site/code-block"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { ComponentsScene } from "./_components/components-scene"
 import { InteractionScene } from "./_components/interaction-scene"
+import { SpringScene } from "./_components/spring-scene"
 
 export const metadata: Metadata = {
   title: "Week 5",
@@ -172,12 +174,6 @@ export default function App() {
 </mesh>`}
             lang="jsx"
           />
-          <p>
-            Because these are just props, they can come from state or a parent,
-            which is the whole point of <code>scene = f(state)</code>: change
-            the value and R3F updates the underlying object for you.
-          </p>
-
           <H3>Same scene, both ways</H3>
           <p>
             Here is a lit orange cube written both ways: same geometry, same
@@ -262,6 +258,38 @@ renderer.setAnimationLoop(() => {
             with props.
           </p>
 
+          <H2>Reusable components</H2>
+          <p>
+            Because every Three.js object is a component, the cube composes like
+            any other. Pull the mesh into a <code>Box</code>, give it props, and
+            render it as many times as you want, each one configured
+            differently. No manual loops or bookkeeping, just one component
+            reused.
+          </p>
+          <CodeBlock
+            code={`function Box({ position, color }) {
+  return (
+    <mesh position={position}>
+      <boxGeometry args={[1, 1, 1]} />
+      <meshStandardMaterial color={color} />
+    </mesh>
+  )
+}
+
+function Scene() {
+  return (
+    <Canvas>
+      ...
+      <Box position={[-2, 0, 0]} color="#ff0000" />
+      <Box position={[0, 0, 0]} color="#0000ff" />
+      <Box position={[2, 0, 0]} color="#00ff00" />
+    </Canvas>
+  )
+}`}
+            lang="jsx"
+          />
+          <ComponentsScene className="mt-8" />
+
           <H2>State &amp; interaction</H2>
           <p>
             You already know this loop: a click updates state, and the UI
@@ -271,18 +299,20 @@ renderer.setAnimationLoop(() => {
             <code>onPointerOut</code>) and handles the raycasting for you.
           </p>
           <p>
-            Here&apos;s a counter-style example in 3D: click the cube to grow
-            it, hover to highlight it.
+            Here&apos;s a counter-style example in 3D, reusing the same{" "}
+            <code>Box</code> from before: click a cube to grow it, hover to
+            highlight it.
           </p>
           <CodeBlock
             code={`import { useState } from "react"
 
-function Box() {
+function Box({ position }) {
   const [active, setActive] = useState(false)
   const [hovered, setHovered] = useState(false)
 
   return (
     <mesh
+      position={position}
       scale={active ? 1.5 : 1}
       onClick={() => setActive(!active)}
       onPointerOver={() => setHovered(true)}
@@ -292,6 +322,19 @@ function Box() {
       <meshStandardMaterial color={hovered ? "cyan" : "blue"} />
     </mesh>
   )
+}
+
+function Scene() {
+  return (
+    <>
+      <Box position={[-2, 0, 0]} />
+      <Box position={[0, 0, 0]} />
+      <Box position={[2, 0, 0]} />
+
+      <ambientLight intensity={1} />
+      <directionalLight position={[2, 3, 4]} intensity={2} />
+    </>
+  )
 }`}
             lang="jsx"
           />
@@ -299,14 +342,75 @@ function Box() {
           <p>
             Nothing here is new. <code>useState</code> holds the values, the
             handlers update them, and because <code>scale</code> and{" "}
-            <code>color</code> are just props, the mesh re-renders to match:{" "}
-            <code>scene = f(state)</code> in action.
+            <code>color</code> are just props, the mesh re-renders to match. Each
+            cube keeps its own state, so clicking one grows only that cube.
           </p>
           <p>
-            One thing to notice: the change is instant, the cube jumps to its
-            new size in a single frame. That snap is fine for a color, but a
-            scale wants to ease into place, which is exactly what react-spring
-            does next.
+            The change is instant: the cube jumps to its new size in a single
+            frame. That snap is fine for a color, but a scale wants to ease into
+            place, which is exactly what react-spring does next.
+          </p>
+
+          <H2>Animating with react-spring</H2>
+          <p>
+            Easing takes a small shift in thinking: instead of moving the object
+            frame by frame, you declare where it should end up and let a spring
+            carry it there.
+          </p>
+          <p>
+            <code>useSpring</code> takes target values and returns animated ones
+            that travel toward them with spring physics. To read those moving
+            values, a mesh has to be animated:{" "}
+            <code>&lt;animated.mesh&gt;</code> in place of{" "}
+            <code>&lt;mesh&gt;</code>, and{" "}
+            <code>&lt;animated.meshStandardMaterial&gt;</code> for the material.
+            Here is the box as a reusable <code>AnimatedBox</code> that springs
+            its scale and color instead of snapping:
+          </p>
+          <CodeBlock
+            code={`import { useState } from "react"
+import { useSpring, animated } from "@react-spring/three"
+
+function AnimatedBox({ position }) {
+  const [active, setActive] = useState(false)
+  const [hovered, setHovered] = useState(false)
+
+  const { scale, color } = useSpring({
+    scale: active ? 1.5 : 1,
+    color: hovered ? "cyan" : "blue",
+    config: { duration: 300 },
+  })
+
+  return (
+    <animated.mesh
+      position={position}
+      scale={scale}
+      onClick={() => setActive(!active)}
+      onPointerOver={() => setHovered(true)}
+      onPointerOut={() => setHovered(false)}
+    >
+      <boxGeometry args={[1, 1, 1]} />
+      <animated.meshStandardMaterial color={color} />
+    </animated.mesh>
+  )
+}`}
+            lang="jsx"
+          />
+          <SpringScene className="mt-8" />
+          <p>
+            The same three cubes, now easing instead of snapping. Click one and
+            it glides to its new size; hover, and the color melts from blue to
+            cyan. No render loop, no per-frame updates, no easing curve to tune: you
+            set the targets and the spring fills in every frame between. It&apos;s
+            the declarative idea applied to motion: describe the destination, not
+            the path.
+          </p>
+          <p>
+            One boundary: react-spring is for transitions between states like
+            hover, click, and toggle. Continuous motion, like a cube that spins
+            forever, is a different job, handled by <code>useFrame</code>. Put
+            reuse, state, and motion together in one component and you have the
+            whole week in a single scene: React components, animated, in space.
           </p>
         </Article>
       </Content>

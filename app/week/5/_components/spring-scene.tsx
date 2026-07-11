@@ -1,33 +1,40 @@
 "use client"
 
 import { cn } from "@/lib/utils"
+import { animated, useSpring } from "@react-spring/three"
 import { OrbitControls } from "@react-three/drei"
 import { Canvas } from "@react-three/fiber"
 import { useState } from "react"
 
-// A live version of the lesson's Box: click to grow, hover to highlight.
-// scale and color are just props driven by state, so the mesh re-renders
-// to match — scene = f(state). Rendered three times below, each instance
-// holds its own state, so clicking one grows only that cube.
-function Box({ position }: { position: [number, number, number] }) {
+// One reusable component, springing scale and color between two states.
+// Each <AnimatedBox /> below owns its own state, so clicking one animates
+// only that cube — write the behavior once, drop it in as many times as
+// you like: scene = f(state), composed.
+function AnimatedBox({ position }: { position: [number, number, number] }) {
   const [active, setActive] = useState(false)
   const [hovered, setHovered] = useState(false)
 
+  const { scale, color } = useSpring({
+    scale: active ? 1.5 : 1,
+    color: hovered ? "cyan" : "blue",
+    config: { duration: 150, ease: "easeOutCubic" },
+  })
+
   return (
-    <mesh
+    <animated.mesh
       position={position}
-      scale={active ? 1.5 : 1}
+      scale={scale}
       onClick={() => setActive(!active)}
       onPointerOver={() => setHovered(true)}
       onPointerOut={() => setHovered(false)}
     >
       <boxGeometry args={[1, 1, 1]} />
-      <meshStandardMaterial color={hovered ? "cyan" : "blue"} />
-    </mesh>
+      <animated.meshStandardMaterial color={color} />
+    </animated.mesh>
   )
 }
 
-export function InteractionScene({ className }: { className?: string }) {
+export function SpringScene({ className }: { className?: string }) {
   return (
     <div
       className={cn(
@@ -38,9 +45,9 @@ export function InteractionScene({ className }: { className?: string }) {
       <Canvas camera={{ position: [0, 0, 5] }}>
         <color attach="background" args={["#111111"]} />
 
-        <Box position={[-2, 0, 0]} />
-        <Box position={[0, 0, 0]} />
-        <Box position={[2, 0, 0]} />
+        <AnimatedBox position={[-2, 0, 0]} />
+        <AnimatedBox position={[0, 0, 0]} />
+        <AnimatedBox position={[2, 0, 0]} />
 
         <ambientLight intensity={1} />
         <directionalLight position={[2, 3, 4]} intensity={2} />

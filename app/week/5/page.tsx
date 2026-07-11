@@ -342,8 +342,8 @@ function Scene() {
           <p>
             Nothing here is new. <code>useState</code> holds the values, the
             handlers update them, and because <code>scale</code> and{" "}
-            <code>color</code> are just props, the mesh re-renders to match. Each
-            cube keeps its own state, so clicking one grows only that cube.
+            <code>color</code> are just props, the mesh re-renders to match.
+            Each cube keeps its own state, so clicking one grows only that cube.
           </p>
           <p>
             The change is instant: the cube jumps to its new size in a single
@@ -352,11 +352,7 @@ function Scene() {
           </p>
 
           <H2>Animating with react-spring</H2>
-          <p>
-            Easing takes a small shift in thinking: instead of moving the object
-            frame by frame, you declare where it should end up and let a spring
-            carry it there.
-          </p>
+
           <p>
             <code>useSpring</code> takes target values and returns animated ones
             that travel toward them with spring physics. To read those moving
@@ -378,7 +374,7 @@ function AnimatedBox({ position }) {
   const { scale, color } = useSpring({
     scale: active ? 1.5 : 1,
     color: hovered ? "cyan" : "blue",
-    config: { duration: 300 },
+    config: { duration: 150, ease: "easeOutCubic" },
   })
 
   return (
@@ -398,19 +394,9 @@ function AnimatedBox({ position }) {
           />
           <SpringScene className="mt-8" />
           <p>
-            The same three cubes, now easing instead of snapping. Click one and
-            it glides to its new size; hover, and the color melts from blue to
-            cyan. No render loop, no per-frame updates, no easing curve to tune: you
-            set the targets and the spring fills in every frame between. It&apos;s
-            the declarative idea applied to motion: describe the destination, not
-            the path.
-          </p>
-          <p>
-            One boundary: react-spring is for transitions between states like
-            hover, click, and toggle. Continuous motion, like a cube that spins
-            forever, is a different job, handled by <code>useFrame</code>. Put
-            reuse, state, and motion together in one component and you have the
-            whole week in a single scene: React components, animated, in space.
+            The same three cubes, now easing instead of snapping. This is the
+            declarative idea applied to motion: you describe the destination,
+            and the spring works out the path.
           </p>
         </Article>
       </Content>

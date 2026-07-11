@@ -379,10 +379,18 @@ function AnimatedBox({ position }) {
     config: { duration: 150, easing: easings.easeOutCubic },
   })
 
+  const { rotation } = useSpring({
+    loop: true,
+    from: { rotation: [0, 0, 0] },
+    to: { rotation: [Math.PI * 2, 0, 0] },
+    config: { duration: 10 * 1000 },
+  })
+
   return (
     <animated.mesh
       position={position}
       scale={scale}
+      rotation={rotation}
       onClick={() => setActive(!active)}
       onPointerOver={() => setHovered(true)}
       onPointerOut={() => setHovered(false)}

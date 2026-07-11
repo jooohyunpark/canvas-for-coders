@@ -41,11 +41,11 @@ export default function Week5Page() {
 
           <H2>Concept</H2>
           <p>
-            So far we&apos;ve covered Three.js (geometries, materials, meshes,
-            lights, and a manual render loop) and React, where components
+            So far we&apos;ve covered Three.js — geometries, materials, meshes,
+            lights, and a manual render loop — and React, where components
             describe the UI for the current state and keep the screen in sync.
-            React Three Fiber (R3F) is the bridge: you write a Three.js scene
-            the way you write a React component, as JSX.
+            React Three Fiber (R3F) is the bridge: you write a Three.js scene as
+            JSX, the way you write any React component.
           </p>
           <p>
             R3F isn&apos;t a new 3D engine. It builds real Three.js objects
@@ -60,7 +60,7 @@ export default function Week5Page() {
             <code>UI = f(state)</code>. Here, <code>scene = f(state)</code>:
             describe what the scene should contain, and R3F creates, updates,
             and removes the objects to match. A component still takes props,
-            holds state, and composes with others; it just returns meshes,
+            holds state, and composes with others — it just returns meshes,
             lights, and groups instead of <code>&lt;div&gt;</code>s. That&apos;s
             the idea this week: React components, in space.
           </p>
@@ -262,9 +262,8 @@ renderer.setAnimationLoop(() => {
           <p>
             Because every Three.js object is a component, the cube composes like
             any other. Pull the mesh into a <code>Box</code>, give it props, and
-            render it as many times as you want, each one configured
-            differently. No manual loops or bookkeeping, just one component
-            reused.
+            render it as many times as you want, each configured differently — no
+            manual loops or bookkeeping, one component reused.
           </p>
           <CodeBlock
             code={`function Box({ position, color }) {
@@ -278,12 +277,14 @@ renderer.setAnimationLoop(() => {
 
 function Scene() {
   return (
-    <Canvas>
-      ...
+    <>
       <Box position={[-2, 0, 0]} color="#ff0000" />
       <Box position={[0, 0, 0]} color="#0000ff" />
       <Box position={[2, 0, 0]} color="#00ff00" />
-    </Canvas>
+
+      <ambientLight intensity={1} />
+      <directionalLight position={[2, 3, 4]} intensity={2} />
+    </>
   )
 }`}
             lang="jsx"
@@ -340,32 +341,33 @@ function Scene() {
           />
           <InteractionScene className="mt-8" />
           <p>
-            Nothing here is new. <code>useState</code> holds the values, the
-            handlers update them, and because <code>scale</code> and{" "}
-            <code>color</code> are just props, the mesh re-renders to match.
-            Each cube keeps its own state, so clicking one grows only that cube.
+            It&apos;s the same pattern you already know. <code>useState</code>{" "}
+            holds the values, the handlers update them, and because{" "}
+            <code>scale</code> and <code>color</code> are just props, the mesh
+            re-renders to match. Each cube keeps its own state, so clicking one
+            grows only that cube.
           </p>
           <p>
-            The change is instant: the cube jumps to its new size in a single
-            frame. That snap is fine for a color, but a scale wants to ease into
-            place, which is exactly what react-spring does next.
+            The change is instant, though — the cube jumps to its new size in a
+            single frame. That snap is fine for a color, but a scale wants to
+            ease into place, which is exactly what react-spring does next.
           </p>
 
           <H2>Animating with react-spring</H2>
 
           <p>
             <code>useSpring</code> takes target values and returns animated ones
-            that travel toward them with spring physics. To read those moving
-            values, a mesh has to be animated:{" "}
+            that travel smoothly toward them. To read those moving values, a
+            mesh has to be animated:{" "}
             <code>&lt;animated.mesh&gt;</code> in place of{" "}
             <code>&lt;mesh&gt;</code>, and{" "}
             <code>&lt;animated.meshStandardMaterial&gt;</code> for the material.
-            Here is the box as a reusable <code>AnimatedBox</code> that springs
+            Here&apos;s the box as a reusable <code>AnimatedBox</code> that eases
             its scale and color instead of snapping:
           </p>
           <CodeBlock
             code={`import { useState } from "react"
-import { useSpring, animated } from "@react-spring/three"
+import { useSpring, animated, easings } from "@react-spring/three"
 
 function AnimatedBox({ position }) {
   const [active, setActive] = useState(false)
@@ -374,7 +376,7 @@ function AnimatedBox({ position }) {
   const { scale, color } = useSpring({
     scale: active ? 1.5 : 1,
     color: hovered ? "cyan" : "blue",
-    config: { duration: 150, ease: "easeOutCubic" },
+    config: { duration: 150, easing: easings.easeOutCubic },
   })
 
   return (
@@ -395,8 +397,8 @@ function AnimatedBox({ position }) {
           <SpringScene className="mt-8" />
           <p>
             The same three cubes, now easing instead of snapping. This is the
-            declarative idea applied to motion: you describe the destination,
-            and the spring works out the path.
+            declarative idea applied to motion: you set the destination, and a
+            duration and easing curve shape how it travels there.
           </p>
         </Article>
       </Content>

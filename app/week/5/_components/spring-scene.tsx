@@ -1,7 +1,7 @@
 "use client"
 
 import { cn } from "@/lib/utils"
-import { animated, useSpring } from "@react-spring/three"
+import { animated, easings, useSpring } from "@react-spring/three"
 import { OrbitControls } from "@react-three/drei"
 import { Canvas } from "@react-three/fiber"
 import { useState } from "react"
@@ -17,7 +17,7 @@ function AnimatedBox({ position }: { position: [number, number, number] }) {
   const { scale, color } = useSpring({
     scale: active ? 1.5 : 1,
     color: hovered ? "cyan" : "blue",
-    config: { duration: 150, ease: "easeOutCubic" },
+    config: { duration: 150, easing: easings.easeOutCubic },
   })
 
   return (

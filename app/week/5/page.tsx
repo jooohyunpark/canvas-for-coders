@@ -6,6 +6,7 @@ import { Link } from "@/components/site/link"
 import { H1, H2, H3 } from "@/components/site/heading"
 import { CodeBlock } from "@/components/site/code-block"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { InteractionScene } from "./_components/interaction-scene"
 
 export const metadata: Metadata = {
   title: "Week 5",
@@ -135,7 +136,7 @@ export default function App() {
           <CodeBlock
             code={`<mesh>
   <boxGeometry />
-  <meshStandardMaterial color="orange" />
+  <meshStandardMaterial color="blue" />
 </mesh>`}
             lang="jsx"
           />
@@ -195,12 +196,14 @@ export default function App() {
 export default function App() {
   return (
     <Canvas camera={{ position: [0, 0, 5] }}>
+      <color attach="background" args={["#111111"]} />
+
       <mesh>
         <boxGeometry args={[1, 1, 1]} />
         <meshStandardMaterial color="orange" />
       </mesh>
 
-      <ambientLight intensity={0.5} />
+      <ambientLight intensity={1} />
       <directionalLight position={[2, 3, 4]} intensity={2} />
     </Canvas>
   )
@@ -218,6 +221,7 @@ renderer.setPixelRatio(window.devicePixelRatio)
 document.body.appendChild(renderer.domElement)
 
 const scene = new THREE.Scene()
+scene.background = new THREE.Color("#111111")
 
 const camera = new THREE.PerspectiveCamera(
   75,
@@ -228,11 +232,11 @@ const camera = new THREE.PerspectiveCamera(
 camera.position.z = 5
 
 const geometry = new THREE.BoxGeometry(1, 1, 1)
-const material = new THREE.MeshStandardMaterial({ color: "orange" })
+const material = new THREE.MeshStandardMaterial({ color: "blue" })
 const cube = new THREE.Mesh(geometry, material)
 scene.add(cube)
 
-const ambient = new THREE.AmbientLight(0xffffff, 0.5)
+const ambient = new THREE.AmbientLight(0xffffff, 1)
 scene.add(ambient)
 
 const directional = new THREE.DirectionalLight(0xffffff, 2)
@@ -261,14 +265,14 @@ renderer.setAnimationLoop(() => {
           <H2>State &amp; interaction</H2>
           <p>
             You already know this loop: a click updates state, and the UI
-            re-renders to match. The only difference here is that what changes is
-            a mesh in 3D space. R3F puts the familiar event handlers right on the
-            mesh (<code>onClick</code>, <code>onPointerOver</code>,{" "}
+            re-renders to match. The only difference here is that what changes
+            is a mesh in 3D space. R3F puts the familiar event handlers right on
+            the mesh (<code>onClick</code>, <code>onPointerOver</code>,{" "}
             <code>onPointerOut</code>) and handles the raycasting for you.
           </p>
           <p>
-            Here&apos;s a counter-style example in 3D: click the cube to grow it,
-            hover to highlight it.
+            Here&apos;s a counter-style example in 3D: click the cube to grow
+            it, hover to highlight it.
           </p>
           <CodeBlock
             code={`import { useState } from "react"
@@ -285,12 +289,13 @@ function Box() {
       onPointerOut={() => setHovered(false)}
     >
       <boxGeometry args={[1, 1, 1]} />
-      <meshStandardMaterial color={hovered ? "hotpink" : "orange"} />
+      <meshStandardMaterial color={hovered ? "cyan" : "blue"} />
     </mesh>
   )
 }`}
             lang="jsx"
           />
+          <InteractionScene className="mt-8" />
           <p>
             Nothing here is new. <code>useState</code> holds the values, the
             handlers update them, and because <code>scale</code> and{" "}
@@ -298,10 +303,10 @@ function Box() {
             <code>scene = f(state)</code> in action.
           </p>
           <p>
-            One thing to notice: the change is instant, the cube jumps to its new
-            size in a single frame. That snap is fine for a color, but a scale
-            wants to ease into place, which is exactly what react-spring does
-            next.
+            One thing to notice: the change is instant, the cube jumps to its
+            new size in a single frame. That snap is fine for a color, but a
+            scale wants to ease into place, which is exactly what react-spring
+            does next.
           </p>
         </Article>
       </Content>

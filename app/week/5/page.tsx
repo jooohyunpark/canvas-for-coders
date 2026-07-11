@@ -261,12 +261,10 @@ renderer.setAnimationLoop(() => {
           <H2>State &amp; interaction</H2>
           <p>
             You already know this loop: a click updates state, and the UI
-            re-renders to match. Here it&apos;s the same idea, only the thing
-            that changes is a mesh in 3D space. R3F puts the familiar event
-            handlers right on the mesh (<code>onClick</code>,{" "}
-            <code>onPointerOver</code>, <code>onPointerOut</code>) and handles
-            the raycasting for you, so a mesh responds to the pointer the way a{" "}
-            <code>&lt;button&gt;</code> responds to a click.
+            re-renders to match. The only difference here is that what changes is
+            a mesh in 3D space. R3F puts the familiar event handlers right on the
+            mesh (<code>onClick</code>, <code>onPointerOver</code>,{" "}
+            <code>onPointerOut</code>) and handles the raycasting for you.
           </p>
           <p>
             Here&apos;s a counter-style example in 3D: click the cube to grow it,
@@ -297,15 +295,13 @@ function Box() {
             Nothing here is new. <code>useState</code> holds the values, the
             handlers update them, and because <code>scale</code> and{" "}
             <code>color</code> are just props, the mesh re-renders to match:{" "}
-            <code>scene = f(state)</code> in action. Swap the mesh for a{" "}
-            <code>&lt;div&gt;</code> and it&apos;s the same pattern you&apos;d
-            write for any React component.
+            <code>scene = f(state)</code> in action.
           </p>
           <p>
-            One thing to notice: the change is instant. Click, and the cube jumps
-            to its new size in a single frame. That snap is fine for a color, but
-            a scale wants to ease into place, and easing every frame between two
-            states is exactly what react-spring does next.
+            One thing to notice: the change is instant, the cube jumps to its new
+            size in a single frame. That snap is fine for a color, but a scale
+            wants to ease into place, which is exactly what react-spring does
+            next.
           </p>
         </Article>
       </Content>

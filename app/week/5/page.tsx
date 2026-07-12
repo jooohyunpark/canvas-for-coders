@@ -464,6 +464,38 @@ function Model() {
             lang="jsx"
           />
 
+          <H3>Centering and framing</H3>
+          <p>
+            A model you didn&apos;t make rarely arrives ready to show: its
+            origin may sit off-center, and its size is unknown up front. Rather
+            than guess camera and scale values, drei gives you two helpers.
+          </p>
+          <p>
+            <code>&lt;Center&gt;</code> shifts its children so their
+            bounding-box midpoint sits at the origin, fixing off-center models.{" "}
+            <code>&lt;Bounds&gt;</code> measures that box and drives the camera
+            to frame it: <code>fit</code> zooms to fit on load,{" "}
+            <code>clip</code> adjusts the near and far planes so nothing is cut
+            off, <code>observe</code> refits on resize, and <code>margin</code>{" "}
+            sets the breathing room (1 is snug, higher zooms out).
+          </p>
+          <CodeBlock
+            code={`import { Bounds, Center } from "@react-three/drei"
+
+<Bounds fit clip observe margin={1.2}>
+  <Center>
+    <Model />
+  </Center>
+</Bounds>`}
+            lang="jsx"
+          />
+          <p>
+            Together, you can drop in almost any model and see it framed without
+            tuning a number, exactly how the Voyager below is set up. Pair them
+            with <code>&lt;OrbitControls /&gt;</code> and the camera starts from
+            that framed view.
+          </p>
+
           <H3>Staging</H3>
           <p>
             <code>&lt;Environment /&gt;</code> lights the whole scene from a
@@ -483,31 +515,29 @@ function Model() {
             when something lights and reflects off it. Toggle{" "}
             <code>environment</code> in the panel: off, a faint fill leaves it
             flat; on, the HDRI lights it and shows up in its reflections. That
-            panel is <Link href="https://github.com/pmndrs/leva">leva</Link>, the
-            R3F ecosystem&apos;s take on lil-gui.
+            panel is <Link href="https://github.com/pmndrs/leva">leva</Link>,
+            the R3F ecosystem&apos;s take on lil-gui.
           </p>
 
-          <H3>Materials with character</H3>
+          <H3>Worth a browse</H3>
           <p>
-            Swap the standard material for one with built-in effects.{" "}
-            <code>MeshWobbleMaterial</code> and <code>MeshDistortMaterial</code>{" "}
-            deform the surface over time, and{" "}
-            <code>MeshTransmissionMaterial</code> gives you convincing glass.
-            Change the tag, get a richer look for free.
+            That is a fraction of the catalog. A few more you&apos;ll likely
+            want:
           </p>
-
-          <H3>Fun utilities</H3>
-          <p>
-            A few expressive extras: <code>&lt;Float&gt;</code> adds a gentle
-            idle bob, <code>&lt;Trail&gt;</code> leaves a ribbon behind moving
-            objects, and <code>&lt;Sparkles&gt;</code> scatters points of light.
-          </p>
-          <p>
-            drei is where you&apos;ll assemble much of a final project: pick the
-            parts you need and compose them like any other component. The{" "}
-            <Link href="https://drei.docs.pmnd.rs">docs</Link> list everything,
-            and are worth a browse.
-          </p>
+          <ul>
+            <li>
+              <strong>Materials with character</strong> —{" "}
+              <code>MeshWobbleMaterial</code> and{" "}
+              <code>MeshDistortMaterial</code> deform the surface over time,{" "}
+              <code>MeshTransmissionMaterial</code> gives you convincing glass.
+            </li>
+            <li>
+              <strong>Expressive extras</strong> — <code>&lt;Float&gt;</code>{" "}
+              adds a gentle idle bob, <code>&lt;Trail&gt;</code> leaves a ribbon
+              behind moving objects, <code>&lt;Sparkles&gt;</code> scatters
+              points of light.
+            </li>
+          </ul>
         </Article>
       </Content>
     </Section>

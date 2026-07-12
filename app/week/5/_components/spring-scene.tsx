@@ -23,7 +23,7 @@ function AnimatedBox({ position }: { position: [number, number, number] }) {
   const { rotation } = useSpring({
     loop: true,
     from: { rotation: [0, 0, 0] as [number, number, number] },
-    to: { rotation: [Math.PI * 2, 0, 0] as [number, number, number] },
+    to: { rotation: [Math.PI * -2, 0, 0] as [number, number, number] },
     config: { duration: 10 * 1000 },
   })
 

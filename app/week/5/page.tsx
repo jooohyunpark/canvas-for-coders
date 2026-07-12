@@ -262,8 +262,8 @@ renderer.setAnimationLoop(() => {
           <p>
             Because every Three.js object is a component, the cube composes like
             any other. Pull the mesh into a <code>Box</code>, give it props, and
-            render it as many times as you want, each configured differently — no
-            manual loops or bookkeeping, one component reused.
+            render it as many times as you want, each configured differently —
+            no manual loops or bookkeeping, one component reused.
           </p>
           <CodeBlock
             code={`function Box({ position, color }) {
@@ -356,14 +356,16 @@ function Scene() {
           <H2>Animating with react-spring</H2>
 
           <p>
-            <code>useSpring</code> takes target values and returns animated ones
-            that travel smoothly toward them. To read those moving values, a
-            mesh has to be animated:{" "}
+            <Link href="https://www.react-spring.dev/docs/components/use-spring">
+              <code>useSpring</code>
+            </Link>{" "}
+            takes target values and returns animated ones that travel smoothly
+            toward them. To read those moving values, a mesh has to be animated:{" "}
             <code>&lt;animated.mesh&gt;</code> in place of{" "}
             <code>&lt;mesh&gt;</code>, and{" "}
             <code>&lt;animated.meshStandardMaterial&gt;</code> for the material.
-            Here&apos;s the box as a reusable <code>AnimatedBox</code> that eases
-            its scale and color instead of snapping:
+            Here&apos;s the box as a reusable <code>AnimatedBox</code> that
+            eases its scale and color instead of snapping:
           </p>
           <CodeBlock
             code={`import { useState } from "react"
@@ -407,6 +409,94 @@ function AnimatedBox({ position }) {
             The same three cubes, now easing instead of snapping. This is the
             declarative idea applied to motion: you set the destination, and a
             duration and easing curve shape how it travels there.
+          </p>
+
+          <H2>drei: helpers</H2>
+          <p>
+            <Link href="https://github.com/pmndrs/drei">@react-three/drei</Link>{" "}
+            is a community library of ready-made helpers for R3F, still plain
+            R3F underneath, just components and hooks you&apos;d otherwise write
+            yourself. It&apos;s less a thing to memorize than a catalog to
+            browse. Here are the pieces you&apos;ll reach for first.
+          </p>
+
+          <H3>Scene basics</H3>
+          <p>
+            drei gives you drop-in components for the parts every scene needs.{" "}
+            <code>&lt;OrbitControls /&gt;</code> makes a scene explorable: drag
+            to orbit, scroll to zoom.{" "}
+            <code>&lt;PerspectiveCamera makeDefault /&gt;</code> lets you place
+            the camera as a component instead of a <code>&lt;Canvas&gt;</code>{" "}
+            prop (<code>makeDefault</code> tells R3F to render through it). And
+            shape shortcuts like <code>&lt;Box&gt;</code>,{" "}
+            <code>&lt;Sphere&gt;</code>, and <code>&lt;RoundedBox&gt;</code>{" "}
+            bundle mesh and geometry into a single tag for quick prototyping.
+          </p>
+          <CodeBlock
+            code={`import { OrbitControls, PerspectiveCamera, Box } from "@react-three/drei"
+
+<Canvas>
+  <PerspectiveCamera makeDefault position={[0, 2, 6]} />
+
+  <Box args={[1, 1, 1]}>
+    <meshStandardMaterial color="orange" />
+  </Box>
+
+  <OrbitControls />
+</Canvas>`}
+            lang="jsx"
+          />
+
+          <H3>Loading models</H3>
+          <p>
+            Real projects rarely stop at primitives. <code>useGLTF</code> loads
+            a <code>.glb</code> or <code>.gltf</code> model and drops it into
+            the scene, the fastest way to make things look finished:
+          </p>
+          <CodeBlock
+            code={`import { useGLTF } from "@react-three/drei"
+
+function Model() {
+  const { scene } = useGLTF("/robot.glb")
+  return <primitive object={scene} />
+}`}
+            lang="jsx"
+          />
+
+          <H3>Staging</H3>
+          <p>
+            <code>&lt;Environment /&gt;</code> lights the whole scene from a
+            preset HDRI: realistic lighting and reflections in one line.
+            It&apos;s often all the lighting a scene needs, and what makes
+            reflective materials actually reflect something.
+          </p>
+          <CodeBlock
+            code={`import { Environment } from "@react-three/drei"
+
+<Environment preset="sunset" />`}
+            lang="jsx"
+          />
+
+          <H3>Materials with character</H3>
+          <p>
+            Swap the standard material for one with built-in effects.{" "}
+            <code>MeshWobbleMaterial</code> and <code>MeshDistortMaterial</code>{" "}
+            deform the surface over time, and{" "}
+            <code>MeshTransmissionMaterial</code> gives you convincing glass.
+            Change the tag, get a richer look for free.
+          </p>
+
+          <H3>Fun utilities</H3>
+          <p>
+            A few expressive extras: <code>&lt;Float&gt;</code> adds a gentle
+            idle bob, <code>&lt;Trail&gt;</code> leaves a ribbon behind moving
+            objects, and <code>&lt;Sparkles&gt;</code> scatters points of light.
+          </p>
+          <p>
+            drei is where you&apos;ll assemble much of a final project: pick the
+            parts you need and compose them like any other component. The{" "}
+            <Link href="https://drei.docs.pmnd.rs">docs</Link> list everything,
+            and are worth a browse.
           </p>
         </Article>
       </Content>

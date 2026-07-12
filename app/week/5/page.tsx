@@ -9,6 +9,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ComponentsScene } from "./_components/components-scene"
 import { InteractionScene } from "./_components/interaction-scene"
 import { SpringScene } from "./_components/spring-scene"
+import { StagingScene } from "./_components/staging-scene"
 
 export const metadata: Metadata = {
   title: "Week 5",
@@ -436,10 +437,10 @@ function AnimatedBox({ position }) {
             code={`import { OrbitControls, PerspectiveCamera, Box } from "@react-three/drei"
 
 <Canvas>
-  <PerspectiveCamera makeDefault position={[0, 2, 6]} />
+  <PerspectiveCamera makeDefault position={[0, 2, 5]} />
 
   <Box args={[1, 1, 1]}>
-    <meshStandardMaterial color="orange" />
+    <meshStandardMaterial color="blue" />
   </Box>
 
   <OrbitControls />
@@ -476,6 +477,15 @@ function Model() {
 <Environment preset="sunset" />`}
             lang="jsx"
           />
+          <StagingScene className="mt-8" />
+          <p>
+            The Voyager model has standard PBR materials, so it only looks right
+            when something lights and reflects off it. Toggle{" "}
+            <code>environment</code> in the panel: off, a faint fill leaves it
+            flat; on, the HDRI lights it and shows up in its reflections. That
+            panel is <Link href="https://github.com/pmndrs/leva">leva</Link>, the
+            R3F ecosystem&apos;s take on lil-gui.
+          </p>
 
           <H3>Materials with character</H3>
           <p>

@@ -4,13 +4,64 @@ import { cn } from "@/lib/utils"
 import {
   Cloud,
   Clouds,
+  GradientTexture,
   OrbitControls,
   PerspectiveCamera,
-  Sparkles,
 } from "@react-three/drei"
 import { Canvas, useFrame } from "@react-three/fiber"
-import { useRef } from "react"
-import { type Group, MeshBasicMaterial } from "three"
+import { animated, useSpring } from "@react-spring/three"
+import { useRef, useState } from "react"
+import { DoubleSide, type Group, MeshBasicMaterial } from "three"
+
+const WIDTH = 1.6
+const HEIGHT = WIDTH * 1.618
+const LIGHT_HEIGHT = HEIGHT * 2.5
+
+// A single door, same construction as the Week 1 intro: a colored plane
+// standing on the ground with a gradient "light" plane spilling out behind
+// it. Hover to grow it and brighten the light.
+function Door({ position }: { position: [number, number, number] }) {
+  const [hovered, setHovered] = useState(false)
+  const { scale, opacity } = useSpring({
+    scale: (hovered ? [1.2, 1, 1] : [1, 1, 1]) as [number, number, number],
+    opacity: hovered ? 1 : 0.5,
+    config: { duration: 200 },
+  })
+
+  return (
+    <group position={position}>
+      <group position={[0, -HEIGHT * 0.5, 0]}>
+        <animated.mesh
+          scale={scale}
+          position={[0, HEIGHT * 0.5, 0]}
+          rotation={[0, Math.PI, 0]}
+          onPointerOver={() => setHovered(true)}
+          onPointerOut={() => setHovered(false)}
+        >
+          <planeGeometry args={[WIDTH, HEIGHT]} />
+          <meshBasicMaterial color="#00ff00" side={DoubleSide} />
+        </animated.mesh>
+
+        <animated.mesh
+          scale={scale}
+          position={[0, 0, -LIGHT_HEIGHT * 0.5]}
+          rotation={[Math.PI * 0.5, Math.PI, 0]}
+        >
+          <planeGeometry args={[WIDTH, LIGHT_HEIGHT]} />
+          <animated.meshBasicMaterial color="#00ff00" transparent opacity={opacity}>
+            {/* alphaMap, not map: GradientTexture parses colors through THREE.Color, which strips alpha */}
+            <GradientTexture
+              attach="alphaMap"
+              stops={[0, 1]}
+              colors={["white", "black"]}
+              size={1024}
+            />
+          </animated.meshBasicMaterial>
+        </animated.mesh>
+      </group>
+    </group>
+  )
+}
 
 // Two cloud layers on their own groups, each slowly counter-rotating so the
 // puffs drift past each other. useFrame runs here because this component is
@@ -55,7 +106,7 @@ export function ExtrasScene({ className }: { className?: string }) {
 
         <DriftingClouds />
 
-        <Sparkles count={150} scale={14} size={3} speed={0.4} color="white" />
+        <Door position={[0, 0, 3]} />
 
         <OrbitControls />
       </Canvas>

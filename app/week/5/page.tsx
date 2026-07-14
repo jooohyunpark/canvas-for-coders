@@ -522,23 +522,18 @@ function Model() {
 
           <H3>Worth a browse</H3>
           <p>
-            That is a fraction of the catalog. The scene below wires up two more
-            with almost no code:{" "}
+            drei ships plenty of creative utilities too. The scene below, for
+            example, is built from two of them:{" "}
             <Link href="https://drei.docs.pmnd.rs/staging/cloud">
               <code>&lt;Cloud&gt;</code>
             </Link>{" "}
-            fills the center with volumetric puffs, and{" "}
-            <Link href="https://drei.docs.pmnd.rs/staging/sparkles">
-              <code>&lt;Sparkles&gt;</code>
+            for the puffs and{" "}
+            <Link href="https://drei.docs.pmnd.rs/abstractions/gradient-texture">
+              <code>&lt;GradientTexture&gt;</code>
             </Link>{" "}
-            scatters drifting points of light around them. Two cloud layers
-            counter-rotate so the puffs churn, and the sparkles do their own
-            thing; drag to orbit and look around.
+            for the light spilling from the door.
           </p>
           <ExtrasScene className="mt-8" />
-          <p>
-            A few more you&apos;ll likely want:
-          </p>
           <p>
             <strong>Materials with character:</strong>
           </p>
@@ -565,12 +560,6 @@ function Model() {
           </p>
           <ul>
             <li>
-              <Link href="https://drei.docs.pmnd.rs/staging/float">
-                <code>&lt;Float&gt;</code>
-              </Link>{" "}
-              adds a gentle idle bob.
-            </li>
-            <li>
               <Link href="https://drei.docs.pmnd.rs/abstractions/trail">
                 <code>&lt;Trail&gt;</code>
               </Link>{" "}
@@ -581,6 +570,24 @@ function Model() {
                 <code>&lt;Sparkles&gt;</code>
               </Link>{" "}
               scatters points of light.
+            </li>
+            <li>
+              <Link href="https://drei.docs.pmnd.rs/portals/mesh-portal-material">
+                <code>&lt;MeshPortalMaterial&gt;</code>
+              </Link>{" "}
+              turns a shape into a window onto another scene.
+            </li>
+            <li>
+              <Link href="https://drei.docs.pmnd.rs/abstractions/gradient-texture">
+                <code>&lt;GradientTexture&gt;</code>
+              </Link>{" "}
+              paints a gradient onto a material instead of a flat color.
+            </li>
+            <li>
+              <Link href="https://drei.docs.pmnd.rs/shaders/soft-shadows">
+                <code>&lt;SoftShadows&gt;</code>
+              </Link>{" "}
+              swaps in soft, realistic contact shadows.
             </li>
           </ul>
         </Article>

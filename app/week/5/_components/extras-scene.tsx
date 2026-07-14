@@ -2,16 +2,19 @@
 
 import { cn } from "@/lib/utils"
 import {
+  Center,
   Cloud,
   Clouds,
   GradientTexture,
+  MeshRefractionMaterial,
   OrbitControls,
   PerspectiveCamera,
+  useEnvironment,
 } from "@react-three/drei"
 import { Canvas, useFrame } from "@react-three/fiber"
 import { animated, useSpring } from "@react-spring/three"
-import { useRef, useState } from "react"
-import { DoubleSide, type Group, MeshBasicMaterial } from "three"
+import { Suspense, useRef, useState } from "react"
+import { DoubleSide, type Group, type Mesh, MeshBasicMaterial } from "three"
 
 const WIDTH = 1.6
 const HEIGHT = WIDTH * 1.618
@@ -29,7 +32,7 @@ function Door({ position }: { position: [number, number, number] }) {
   })
 
   return (
-    <group position={position}>
+    <group position={position} rotation={[0, Math.PI, 0]}>
       <group position={[0, -HEIGHT * 0.5, 0]}>
         <animated.mesh
           scale={scale}
@@ -39,7 +42,7 @@ function Door({ position }: { position: [number, number, number] }) {
           onPointerOut={() => setHovered(false)}
         >
           <planeGeometry args={[WIDTH, HEIGHT]} />
-          <meshBasicMaterial color="#00ff00" side={DoubleSide} />
+          <meshBasicMaterial color="blue" side={DoubleSide} />
         </animated.mesh>
 
         <animated.mesh
@@ -48,12 +51,16 @@ function Door({ position }: { position: [number, number, number] }) {
           rotation={[Math.PI * 0.5, Math.PI, 0]}
         >
           <planeGeometry args={[WIDTH, LIGHT_HEIGHT]} />
-          <animated.meshBasicMaterial color="#00ff00" transparent opacity={opacity}>
+          <animated.meshBasicMaterial
+            color="blue"
+            transparent
+            opacity={opacity}
+          >
             {/* alphaMap, not map: GradientTexture parses colors through THREE.Color, which strips alpha */}
             <GradientTexture
               attach="alphaMap"
               stops={[0, 1]}
-              colors={["white", "black"]}
+              colors={["white", "#111111"]}
               size={1024}
             />
           </animated.meshBasicMaterial>
@@ -63,31 +70,55 @@ function Door({ position }: { position: [number, number, number] }) {
   )
 }
 
-// Two cloud layers on their own groups, each slowly counter-rotating so the
-// puffs drift past each other. useFrame runs here because this component is
+// A slowly tumbling cloud. useFrame runs here because this component is
 // rendered inside <Canvas>.
-function DriftingClouds() {
-  const ref1 = useRef<Group>(null)
-  const ref2 = useRef<Group>(null)
+function DriftingCloud({ position }: { position: [number, number, number] }) {
+  const ref = useRef<Group>(null)
 
   useFrame((state) => {
-    if (ref1.current) ref1.current.rotation.x = state.clock.elapsedTime * 0.07
-    if (ref2.current) ref2.current.rotation.x = state.clock.elapsedTime * -0.05
+    if (ref.current) ref.current.rotation.x = state.clock.elapsedTime * 0.07
   })
 
   return (
-    <>
-      <group ref={ref1}>
+    <group position={position}>
+      <group ref={ref}>
         <Clouds material={MeshBasicMaterial}>
-          <Cloud segments={40} bounds={[3, 1, 1]} volume={2} color="white" />
+          <Cloud
+            segments={40}
+            bounds={[1.5, 0.5, 0.5]}
+            volume={2}
+            color="white"
+          />
         </Clouds>
       </group>
-      <group ref={ref2}>
-        <Clouds material={MeshBasicMaterial}>
-          <Cloud segments={40} bounds={[3, 1, 1]} volume={2} color="white" />
-        </Clouds>
-      </group>
-    </>
+    </group>
+  )
+}
+
+// A faceted gem with drei's MeshRefractionMaterial: a glassy diamond material
+// that ray-marches refraction through the geometry against an environment map.
+// useEnvironment loads an HDRI to refract; the material builds its own BVH from
+// this mesh's geometry.
+function Gem({ position }: { position: [number, number, number] }) {
+  const envMap = useEnvironment({ preset: "city" })
+  const ref = useRef<Mesh>(null)
+
+  useFrame((state) => {
+    if (ref.current) ref.current.rotation.y = state.clock.elapsedTime * 0.4
+  })
+
+  return (
+    <mesh ref={ref} position={position}>
+      <icosahedronGeometry args={[1, 0]} />
+      <MeshRefractionMaterial
+        envMap={envMap}
+        bounces={3}
+        ior={2.4}
+        fresnel={1}
+        aberrationStrength={0.03}
+        toneMapped={false}
+      />
+    </mesh>
   )
 }
 
@@ -100,13 +131,19 @@ export function ExtrasScene({ className }: { className?: string }) {
       )}
     >
       <Canvas>
-        <PerspectiveCamera makeDefault position={[0, 5, 10]} fov={50} />
+        <PerspectiveCamera makeDefault position={[0, 3, 10]} fov={50} />
 
         <color attach="background" args={["#111111"]} />
 
-        <DriftingClouds />
+        <Center>
+          <Door position={[-5, 0, 0]} />
 
-        <Door position={[0, 0, 3]} />
+          <DriftingCloud position={[0, 0, 0]} />
+
+          <Suspense fallback={null}>
+            <Gem position={[5, 0, 0]} />
+          </Suspense>
+        </Center>
 
         <OrbitControls />
       </Canvas>

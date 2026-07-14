@@ -6,6 +6,7 @@ import {
   Center,
   Environment,
   OrbitControls,
+  PerspectiveCamera,
   useGLTF,
 } from "@react-three/drei"
 import { Canvas } from "@react-three/fiber"
@@ -45,7 +46,9 @@ export function StagingScene({ className }: { className?: string }) {
         className
       )}
     >
-      <Canvas camera={{ position: [-5, 2, 5], fov: 50 }}>
+      <Canvas>
+        <PerspectiveCamera makeDefault position={[-5, 2, 5]} fov={50} />
+
         <color attach="background" args={["white"]} />
 
         <ambientLight intensity={0.1} />

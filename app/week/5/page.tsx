@@ -10,6 +10,7 @@ import { ComponentsScene } from "./_components/components-scene"
 import { InteractionScene } from "./_components/interaction-scene"
 import { SpringScene } from "./_components/spring-scene"
 import { StagingScene } from "./_components/staging-scene"
+import { ExtrasScene } from "./_components/extras-scene"
 
 export const metadata: Metadata = {
   title: "Week 5",
@@ -521,21 +522,65 @@ function Model() {
 
           <H3>Worth a browse</H3>
           <p>
-            That is a fraction of the catalog. A few more you&apos;ll likely
-            want:
+            That is a fraction of the catalog. The scene below wires up two more
+            with almost no code:{" "}
+            <Link href="https://drei.docs.pmnd.rs/staging/cloud">
+              <code>&lt;Cloud&gt;</code>
+            </Link>{" "}
+            fills the center with volumetric puffs, and{" "}
+            <Link href="https://drei.docs.pmnd.rs/staging/sparkles">
+              <code>&lt;Sparkles&gt;</code>
+            </Link>{" "}
+            scatters drifting points of light around them. Two cloud layers
+            counter-rotate so the puffs churn, and the sparkles do their own
+            thing; drag to orbit and look around.
+          </p>
+          <ExtrasScene className="mt-8" />
+          <p>
+            A few more you&apos;ll likely want:
+          </p>
+          <p>
+            <strong>Materials with character:</strong>
           </p>
           <ul>
             <li>
-              <strong>Materials with character</strong> —{" "}
-              <code>MeshWobbleMaterial</code> and{" "}
-              <code>MeshDistortMaterial</code> deform the surface over time,{" "}
-              <code>MeshTransmissionMaterial</code> gives you convincing glass.
+              <Link href="https://drei.docs.pmnd.rs/shaders/mesh-wobble-material">
+                <code>MeshWobbleMaterial</code>
+              </Link>{" "}
+              and{" "}
+              <Link href="https://drei.docs.pmnd.rs/shaders/mesh-distort-material">
+                <code>MeshDistortMaterial</code>
+              </Link>{" "}
+              deform the surface over time.
             </li>
             <li>
-              <strong>Expressive extras</strong> — <code>&lt;Float&gt;</code>{" "}
-              adds a gentle idle bob, <code>&lt;Trail&gt;</code> leaves a ribbon
-              behind moving objects, <code>&lt;Sparkles&gt;</code> scatters
-              points of light.
+              <Link href="https://drei.docs.pmnd.rs/shaders/mesh-transmission-material">
+                <code>MeshTransmissionMaterial</code>
+              </Link>{" "}
+              gives you convincing glass.
+            </li>
+          </ul>
+          <p>
+            <strong>Expressive extras:</strong>
+          </p>
+          <ul>
+            <li>
+              <Link href="https://drei.docs.pmnd.rs/staging/float">
+                <code>&lt;Float&gt;</code>
+              </Link>{" "}
+              adds a gentle idle bob.
+            </li>
+            <li>
+              <Link href="https://drei.docs.pmnd.rs/abstractions/trail">
+                <code>&lt;Trail&gt;</code>
+              </Link>{" "}
+              leaves a ribbon behind moving objects.
+            </li>
+            <li>
+              <Link href="https://drei.docs.pmnd.rs/staging/sparkles">
+                <code>&lt;Sparkles&gt;</code>
+              </Link>{" "}
+              scatters points of light.
             </li>
           </ul>
         </Article>

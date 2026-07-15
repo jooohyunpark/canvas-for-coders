@@ -33,9 +33,9 @@ export default function Week4Page() {
           <H2>Concept</H2>
           <p>
             JavaScript doesn&apos;t enforce a programming style, but the code
-            you write naturally tends to be imperative: step-by-step
-            instructions that tell the browser exactly what to do. You can see
-            this in every Three.js project so far.
+            you write tends to be imperative: step-by-step instructions that
+            tell the browser exactly what to do. You can see this in every
+            Three.js project so far.
           </p>
           <CodeBlock
             code={`const app = document.querySelector('#app')
@@ -51,7 +51,7 @@ app.appendChild(renderer.domElement)`}
           <p>
             React flips the model. Instead of writing steps for how to update
             the UI, you describe what it should look like for a given piece of
-            data. React figures out what changed and updates just that.
+            data, and React takes care of applying that to the page.
           </p>
           <p>
             Here&apos;s the same counter built both ways, starting from the same
@@ -83,8 +83,8 @@ button.addEventListener("click", () => {
             lang="js"
           />
           <p>
-            In React, <code>&lt;p&gt;</code> will update automatically based on
-            count — React handles the state for you.
+            In React, you describe the markup for the current count, and React
+            keeps the <code>&lt;p&gt;</code> in sync whenever it changes:
           </p>
           <CodeBlock
             code={`// React — declarative
@@ -101,10 +101,9 @@ function Counter() {
             lang="jsx"
           />
           <p>
-            You&apos;ve already felt this contrast in Three.js. Your animation
-            loop is imperative: every frame, you move objects and call{" "}
-            <code>renderer.render()</code> yourself. React does the opposite:
-            you declare the result, and it handles the rest.
+            You&apos;ve already felt this contrast in Three.js, where you drive
+            every frame yourself. React does the opposite: you declare the
+            result, and it handles the rest.
           </p>
 
           <H3>UI as a function of state</H3>
@@ -170,7 +169,7 @@ npm run dev`}
 }`}
             lang="jsx"
           />
-          <p>A few rules follow when using JSX.</p>
+          <p>JSX comes with a few rules.</p>
 
           <H3>One root element</H3>
           <p>
@@ -532,9 +531,9 @@ setItems([...items, newItem])`}
           <p>
             The parent owns the state. <code>Display</code> reads it through a
             prop, and <code>Controls</code> changes it by calling a function the
-            parent passed down. It&apos;s the Props pattern in action: data
-            flows down, and a child changes the parent&apos;s state only through
-            a function, never by editing a prop directly.
+            parent passed down. It&apos;s the props flow in action: data flows
+            down, and a child changes the parent&apos;s state only through a
+            function, never by editing a prop directly.
           </p>
           <LiftStateDemo className="mt-4" />
 
@@ -625,7 +624,7 @@ function Clock() {
             <code>useRef</code> gives you a handle to a real DOM node. Pass a
             ref to an element&apos;s <code>ref</code> attribute, and React
             points <code>.current</code> at the actual node once it&apos;s on
-            the page &mdash; an escape hatch to the DOM for when you need it.
+            the page: an escape hatch to the DOM for when you need it.
           </p>
           <CodeBlock
             code={`function TextField() {
@@ -651,14 +650,14 @@ function Clock() {
 
           <H2>Exercise</H2>
           <p>
-            In this exercise you&apos;ll create an emoji chatbot &mdash; a chat
-            app where every response comes back as emojis. The starter code
+            In this exercise you&apos;ll create an emoji chatbot: a chat app
+            where every response comes back as emojis. The starter code
             gives you the skeleton: a message list, an input composer, and a{" "}
             <code>handleSend</code> function in <code>App.js</code>. Your job is
             to wire these pieces together into a functioning chat.
           </p>
           <p>
-            You don&apos;t need to write the logic &mdash; that lives in{" "}
+            You don&apos;t need to write the logic yourself; that lives in{" "}
             <code>emoji-api.js</code>. It exposes a single function,{" "}
             <code>sendMessage(prompt)</code>, which simulates an API call: pass
             it some text and, after a brief delay, it resolves with a random
@@ -680,8 +679,8 @@ const reply = await sendMessage("hello")
               <code>state</code> and update it via <code>onChange</code>.
             </li>
             <li>
-              Track the conversation in a second state variable &mdash; an array
-              of messages. When the user submits, append their prompt, call{" "}
+              Track the conversation in a second state variable, an array of
+              messages. When the user submits, append their prompt, call{" "}
               <code>sendMessage</code>, and append the emoji response. Always
               create a fresh array rather than modifying the existing one.
             </li>

@@ -41,9 +41,9 @@ export default function Week1Page() {
 
             <p>
               Since then, my practice has centered on making creative work with
-              web-based media. Of all the tools I’ve tried, it’s the one I keep
-              coming back to, and these are the characteristics that make it
-              feel uniquely expressive to me.
+              web-based media. Of all the mediums I’ve tried, the web is the one
+              I keep coming back to, and these are the characteristics that make
+              it feel uniquely expressive to me.
             </p>
 
             <H3>1. It’s interactive.</H3>
@@ -78,11 +78,8 @@ export default function Week1Page() {
               The web page is one of the most universal mediums there is. Anyone
               with a computer and an internet connection can reach it with a
               URL, anytime, from anywhere in the world. No other medium offers
-              that kind of reach. For example, here’s my work{" "}
-              <Link href="https://doors.joohyun.dev/">Doors</Link>.
+              that kind of reach.
             </p>
-
-            <p></p>
 
             <p>Now, let’s get into Three.js.</p>
 
@@ -153,7 +150,7 @@ export default function Week1Page() {
 
             <p>
               The CLI will prompt for a project name and template — select{" "}
-              <strong>Vanilla</strong> + <strong>Javascript</strong>. Then
+              <strong>Vanilla</strong> + <strong>JavaScript</strong>. Then
               navigate into the new directory, install dependencies, and start
               the development server:
             </p>

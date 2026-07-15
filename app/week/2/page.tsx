@@ -45,8 +45,8 @@ export default function Week2Page() {
 
           <H3>Objects</H3>
           <p>
-            Objects come in many forms &mdash; shapes, models, particles, and
-            more. Let’s start with a blue box.
+            Objects come in many forms: shapes, models, particles, and more.
+            Let’s start with a blue box.
           </p>
           <p>
             Anything you see on screen is a <code>Mesh</code>: a{" "}
@@ -81,13 +81,13 @@ scene.add(mesh)`}
           </p>
           <ul>
             <li>
-              <strong>Field of view</strong> &mdash; the vertical viewing angle,
-              in degrees. A wide angle distorts; a narrow one zooms in. Around
+              <strong>Field of view</strong>: the vertical viewing angle, in
+              degrees. A wide angle distorts; a narrow one zooms in. Around
               45–55° matches natural human perception.
             </li>
             <li>
-              <strong>Aspect ratio</strong> &mdash; width divided by height. We
-              keep a <code>sizes</code> object set to the window’s dimensions so
+              <strong>Aspect ratio</strong>: width divided by height. We keep a{" "}
+              <code>sizes</code> object set to the window’s dimensions so
               the scene fills the screen.
             </li>
           </ul>
@@ -110,8 +110,8 @@ scene.add(camera)`}
             screens, <code>setSize</code> fills the window, and{" "}
             <code>setAnimationLoop(animate)</code> runs your{" "}
             <code>animate</code> function every frame. Three.js builds its own
-            canvas as <code>renderer.domElement</code> &mdash; append it to the
-            body to show it.
+            canvas as <code>renderer.domElement</code>; append it to the body to
+            show it.
           </p>
           <CodeBlock
             code={`const renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -125,8 +125,8 @@ document.body.appendChild(renderer.domElement);`}
           <H3>Animation loop</H3>
           <p>
             The animation loop runs every frame and renders the scene. We pass
-            it to <code>setAnimationLoop</code> as a function &mdash; here we
-            call it <code>animate</code>, but the name is up to you. Later we’ll
+            it to <code>setAnimationLoop</code> as a function; here we call it{" "}
+            <code>animate</code>, but the name is up to you. Later we’ll
             use it to animate objects, update controls, and more.
           </p>
 
@@ -143,7 +143,7 @@ document.body.appendChild(renderer.domElement);`}
           <H2>Around the scene</H2>
           <p>
             With the scene in place, a few tools make it more interactive and
-            development process smoother.
+            the development process smoother.
           </p>
 
           <H3>Controls</H3>
@@ -223,7 +223,7 @@ gui.addColor(material, 'color')`}
           <p>
             Geometries are made of <strong>vertices</strong> (points in 3D
             space) and <strong>faces</strong> (triangles connecting them into a
-            surface). Three.js has many built-in geometries — see the{" "}
+            surface). Three.js has many built-in geometries; see the{" "}
             <Link href="https://threejs.org/manual/#en/primitives">
               primitives article
             </Link>{" "}
@@ -276,12 +276,12 @@ gui.addColor(material, 'color')`}
           </p>
           <ul>
             <li>
-              <strong>roughness</strong> &mdash; 0 is a perfect mirror, 1 is
-              completely matte.
+              <strong>roughness</strong>: 0 is a perfect mirror, 1 is completely
+              matte.
             </li>
             <li>
-              <strong>metalness</strong> &mdash; 0 is non-metal (plastic,
-              fabric), 1 is fully metallic.
+              <strong>metalness</strong>: 0 is non-metal (plastic, fabric), 1 is
+              fully metallic.
             </li>
           </ul>
           <p>
@@ -315,7 +315,7 @@ gui.addColor(material, 'color')`}
           <H2>Mesh</H2>
           <p>
             A <code>Mesh</code> brings together two things: a geometry and a
-            material. On their own, neither can appear in the scene—you have to
+            material. On their own, neither can appear in the scene; you have to
             combine them into a mesh before anything renders.
           </p>
           <CodeBlock
@@ -340,12 +340,12 @@ scene.add(mesh)`}
             <Link href="https://threejs.org/manual/?q=light#en/lights">
               lights article
             </Link>{" "}
-            covers lighting in more details.
+            covers lighting in more detail.
           </p>
 
           <H3>AmbientLight</H3>
           <p>
-            Lights every surface equally from all directions — no shadows, no
+            Lights every surface equally from all directions: no shadows, no
             shading, just a flat brightness boost across the scene. Use it to
             lift the darkest areas, not as your only light.
           </p>

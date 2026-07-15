@@ -32,8 +32,7 @@ export default function Week3Page() {
           </p>
           <p>
             Frame rate is how many frames are drawn per second, typically 60,
-            though it varies by screen and hardware. We want our function to run
-            on every frame.
+            though it varies by screen and hardware.
           </p>
           <p>
             The native JavaScript way to do this is{" "}
@@ -80,8 +79,8 @@ renderer.setAnimationLoop((time) => {
           <H2>GSAP</H2>
           <p>
             <Link href="https://gsap.com/">GSAP</Link> (GreenSock Animation
-            Platform) is a JavaScript animation library for animating objects in
-            a scene. It gives you precise control over tweens, the transitions
+            Platform) is a JavaScript library for animating objects in a scene.
+            It gives you precise control over tweens, the transitions
             an object makes between two states, through a clean API so you never
             have to update values by hand inside a loop.
           </p>
@@ -256,8 +255,8 @@ new RGBELoader().load("/studio.hdr", (texture) => {
             </Link>{" "}
             is a sound source that lives at a position in the scene. Attach it
             to a mesh and it travels with the object.{" "}
-            <code>setRefDistance()</code> sets the distance at which the volume
-            is at full level and starts to roll off beyond.
+            <code>setRefDistance()</code> sets the distance up to which the
+            volume stays at full, then rolls off beyond it.
           </p>
           <CodeBlock
             code={`const listener = new THREE.AudioListener()
@@ -294,10 +293,10 @@ scene.add(mesh)`}
           <H2>Exercise</H2>
           <p>
             Re-create the scene from the video. Load the Voyager model and add a
-            moon orbiting it using the animation loop —{" "}
-            <code>/moon-texture.jpg</code> is in the public folder for the
-            surface. Then wire up the three buttons to fly the camera to each
-            viewpoint using <code>gsap.to()</code>.
+            moon orbiting it using the animation loop. The surface texture,{" "}
+            <code>/moon-texture.jpg</code>, is in the public folder. Then wire up
+            the three buttons to fly the camera to each viewpoint using{" "}
+            <code>gsap.to()</code>.
           </p>
 
           <video

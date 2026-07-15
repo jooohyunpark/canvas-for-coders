@@ -8,7 +8,7 @@ import {
   GradientTexture,
   MeshRefractionMaterial,
   OrbitControls,
-  PerspectiveCamera,
+  OrthographicCamera,
   useEnvironment,
 } from "@react-three/drei"
 import { Canvas, useFrame } from "@react-three/fiber"
@@ -55,6 +55,7 @@ function Door({ position }: { position: [number, number, number] }) {
             color="yellow"
             transparent
             opacity={opacity}
+            side={DoubleSide}
           >
             {/* alphaMap, not map: GradientTexture parses colors through THREE.Color, which strips alpha */}
             <GradientTexture
@@ -131,7 +132,7 @@ export function ExtrasScene({ className }: { className?: string }) {
       )}
     >
       <Canvas flat>
-        <PerspectiveCamera makeDefault position={[0, 3, 10]} fov={50} />
+        <OrthographicCamera makeDefault position={[-5, 4, 10]} zoom={30} />
 
         <color attach="background" args={["#111111"]} />
 

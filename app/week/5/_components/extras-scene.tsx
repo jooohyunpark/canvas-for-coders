@@ -42,7 +42,7 @@ function Door({ position }: { position: [number, number, number] }) {
           onPointerOut={() => setHovered(false)}
         >
           <planeGeometry args={[WIDTH, HEIGHT]} />
-          <meshBasicMaterial color="blue" side={DoubleSide} />
+          <meshBasicMaterial color="yellow" side={DoubleSide} />
         </animated.mesh>
 
         <animated.mesh
@@ -52,7 +52,7 @@ function Door({ position }: { position: [number, number, number] }) {
         >
           <planeGeometry args={[WIDTH, LIGHT_HEIGHT]} />
           <animated.meshBasicMaterial
-            color="blue"
+            color="yellow"
             transparent
             opacity={opacity}
           >
@@ -130,7 +130,7 @@ export function ExtrasScene({ className }: { className?: string }) {
         className
       )}
     >
-      <Canvas>
+      <Canvas flat>
         <PerspectiveCamera makeDefault position={[0, 3, 10]} fov={50} />
 
         <color attach="background" args={["#111111"]} />

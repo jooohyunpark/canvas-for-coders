@@ -59,10 +59,10 @@ export default function Week5Page() {
           </p>
           <p>
             The payoff is the same principle from React. There,{" "}
-            <code>UI = f(state)</code>. Here, <code>scene = f(state)</code>:
+            <code>UI = f(state)</code>; here, <code>scene = f(state)</code>:
             describe what the scene should contain, and R3F creates, updates,
             and removes the objects to match. A component still takes props,
-            holds state, and composes with others — it just returns meshes,
+            holds state, and composes with others, only now it returns meshes,
             lights, and groups instead of <code>&lt;div&gt;</code>s. That&apos;s
             the idea this week: React components, in space.
           </p>
@@ -172,13 +172,13 @@ export default function App() {
           <CodeBlock
             code={`<mesh position={[0, 1, 0]} rotation={[0, Math.PI / 4, 0]}>
   <boxGeometry args={[1, 1, 1]} />
-  <meshStandardMaterial color="orange" />
+  <meshStandardMaterial color="blue" />
 </mesh>`}
             lang="jsx"
           />
           <H3>Same scene, both ways</H3>
           <p>
-            Here is a lit orange cube written both ways: same geometry, same
+            Here is a lit blue cube written both ways: same geometry, same
             material, same lights. The Three.js version is what you wrote in
             Week 3; the R3F version is the payoff.
           </p>
@@ -198,7 +198,7 @@ export default function App() {
 
       <mesh>
         <boxGeometry args={[1, 1, 1]} />
-        <meshStandardMaterial color="orange" />
+        <meshStandardMaterial color="blue" />
       </mesh>
 
       <ambientLight intensity={1} />
@@ -264,7 +264,7 @@ renderer.setAnimationLoop(() => {
           <p>
             Because every Three.js object is a component, the cube composes like
             any other. Pull the mesh into a <code>Box</code>, give it props, and
-            render it as many times as you want, each configured differently —
+            render it as many times as you want, each configured differently:
             no manual loops or bookkeeping, one component reused.
           </p>
           <CodeBlock
@@ -350,7 +350,7 @@ function Scene() {
             grows only that cube.
           </p>
           <p>
-            The change is instant, though — the cube jumps to its new size in a
+            The change is instant, though: the cube jumps to its new size in a
             single frame. That snap is fine for a color, but a scale wants to
             ease into place, which is exactly what react-spring does next.
           </p>
@@ -410,7 +410,10 @@ function AnimatedBox({ position }) {
           <p>
             The same three cubes, now easing instead of snapping. This is the
             declarative idea applied to motion: you set the destination, and a
-            duration and easing curve shape how it travels there.
+            duration and easing curve shape how it travels there. The second{" "}
+            <code>useSpring</code> is the same hook in a different shape: give it{" "}
+            <code>loop</code> with a <code>from</code> and <code>to</code>, and
+            it runs a continuous animation, here the slow rotation.
           </p>
 
           <H2>drei: helpers</H2>
@@ -523,15 +526,19 @@ function Model() {
           <H3>Worth a browse</H3>
           <p>
             drei ships plenty of creative utilities too. The scene below, for
-            example, is built from two of them:{" "}
+            example, is built from three of them:{" "}
             <Link href="https://drei.docs.pmnd.rs/staging/cloud">
               <code>&lt;Cloud&gt;</code>
             </Link>{" "}
-            for the puffs and{" "}
+            for the puffs,{" "}
             <Link href="https://drei.docs.pmnd.rs/abstractions/gradient-texture">
               <code>&lt;GradientTexture&gt;</code>
             </Link>{" "}
-            for the light spilling from the door.
+            for the light spilling from the door, and{" "}
+            <Link href="https://drei.docs.pmnd.rs/shaders/mesh-refraction-material">
+              <code>MeshRefractionMaterial</code>
+            </Link>{" "}
+            for the glass gem.
           </p>
           <ExtrasScene className="mt-8" />
           <p>
@@ -576,12 +583,6 @@ function Model() {
                 <code>&lt;MeshPortalMaterial&gt;</code>
               </Link>{" "}
               turns a shape into a window onto another scene.
-            </li>
-            <li>
-              <Link href="https://drei.docs.pmnd.rs/abstractions/gradient-texture">
-                <code>&lt;GradientTexture&gt;</code>
-              </Link>{" "}
-              paints a gradient onto a material instead of a flat color.
             </li>
             <li>
               <Link href="https://drei.docs.pmnd.rs/shaders/soft-shadows">

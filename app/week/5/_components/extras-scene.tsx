@@ -16,7 +16,7 @@ import { animated, useSpring } from "@react-spring/three"
 import { Suspense, useRef, useState } from "react"
 import { DoubleSide, type Group, type Mesh, MeshBasicMaterial } from "three"
 
-const WIDTH = 1.6
+const WIDTH = 1.2
 const HEIGHT = WIDTH * 1.618
 const LIGHT_HEIGHT = HEIGHT * 2.5
 
@@ -86,8 +86,8 @@ function DriftingCloud({ position }: { position: [number, number, number] }) {
         <Clouds material={MeshBasicMaterial}>
           <Cloud
             segments={40}
-            bounds={[1.5, 0.5, 0.5]}
-            volume={2}
+            bounds={[1, 0.2, 0.2]}
+            volume={0.3}
             color="white"
           />
         </Clouds>

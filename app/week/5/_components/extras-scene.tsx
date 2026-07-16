@@ -61,7 +61,7 @@ function Door({ position }: { position: [number, number, number] }) {
             <GradientTexture
               attach="alphaMap"
               stops={[0, 1]}
-              colors={["white", "#111111"]}
+              colors={["white", "black"]}
               size={1024}
             />
           </animated.meshBasicMaterial>

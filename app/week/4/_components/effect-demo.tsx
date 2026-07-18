@@ -7,6 +7,9 @@ export function EffectDemo({ className }: { className?: string }) {
   const [time, setTime] = useState<Date | null>(null)
 
   useEffect(() => {
+    // Read the clock on the client only, after mount, so server and client
+    // render the same placeholder and avoid a hydration mismatch.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setTime(new Date())
     const id = setInterval(() => setTime(new Date()), 1000)
     return () => clearInterval(id)

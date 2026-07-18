@@ -11,6 +11,8 @@ import { InteractionScene } from "./_components/interaction-scene"
 import { SpringScene } from "./_components/spring-scene"
 import { StagingScene } from "./_components/staging-scene"
 import { ExtrasScene } from "./_components/extras-scene"
+import { Exercise } from "./_components/exercise"
+import { Doors } from "../1/_components/doors"
 
 export const metadata: Metadata = {
   title: "Week 5",
@@ -264,8 +266,8 @@ renderer.setAnimationLoop(() => {
           <p>
             Because every Three.js object is a component, the cube composes like
             any other. Pull the mesh into a <code>Box</code>, give it props, and
-            render it as many times as you want, each configured differently:
-            no manual loops or bookkeeping, one component reused.
+            render it as many times as you want, each configured differently: no
+            manual loops or bookkeeping, one component reused.
           </p>
           <CodeBlock
             code={`function Box({ position, color }) {
@@ -411,9 +413,9 @@ function AnimatedBox({ position }) {
             The same three cubes, now easing instead of snapping. This is the
             declarative idea applied to motion: you set the destination, and a
             duration and easing curve shape how it travels there. The second{" "}
-            <code>useSpring</code> is the same hook in a different shape: give it{" "}
-            <code>loop</code> with a <code>from</code> and <code>to</code>, and
-            it runs a continuous animation, here the slow rotation.
+            <code>useSpring</code> is the same hook in a different shape: give
+            it <code>loop</code> with a <code>from</code> and <code>to</code>,
+            and it runs a continuous animation, here the slow rotation.
           </p>
 
           <H2>drei: helpers</H2>
@@ -591,7 +593,32 @@ function Model() {
               swaps in soft, realistic contact shadows.
             </li>
           </ul>
+
+          <hr />
+
+          <H2>Exercise</H2>
+          <p>
+            Build the <strong>Doors</strong> scene.
+          </p>
+          <ul>
+            <li>Render 10 doors, each in a color of your choice.</li>
+            <li>
+              Give each door a light spill on the floor that fades out along its
+              length.
+            </li>
+            <li>Add a subtle hover animation of your choice.</li>
+            <li>
+              Clicking a door sets the scene background to that door&apos;s
+              color.
+            </li>
+          </ul>
+          <p>Here&apos;s the example:</p>
+          <div className="mt-4">
+            <Doors />
+          </div>
         </Article>
+
+        <Exercise className="mt-4 mb-12" />
       </Content>
     </Section>
   )

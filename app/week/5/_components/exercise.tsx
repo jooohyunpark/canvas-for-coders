@@ -34,7 +34,6 @@ function Scene() {
 
       <ambientLight intensity={1} />
       <directionalLight position={[2, 3, 4]} intensity={2} />
-      <OrbitControls />
     </>
   )
 }
@@ -43,8 +42,19 @@ export default function App() {
   return (
     <div id="app">
       <Canvas flat>
-        <OrthographicCamera makeDefault position={[-20, 10, -10]} zoom={20} />
+        <OrthographicCamera
+          makeDefault
+          position={[-5, 5, 10]}
+          zoom={20}
+          near={0}
+          far={1000}
+        />
         <color attach="background" args={["black"]} />
+        <OrbitControls
+          enableDamping
+          dampingFactor={0.05}
+          rotateSpeed={0.5}
+        />
         <Scene />
       </Canvas>
     </div>
@@ -54,8 +64,8 @@ export default function App() {
   "/Door.js": `export function Door({ position }) {
   return (
     <mesh position={position}>
-      <boxGeometry args={[1, 2, 0.1]} />
-      <meshStandardMaterial color="grey" />
+      <boxGeometry args={[1, 1.618, 0]} />
+      <meshStandardMaterial color="white" />
     </mesh>
   )
 }

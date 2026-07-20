@@ -41,8 +41,8 @@ export default function App() {
           makeDefault
           position={[-10, 5, 10]}
           zoom={30}
-          near={0}
-          far={1000}
+          near={-100}
+          far={100}
         />
         <color attach="background" args={["black"]} />
         <OrbitControls

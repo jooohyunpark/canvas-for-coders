@@ -3,6 +3,7 @@ import { Section } from "@/components/site/section"
 import { Content } from "@/components/site/content"
 import { Article } from "@/components/site/article"
 import { Link } from "@/components/site/link"
+import { Button } from "@/components/ui/button"
 import { H1, H2, H3 } from "@/components/site/heading"
 import { CodeBlock } from "@/components/site/code-block"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -619,6 +620,28 @@ function Model() {
         </Article>
 
         <Exercise className="mt-4 mb-12" />
+
+        <Article>
+          <hr />
+
+          <H2>Assignment</H2>
+          <ul>
+            <li>
+              Continue developing your final project. Now that you know React
+              Three Fiber, using it is encouraged, but not required.
+            </li>
+          </ul>
+
+          <Button
+            render={
+              <Link href="https://github.com/jooohyunpark/canvas-for-coders/discussions/categories/assignments">
+                Submit here
+              </Link>
+            }
+            nativeButton={false}
+            className="no-underline"
+          />
+        </Article>
       </Content>
     </Section>
   )

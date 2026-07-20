@@ -28,12 +28,7 @@ import { Door } from "./Door"
 function Scene() {
   return (
     <>
-      <Door position={[-2, 0, 0]} />
-      <Door position={[0, 0, 0]} />
-      <Door position={[2, 0, 0]} />
-
-      <ambientLight intensity={1} />
-      <directionalLight position={[2, 3, 4]} intensity={2} />
+      <Door />
     </>
   )
 }
@@ -44,8 +39,8 @@ export default function App() {
       <Canvas flat>
         <OrthographicCamera
           makeDefault
-          position={[-5, 5, 10]}
-          zoom={20}
+          position={[-10, 5, 10]}
+          zoom={30}
           near={0}
           far={1000}
         />
@@ -61,12 +56,34 @@ export default function App() {
   )
 }
 `,
-  "/Door.js": `export function Door({ position }) {
+  "/Door.js": `import { GradientTexture } from "@react-three/drei"
+import * as THREE from "three"
+
+const WIDTH = 1
+const HEIGHT = WIDTH * 1.618
+const SPILL_LENGTH = HEIGHT * 2.5
+
+export function Door() {
   return (
-    <mesh position={position}>
-      <boxGeometry args={[1, 1.618, 0]} />
-      <meshStandardMaterial color="white" />
-    </mesh>
+    <group>
+      <mesh position={[0, HEIGHT / 2, 0]}>
+        <planeGeometry args={[WIDTH, HEIGHT]} />
+        <meshBasicMaterial color="white" side={THREE.DoubleSide} />
+      </mesh>
+
+      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, SPILL_LENGTH / 2]}>
+        <planeGeometry args={[WIDTH, SPILL_LENGTH]} />
+        <meshBasicMaterial color="white" side={THREE.DoubleSide} transparent opacity={0.5}>
+          {/* alphaMap: GradientTexture runs colors through
+              THREE.Color, which strips alpha */}
+          <GradientTexture
+            attach="alphaMap"
+            stops={[0, 1]}
+            colors={["white", "black"]}
+          />
+        </meshBasicMaterial>
+      </mesh>
+    </group>
   )
 }
 `,

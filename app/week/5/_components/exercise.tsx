@@ -23,11 +23,12 @@ const defaultFiles = {
 import { OrbitControls, OrthographicCamera } from "@react-three/drei"
 import "./styles.css"
 import { Door } from "./Door"
-
+import { Background } from "./Background"
 
 function Scene() {
   return (
     <>
+      <Background />
       <Door />
     </>
   )
@@ -44,7 +45,6 @@ export default function App() {
           near={-100}
           far={100}
         />
-        <color attach="background" args={["black"]} />
         <OrbitControls
           enableDamping
           dampingFactor={0.05}
@@ -56,8 +56,13 @@ export default function App() {
   )
 }
 `,
+  "/Background.js": `export function Background({ color = "black" }) {
+  return <color attach="background" args={[color]} />
+}
+`,
   "/Door.js": `import { GradientTexture } from "@react-three/drei"
 import * as THREE from "three"
+// import { animated, useSpring } from "@react-spring/three"
 
 const WIDTH = 1
 const HEIGHT = WIDTH * 1.618

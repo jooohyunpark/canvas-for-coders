@@ -609,7 +609,7 @@ function Model() {
             </li>
             <li>Add a subtle hover animation of your choice.</li>
             <li>
-              Clicking a door sets the scene background to that door&apos;s
+              Clicking a door animates the scene background to that door&apos;s
               color.
             </li>
           </ul>

@@ -26,7 +26,13 @@ export default function Week6Page() {
               <code>&lt;Text&gt;</code>
             </Link>{" "}
             renders text as real geometry in the scene. It stays crisp at any
-            distance, and you position, rotate, and light it like any mesh.
+            distance, and you position, rotate, and light it like any mesh. For
+            type with real depth,{" "}
+            <Link href="https://drei.docs.pmnd.rs/abstractions/text3d">
+              <code>&lt;Text3D&gt;</code>
+            </Link>{" "}
+            extrudes each letter from a font file so it catches light like any
+            solid object.
           </p>
           <CodeBlock
             code={`import { Text } from "@react-three/drei"
@@ -42,33 +48,18 @@ export default function Week6Page() {
 </Text>`}
             lang="jsx"
           />
-          <p>
-            Key props: <code>fontSize</code>, <code>letterSpacing</code>,{" "}
-            <code>color</code>, <code>anchorX</code> / <code>anchorY</code>{" "}
-            (which point sits at the position), <code>font</code> (a{" "}
-            <code>.woff</code> URL for your own typeface), and{" "}
-            <code>maxWidth</code> (wraps a paragraph). The word below spins so
-            you can catch it edge-on — flat geometry in space, not a label stuck
-            to the camera.
-          </p>
+
           <TextScene className="mt-8" />
-          <p>
-            For type with real depth,{" "}
-            <Link href="https://drei.docs.pmnd.rs/abstractions/text3d">
-              <code>&lt;Text3D&gt;</code>
-            </Link>{" "}
-            takes a font file and gives each letter thickness to bevel and
-            light.
-          </p>
 
           <H2>HTML in the scene</H2>
           <p>
-            For captions, tooltips, or menus, you want real HTML.{" "}
+            Sometimes you need a real HTML element in the scene: labels,
+            tooltips, or buttons.{" "}
             <Link href="https://drei.docs.pmnd.rs/misc/html">
               <code>&lt;Html&gt;</code>
             </Link>{" "}
-            pins a DOM element to a point in the scene so it tracks the object as
-            the camera moves.
+            pins a DOM element to a point in the scene so it tracks the object
+            as the camera moves.
           </p>
           <CodeBlock
             code={`import { Html, Sphere } from "@react-three/drei"
@@ -105,11 +96,11 @@ export default function Week6Page() {
 
           <H3>Interacting with an HTML button</H3>
           <p>
-            Because <code>&lt;Html&gt;</code> renders a real DOM element, you can
-            use a button&apos;s click event to drive the scene. Drop it in and it
-            works like any React control — clicking updates state, and any mesh
-            reading that state re-renders to match: new positions, fresh
-            rotations, a shuffled layout.
+            Because <code>&lt;Html&gt;</code> renders a real DOM element, you
+            can use a button&apos;s click event to drive the scene. Drop it in
+            and it works like any React control — clicking updates state, and
+            any mesh reading that state re-renders to match: new positions,
+            fresh rotations, a shuffled layout.
           </p>
           <CodeBlock
             code={`function Scene() {

@@ -48,29 +48,27 @@ export default function Week6Page() {
             (which point sits at the position), <code>font</code> (a{" "}
             <code>.woff</code> URL for your own typeface), and{" "}
             <code>maxWidth</code> (wraps a paragraph). The word below spins so
-            you can catch it edge-on: flat geometry in space, not a label stuck
+            you can catch it edge-on — flat geometry in space, not a label stuck
             to the camera.
           </p>
           <TextScene className="mt-8" />
           <p>
-            For extruded type with real depth, use{" "}
+            For type with real depth,{" "}
             <Link href="https://drei.docs.pmnd.rs/abstractions/text3d">
               <code>&lt;Text3D&gt;</code>
-            </Link>
-            , which takes a font file and gives each letter thickness to light
-            and bevel.
+            </Link>{" "}
+            takes a font file and gives each letter thickness to bevel and
+            light.
           </p>
 
-          <H2>HTML element in the scene</H2>
+          <H2>HTML in the scene</H2>
           <p>
-            For captions, tooltips, forms, or menus you want real HTML, with the
-            CSS and interactivity you already know.{" "}
+            For captions, tooltips, or menus, you want real HTML.{" "}
             <Link href="https://drei.docs.pmnd.rs/misc/html">
               <code>&lt;Html&gt;</code>
             </Link>{" "}
-            pins a normal DOM element to a point in the scene, projecting it to
-            screen coordinates each frame so it tracks the object as the camera
-            moves.
+            pins a DOM element to a point in the scene so it tracks the object as
+            the camera moves.
           </p>
           <CodeBlock
             code={`import { Html, Sphere } from "@react-three/drei"
@@ -93,28 +91,25 @@ export default function Week6Page() {
           <p>
             Three props do most of the work: <code>center</code> anchors by the
             middle instead of the top-left, <code>distanceFactor</code> scales
-            the element with distance, and <code>occlude</code> takes the meshes
-            that should hide it, fading it out when the anchor passes behind
-            one. Below, the label rides a marker orbiting the shape and drops
-            away each time it swings behind.
+            the element with distance, and <code>occlude</code> lists the meshes
+            that can hide it, fading it out when the anchor passes behind one.
+            Below, the label rides a marker orbiting the sphere and drops away
+            each time it swings behind.
           </p>
           <HtmlScene className="mt-8" />
           <p>
-            One caveat: this is DOM on top of the canvas, not pixels drawn
+            One caveat: this is DOM layered over the canvas, not pixels drawn
             inside it. Use it for interface, not for things that need to sit
-            genuinely behind or inside your geometry.
+            inside or behind your geometry.
           </p>
 
-          <H3>An HTML button that drives the scene</H3>
+          <H3>Interacting with an HTML button</H3>
           <p>
-            Because it&apos;s real DOM, everything you know about events still
-            works. Give the button its own slot in the same layout as the doors,
-            drop it in with <code>&lt;Html&gt;</code>, and its{" "}
-            <code>onClick</code> is an ordinary React handler driving the meshes.
-            It anchors to a point in the scene and always faces the camera, so it
-            stands among the doors and stays readable while it drives them.
-            It&apos;s the same <code>UI = f(state)</code> loop from Week 5, with a
-            button on one end and meshes on the other.
+            Because <code>&lt;Html&gt;</code> renders a real DOM element, you can
+            use a button&apos;s click event to drive the scene. Drop it in and it
+            works like any React control — clicking updates state, and any mesh
+            reading that state re-renders to match: new positions, fresh
+            rotations, a shuffled layout.
           </p>
           <CodeBlock
             code={`function Scene() {
@@ -149,13 +144,6 @@ export default function Week6Page() {
 }`}
             lang="jsx"
           />
-          <p>
-            Click the shuffle button below. The handler runs a spring sequence:
-            it collapses every door along its width to a sliver, swaps in a fresh
-            layout while they&apos;re hidden, then opens them back out. The button
-            takes a slot in that same layout, so it hops to a new spot among the
-            Week 1 doors on every shuffle.
-          </p>
           <HtmlButtonScene className="mt-8" />
         </Article>
       </Content>

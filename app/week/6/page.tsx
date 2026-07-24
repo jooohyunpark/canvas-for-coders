@@ -44,11 +44,12 @@ export default function Week6Page() {
           />
           <p>
             Key props: <code>fontSize</code>, <code>letterSpacing</code>,{" "}
-            <code>color</code>, <code>anchorX</code> / <code>anchorY</code> (which
-            point sits at the position), <code>font</code> (a <code>.woff</code>{" "}
-            URL for your own typeface), and <code>maxWidth</code> (wraps a
-            paragraph). The word below spins so you can catch it edge-on: flat
-            geometry in space, not a label stuck to the camera.
+            <code>color</code>, <code>anchorX</code> / <code>anchorY</code>{" "}
+            (which point sits at the position), <code>font</code> (a{" "}
+            <code>.woff</code> URL for your own typeface), and{" "}
+            <code>maxWidth</code> (wraps a paragraph). The word below spins so
+            you can catch it edge-on: flat geometry in space, not a label stuck
+            to the camera.
           </p>
           <TextScene className="mt-8" />
           <p>
@@ -60,7 +61,7 @@ export default function Week6Page() {
             and bevel.
           </p>
 
-          <H2>HTML in the scene</H2>
+          <H2>HTML element in the scene</H2>
           <p>
             For captions, tooltips, forms, or menus you want real HTML, with the
             CSS and interactivity you already know.{" "}
@@ -93,9 +94,9 @@ export default function Week6Page() {
             Three props do most of the work: <code>center</code> anchors by the
             middle instead of the top-left, <code>distanceFactor</code> scales
             the element with distance, and <code>occlude</code> takes the meshes
-            that should hide it, fading it out when the anchor passes behind one.
-            Below, the label rides a marker orbiting the shape and drops away
-            each time it swings behind.
+            that should hide it, fading it out when the anchor passes behind
+            one. Below, the label rides a marker orbiting the shape and drops
+            away each time it swings behind.
           </p>
           <HtmlScene className="mt-8" />
           <p>
@@ -107,24 +108,40 @@ export default function Week6Page() {
           <H3>An HTML button that drives the scene</H3>
           <p>
             Because it&apos;s real DOM, everything you know about events still
-            works. Put a <code>&lt;button&gt;</code> inside <code>&lt;Html&gt;</code>{" "}
-            and its <code>onClick</code> is an ordinary React handler. Have it
-            flip a piece of state, pass that state to your meshes, and the DOM is
-            now a control panel for the 3D scene. It&apos;s the same{" "}
-            <code>UI = f(state)</code> loop from Week 5, with a button on one end
-            and meshes on the other.
+            works. Give the button its own slot in the same layout as the doors,
+            drop it in with <code>&lt;Html&gt;</code>, and its{" "}
+            <code>onClick</code> is an ordinary React handler driving the meshes.
+            It anchors to a point in the scene and always faces the camera, so it
+            stands among the doors and stays readable while it drives them.
+            It&apos;s the same <code>UI = f(state)</code> loop from Week 5, with a
+            button on one end and meshes on the other.
           </p>
           <CodeBlock
             code={`function Scene() {
-  const [open, setOpen] = useState(false)
+  const [layout, setLayout] = useState(() => generateLayout(DOOR_COUNT + 1))
+  const [{ scale }, api] = useSpring(() => ({ scale: 1 }))
+
+  const randomize = () =>
+    api.start({
+      to: async (next) => {
+        await next({ scale: 0 })                  // collapse the doors
+        setLayout(generateLayout(DOOR_COUNT + 1)) // new random slots
+        await next({ scale: 1 })                  // open them back out
+      },
+    })
+
+  // the button takes the first slot (always placed), the rest are doors
+  const [button, ...doors] = layout
 
   return (
     <>
-      <Cluster open={open} />
+      {doors.map((placement, i) => (
+        <Door key={i} {...placement} scale={scale} />
+      ))}
 
-      <Html center position={[0, -3, 0]}>
-        <button onClick={() => setOpen((o) => !o)}>
-          {open ? "Gather" : "Explode"}
+      <Html center position={button.position}>
+        <button onClick={randomize}>
+          <Shuffle />
         </button>
       </Html>
     </>
@@ -133,10 +150,11 @@ export default function Week6Page() {
             lang="jsx"
           />
           <p>
-            Click the button below. It flips <code>open</code>, and the boxes,
-            which read that value through a spring, ease between a tight cluster
-            and a spread ring. The button lives at a point in the scene, so it
-            travels with the view as you orbit, real DOM anchored in 3D.
+            Click the shuffle button below. The handler runs a spring sequence:
+            it collapses every door along its width to a sliver, swaps in a fresh
+            layout while they&apos;re hidden, then opens them back out. The button
+            takes a slot in that same layout, so it hops to a new spot among the
+            Week 1 doors on every shuffle.
           </p>
           <HtmlButtonScene className="mt-8" />
         </Article>

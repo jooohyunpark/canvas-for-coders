@@ -13,7 +13,7 @@ function SpinningText() {
   const ref = useRef<Group>(null)
 
   useFrame((_, delta) => {
-    if (ref.current) ref.current.rotation.y += delta * 0.2
+    if (ref.current) ref.current.rotation.y -= delta * 0.2
   })
 
   return (

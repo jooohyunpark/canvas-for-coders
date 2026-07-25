@@ -66,9 +66,9 @@ export default function Week1Page() {
             </p>
             <p>
               Below is my work,{" "}
-              <Link href="https://doors.joohyun.dev">Doors</Link>, from 2022.
-              Each door is placed at a random position every time. Refresh the
-              browser to see the composition rearrange.
+              <Link href="https://doors.joohyunpark.com">Doors</Link>, from
+              2022. Each door is placed at a random position every time. Refresh
+              the browser to see the composition rearrange.
             </p>
 
             <Doors />

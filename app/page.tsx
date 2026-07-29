@@ -56,6 +56,16 @@ export default function Page() {
 
               <dt>Office hours</dt>
               <dd>After class, same room</dd>
+
+              <dt>Zoom link</dt>
+              <dd>
+                <Link
+                  href="https://nyu.zoom.us/my/joohyunpark"
+                  className="underline"
+                >
+                  Join (Pre-approval required)
+                </Link>
+              </dd>
             </dl>
 
             <h2>Prerequisites</h2>

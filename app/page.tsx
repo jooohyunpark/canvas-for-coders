@@ -63,8 +63,9 @@ export default function Page() {
                   href="https://nyu.zoom.us/my/joohyunpark"
                   className="underline"
                 >
-                  Join (Pre-approval required)
-                </Link>
+                  Join
+                </Link>{" "}
+                (Pre-approved only)
               </dd>
             </dl>
 

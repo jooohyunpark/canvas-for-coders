@@ -10,6 +10,7 @@ import { HtmlScene } from "./_components/html-scene"
 import { HtmlButtonScene } from "./_components/html-button-scene"
 import { ScrollScene } from "./_components/scroll-scene"
 import { ScrollHtmlScene } from "./_components/scroll-html-scene"
+import { PhysicsScene } from "./_components/physics-scene"
 
 export const metadata: Metadata = {
   title: "W6: Interaction",
@@ -236,6 +237,83 @@ function ScrollCamera() {
             One caveat: this scroll lives in the container, not the document, so
             your page cannot drive it. Give a scroll-driven scene the whole
             screen, or accept a second scroll area inside the page.
+          </p>
+
+          <H2>Physics</H2>
+          <p>
+            <Link href="https://github.com/pmndrs/react-three-rapier">
+              <code>@react-three/rapier</code>
+            </Link>{" "}
+            wraps a physics engine as components. <code>&lt;Physics&gt;</code>{" "}
+            creates a world and steps it every frame, and anything inside a{" "}
+            <code>&lt;RigidBody&gt;</code> is handed over to it. From then on
+            the simulation writes that object&apos;s position and rotation, not
+            you. A dynamic body falls and collides. A <code>fixed</code> one
+            takes part in collisions but is never moved by them, which is how
+            you build a floor.
+          </p>
+          <CodeBlock
+            code={`import { Text3D } from "@react-three/drei"
+import { CuboidCollider, Physics, RigidBody } from "@react-three/rapier"
+
+// One body per letter, all released from the same point with a random tumble
+function Letter({ char, rotation }) {
+  return (
+    <RigidBody position={[0, 11, 0]} rotation={rotation} colliders="cuboid" ccd>
+      <Text3D font="/fonts/helvetiker_regular.typeface.json" size={1} height={0.25}>
+        {char}
+        <meshStandardMaterial color="#ffffff" />
+      </Text3D>
+    </RigidBody>
+  )
+}
+
+function Scene() {
+  const [letters, setLetters] = useState([])
+
+  return (
+    <Physics gravity={[0, -9.81, 0]}>
+      {/* the floor: fixed, so nothing it stops can push it */}
+      <RigidBody type="fixed" colliders={false}>
+        <CuboidCollider args={[12, 1, 8]} position={[0, -1, 0]} />
+      </RigidBody>
+
+      {letters.map((letter) => (
+        <Letter key={letter.id} {...letter} />
+      ))}
+    </Physics>
+  )
+}`}
+            lang="jsx"
+          />
+          <p>
+            Colliders are the shapes the engine actually collides, and they are
+            not your geometry. <code>colliders=&quot;cuboid&quot;</code>{" "}
+            measures each letter&apos;s bounding box and hands the engine that,
+            so an <code>e</code> collides as the box around an <code>e</code>{" "}
+            rather than as the letter. That is the trade you are making: a box
+            is one comparison, a glyph is hundreds.{" "}
+            <code>colliders=&quot;hull&quot;</code> wraps the shape more tightly
+            when you need it, and <code>debug</code> on{" "}
+            <code>&lt;Physics&gt;</code> draws whichever you chose over the
+            scene so you can see the gap. It only works here at all because{" "}
+            <code>&lt;Text3D&gt;</code> extrudes: flat text has no thickness,
+            and a shape with no depth is a shape things fall straight through.
+          </p>
+          <p>
+            Dropping a word is a normal state update. Each letter mounts its own{" "}
+            <code>&lt;RigidBody&gt;</code>, the world takes it from there, and
+            nothing already in the pile moves because of the render. They all
+            start at the same point, and bodies that begin inside each other are
+            pushed apart, which is what scatters a word instead of dropping it
+            as a column. Key by id, not index, or removing the oldest letters
+            will remount every body still resting on them.
+          </p>
+          <PhysicsScene className="mt-8" />
+          <p>
+            One caveat: nothing here is free. Every body is a body forever, so
+            this scene caps the pile and takes the oldest letters out from under
+            it. A demo that only ever adds is a demo that eventually stops.
           </p>
         </Article>
       </Content>

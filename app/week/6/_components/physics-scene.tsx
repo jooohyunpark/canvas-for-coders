@@ -10,9 +10,8 @@ const FONT = "/fonts/helvetiker_regular.typeface.json"
 const SIZE = 1
 const DEPTH = 0.25
 
-// Everything is released from the same point, high above the middle. Bodies
-// that start inside each other are pushed apart, which is what scatters a word
-// into a pile instead of dropping it as a column.
+// Every letter is released from the same point, high above the middle. What
+// spreads them is the pile they land on, not where they start.
 const SPAWN_HEIGHT = 11
 
 // Past this, the oldest letters are taken out from under the pile.
@@ -22,16 +21,7 @@ const MAX_LETTERS = 100
 // middle of the canvas at any orbit angle. The hint is anchored to it.
 const LOOK_AT: [number, number, number] = [0, 3, 0]
 
-const WORDS = [
-  "gravity",
-  "mass",
-  "collider",
-  "impulse",
-  "friction",
-  "velocity",
-  "inertia",
-  "momentum",
-]
+const CHARACTERS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 // One color for every letter. A pile this deep reads by its light and shadow,
 // and anything else would be competing with the one thing worth looking at.
@@ -49,17 +39,13 @@ const randomTumble = (): [number, number, number] => [
   Math.random() * Math.PI * 2,
 ]
 
-// One word becomes one letter per body. Each gets its own tumble, so they land
-// facing every direction.
-function randomWord(firstId: number): Letter[] {
-  const word = WORDS[Math.floor(Math.random() * WORDS.length)]
-
-  return word.split("").map((char, i) => ({
-    id: firstId + i,
-    char,
-    rotation: randomTumble(),
-  }))
-}
+// One click, one letter, dropped with its own tumble so they land facing every
+// direction.
+const randomLetter = (id: number): Letter => ({
+  id,
+  char: CHARACTERS[Math.floor(Math.random() * CHARACTERS.length)],
+  rotation: randomTumble(),
+})
 
 // A collider with nothing to draw: the floor is invisible, and you read it from
 // where the letters stop. `fixed` means it takes part in collisions but is
@@ -109,9 +95,9 @@ export function PhysicsScene({ className }: { className?: string }) {
     if (!start) return
     if (Math.hypot(event.clientX - start.x, event.clientY - start.y) > 4) return
 
-    const word = randomWord(nextId.current)
-    nextId.current += word.length
-    setLetters((current) => [...current, ...word].slice(-MAX_LETTERS))
+    setLetters((current) =>
+      [...current, randomLetter(nextId.current++)].slice(-MAX_LETTERS)
+    )
   }
 
   return (
@@ -154,7 +140,7 @@ export function PhysicsScene({ className }: { className?: string }) {
           {letters.length === 0 && (
             <Html center position={LOOK_AT} style={{ pointerEvents: "none" }}>
               <p className="text-sm whitespace-nowrap text-white/50">
-                Click to drop a word
+                Click to drop a letter
               </p>
             </Html>
           )}

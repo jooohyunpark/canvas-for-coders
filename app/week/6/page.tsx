@@ -245,18 +245,17 @@ function ScrollCamera() {
               <code>@react-three/rapier</code>
             </Link>{" "}
             wraps a physics engine as components. <code>&lt;Physics&gt;</code>{" "}
-            creates a world and steps it every frame, and anything inside a{" "}
-            <code>&lt;RigidBody&gt;</code> is handed over to it. From then on
-            the simulation writes that object&apos;s position and rotation, not
-            you. A dynamic body falls and collides. A <code>fixed</code> one
-            takes part in collisions but is never moved by them, which is how
-            you build a floor.
+            creates a world and steps it every frame. Anything inside a{" "}
+            <code>&lt;RigidBody&gt;</code> is handed to that world, which writes
+            its position and rotation from then on. A dynamic body falls and
+            collides. A <code>fixed</code> one collides but never moves, which
+            is how you build a floor.
           </p>
           <CodeBlock
             code={`import { Text3D } from "@react-three/drei"
 import { CuboidCollider, Physics, RigidBody } from "@react-three/rapier"
 
-// One body per letter, all released from the same point with a random tumble
+// One body per letter, each released from the same point with a random tumble
 function Letter({ char, rotation }) {
   return (
     <RigidBody position={[0, 11, 0]} rotation={rotation} colliders="cuboid" ccd>
@@ -287,33 +286,29 @@ function Scene() {
             lang="jsx"
           />
           <p>
-            Colliders are the shapes the engine actually collides, and they are
-            not your geometry. <code>colliders=&quot;cuboid&quot;</code>{" "}
-            measures each letter&apos;s bounding box and hands the engine that,
-            so an <code>e</code> collides as the box around an <code>e</code>{" "}
-            rather than as the letter. That is the trade you are making: a box
-            is one comparison, a glyph is hundreds.{" "}
-            <code>colliders=&quot;hull&quot;</code> wraps the shape more tightly
-            when you need it, and <code>debug</code> on{" "}
-            <code>&lt;Physics&gt;</code> draws whichever you chose over the
-            scene so you can see the gap. It only works here at all because{" "}
+            Colliders are the shapes the engine collides, and they are not your
+            geometry. <code>colliders=&quot;cuboid&quot;</code> measures each
+            letter&apos;s bounding box and hands over that, so an <code>e</code>{" "}
+            collides as the box around an <code>e</code>. A box is one
+            comparison, a glyph is hundreds.{" "}
+            <code>colliders=&quot;hull&quot;</code> wraps tighter when you need
+            it, and <code>debug</code> on <code>&lt;Physics&gt;</code> draws
+            whichever you chose. This works only because{" "}
             <code>&lt;Text3D&gt;</code> extrudes: flat text has no thickness,
-            and a shape with no depth is a shape things fall straight through.
+            and a shape with no depth is one things fall through.
           </p>
           <p>
-            Dropping a word is a normal state update. Each letter mounts its own{" "}
-            <code>&lt;RigidBody&gt;</code>, the world takes it from there, and
-            nothing already in the pile moves because of the render. They all
-            start at the same point, and bodies that begin inside each other are
-            pushed apart, which is what scatters a word instead of dropping it
-            as a column. Key by id, not index, or removing the oldest letters
-            will remount every body still resting on them.
+            Dropping a letter is a normal state update. It mounts its own{" "}
+            <code>&lt;RigidBody&gt;</code> and the world takes over, so nothing
+            already in the pile moves because of the render. Every letter starts
+            at the same point, and what spreads them is what they land on. Key
+            by id, not index, or removing the oldest letters remounts every body
+            resting on them.
           </p>
           <PhysicsScene className="mt-8" />
           <p>
-            One caveat: nothing here is free. Every body is a body forever, so
-            this scene caps the pile and takes the oldest letters out from under
-            it. A demo that only ever adds is a demo that eventually stops.
+            One caveat: every body is a body forever. This scene caps the pile
+            and takes the oldest letters out from under it.
           </p>
         </Article>
       </Content>

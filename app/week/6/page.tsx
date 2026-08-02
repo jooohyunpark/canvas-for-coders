@@ -310,6 +310,13 @@ function Scene() {
             One caveat: every body is a body forever. This scene caps the pile
             and takes the oldest letters out from under it.
           </p>
+          <H2>Wrapping up</H2>
+          <p>
+            That&apos;s the last of the material. What you have now is enough to
+            build the thing you sketched back in week one: a scene, a reason to
+            look at it, and a way to make it interactive. Keep making, and keep
+            sharing what you build. I can&apos;t wait to see where these go.
+          </p>
         </Article>
       </Content>
     </Section>

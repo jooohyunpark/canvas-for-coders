@@ -12,8 +12,8 @@ export function CursorBall() {
 
   const moveTo = (e: React.PointerEvent<HTMLDivElement>) => {
     const bounds = e.currentTarget.getBoundingClientRect()
-    x.set(e.clientX - bounds.left - 24)
-    y.set(e.clientY - bounds.top - 24)
+    x.set(e.clientX - bounds.left - bounds.width / 2)
+    y.set(e.clientY - bounds.top - bounds.height / 2)
   }
 
   return (
@@ -23,7 +23,7 @@ export function CursorBall() {
       className="relative aspect-video w-full overflow-hidden rounded-lg border"
     >
       <motion.div
-        className="absolute size-8 rounded-full bg-indigo-500 sm:size-12"
+        className="absolute top-1/2 left-1/2 size-8 -translate-1/2 rounded-full bg-indigo-500 sm:size-12"
         style={{ x, y }}
       />
     </div>

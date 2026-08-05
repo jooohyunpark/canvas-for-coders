@@ -5,6 +5,7 @@ import { Article } from "@/components/site/article"
 import { Link } from "@/components/site/link"
 import { H1, H2, H3 } from "@/components/site/heading"
 import { CodeBlock } from "@/components/site/code-block"
+import { Button } from "@/components/ui/button"
 import { TextScene } from "./_components/text-scene"
 import { HtmlScene } from "./_components/html-scene"
 import { HtmlButtonScene } from "./_components/html-button-scene"
@@ -317,6 +318,36 @@ function Scene() {
             look at it, and a way to make it interactive. Keep making, and keep
             sharing what you build. I can&apos;t wait to see where these go.
           </p>
+
+          <hr />
+
+          <H2>Assignment</H2>
+          <p>Finish your project and come ready to present it.</p>
+          <ul>
+            <li>5 minutes to present, plus 2 minutes for questions.</li>
+            <li>
+              Any format. Bring whatever helps: documentation, sketches,
+              references, code.
+            </li>
+            <li>
+              Walk us through your approach, what you learned, and where
+              you&apos;re taking it next. We care more about your process than
+              the finished thing.
+            </li>
+            <li>
+              Drop a link to your project and documentation in the comments.
+            </li>
+          </ul>
+
+          <Button
+            render={
+              <Link href="https://github.com/jooohyunpark/canvas-for-coders/discussions/categories/assignments">
+                Submit here
+              </Link>
+            }
+            nativeButton={false}
+            className="no-underline"
+          />
         </Article>
       </Content>
     </Section>

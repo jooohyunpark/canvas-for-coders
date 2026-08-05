@@ -1,14 +1,8 @@
 import type { MetadataRoute } from "next"
 import { siteUrl } from "@/lib/site"
 
+// Only the landing page is reachable without the password, so it is the only
+// thing worth advertising to a crawler.
 export default function sitemap(): MetadataRoute.Sitemap {
-  return [
-    { url: siteUrl },
-    { url: `${siteUrl}/week/1` },
-    { url: `${siteUrl}/week/2` },
-    { url: `${siteUrl}/week/3` },
-    { url: `${siteUrl}/week/4` },
-    { url: `${siteUrl}/week/5` },
-    { url: `${siteUrl}/week/6` },
-  ]
+  return [{ url: siteUrl }]
 }

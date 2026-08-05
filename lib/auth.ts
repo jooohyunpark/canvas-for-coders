@@ -18,7 +18,8 @@ async function hmacHex(secret: string, message: string): Promise<string> {
 export async function authToken(): Promise<string> {
   const secret = process.env.AUTH_SECRET
   const password = process.env.SITE_PASSWORD
-  if (!secret || !password) throw new Error("AUTH_SECRET or SITE_PASSWORD missing")
+  if (!secret || !password)
+    throw new Error("AUTH_SECRET or SITE_PASSWORD missing")
   return hmacHex(secret, password)
 }
 

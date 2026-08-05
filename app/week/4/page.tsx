@@ -651,8 +651,8 @@ function Clock() {
           <H2>Exercise</H2>
           <p>
             In this exercise you&apos;ll create an emoji chatbot: a chat app
-            where every response comes back as emojis. The starter code
-            gives you the skeleton: a message list, an input composer, and a{" "}
+            where every response comes back as emojis. The starter code gives
+            you the skeleton: a message list, an input composer, and a{" "}
             <code>handleSend</code> function in <code>App.js</code>. Your job is
             to wire these pieces together into a functioning chat.
           </p>

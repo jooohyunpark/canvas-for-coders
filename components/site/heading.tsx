@@ -16,6 +16,7 @@ function slugify(text: string): string {
     .trim()
     .replace(/[^\w\s-]/g, "")
     .replace(/\s+/g, "-")
+    .replace(/^-+|-+$/g, "")
 }
 
 type Level = 1 | 2 | 3 | 4 | 5 | 6
@@ -23,12 +24,18 @@ type HeadingProps = React.ComponentProps<"h2"> & { level: Level }
 
 function Heading({ level, className, children, id, ...props }: HeadingProps) {
   const Tag = `h${level}` as const
-  const slug = id ?? slugify(extractText(children))
+  // Text that slugifies to nothing gets no id and no self-link, rather than an
+  // empty `id=""` and a bare `href="#"`.
+  const slug = id || slugify(extractText(children)) || undefined
   return (
     <Tag id={slug} className={cn("scroll-mt-8", className)} {...props}>
-      <a href={`#${slug}`} className="no-underline">
-        {children}
-      </a>
+      {slug ? (
+        <a href={`#${slug}`} className="no-underline">
+          {children}
+        </a>
+      ) : (
+        children
+      )}
     </Tag>
   )
 }

@@ -15,7 +15,7 @@ export function Content({
   return (
     <div
       data-slot="content"
-      className={cn("g mx-auto px-6", sizeMap[size], className)}
+      className={cn("mx-auto px-6", sizeMap[size], className)}
       {...props}
     />
   )

@@ -87,8 +87,8 @@ scene.add(mesh)`}
             </li>
             <li>
               <strong>Aspect ratio</strong>: width divided by height. We keep a{" "}
-              <code>sizes</code> object set to the window’s dimensions so
-              the scene fills the screen.
+              <code>sizes</code> object set to the window’s dimensions so the
+              scene fills the screen.
             </li>
           </ul>
           <CodeBlock
@@ -126,8 +126,8 @@ document.body.appendChild(renderer.domElement);`}
           <p>
             The animation loop runs every frame and renders the scene. We pass
             it to <code>setAnimationLoop</code> as a function; here we call it{" "}
-            <code>animate</code>, but the name is up to you. Later we’ll
-            use it to animate objects, update controls, and more.
+            <code>animate</code>, but the name is up to you. Later we’ll use it
+            to animate objects, update controls, and more.
           </p>
 
           <CodeBlock

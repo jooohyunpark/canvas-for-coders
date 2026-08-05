@@ -41,7 +41,7 @@ export default function Week3Page() {
             gets called on every frame automatically.
           </p>
 
-          <H3>Example</H3>
+          <H3 id="animation-loop-example">Example</H3>
           <p>
             The pattern is simple: update your objects, then render, and repeat.
             The torus knot rotates on its own axis. The sphere sits inside a{" "}
@@ -80,9 +80,9 @@ renderer.setAnimationLoop((time) => {
           <p>
             <Link href="https://gsap.com/">GSAP</Link> (GreenSock Animation
             Platform) is a JavaScript library for animating objects in a scene.
-            It gives you precise control over tweens, the transitions
-            an object makes between two states, through a clean API so you never
-            have to update values by hand inside a loop.
+            It gives you precise control over tweens, the transitions an object
+            makes between two states, through a clean API so you never have to
+            update values by hand inside a loop.
           </p>
 
           <H3>gsap.to()</H3>
@@ -133,7 +133,7 @@ gsap.to(wanderer.position, {
             to your Three.js scene.
           </p>
 
-          <H3>Example</H3>
+          <H3 id="models-example">Example</H3>
           <p>
             Place your <code>.glb</code> file in the <code>/public</code> folder
             so it’s served as a static asset, then load it with{" "}
@@ -294,8 +294,8 @@ scene.add(mesh)`}
           <p>
             Re-create the scene from the video. Load the Voyager model and add a
             moon orbiting it using the animation loop. The surface texture,{" "}
-            <code>/moon-texture.jpg</code>, is in the public folder. Then wire up
-            the three buttons to fly the camera to each viewpoint using{" "}
+            <code>/moon-texture.jpg</code>, is in the public folder. Then wire
+            up the three buttons to fly the camera to each viewpoint using{" "}
             <code>gsap.to()</code>.
           </p>
 

@@ -42,14 +42,14 @@ export function PasswordForm({ redirectTo }: { redirectTo: string }) {
           autoComplete="current-password"
           autoFocus
           className={cn(
-            "border-input bg-background focus-visible:border-ring focus-visible:ring-ring/50 h-8 max-w-60 flex-1 rounded-lg border px-2.5 text-sm outline-none focus-visible:ring-3"
+            "h-8 max-w-60 flex-1 rounded-lg border border-input bg-background px-2.5 text-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
           )}
         />
         <SubmitButton />
       </div>
 
       {state.error && (
-        <div className="text-destructive flex items-center gap-x-2 text-sm">
+        <div className="flex items-center gap-x-2 text-sm text-destructive">
           <CircleAlert className="size-4" />
           <span>Incorrect password</span>
         </div>

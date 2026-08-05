@@ -30,8 +30,13 @@ export function SpatialAudioScene({ className }: { className?: string }) {
 
     const sound = new THREE.PositionalAudio(listener)
 
+    // The mp3 outlives a quick visit to this page. Without this the load
+    // finishes after cleanup and starts a loop nothing is left to stop.
+    let cancelled = false
+
     const audioLoader = new THREE.AudioLoader()
     audioLoader.load("/underwater.mp3", (buffer) => {
+      if (cancelled) return
       sound.setBuffer(buffer)
       sound.setRefDistance(REF_DISTANCE)
       sound.setVolume(0.5)
@@ -102,6 +107,7 @@ export function SpatialAudioScene({ className }: { className?: string }) {
     resizeObserver.observe(container)
 
     return () => {
+      cancelled = true
       resizeObserver.disconnect()
       renderer.setAnimationLoop(null)
       controls.dispose()

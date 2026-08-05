@@ -19,13 +19,16 @@ export async function verifyPassword(
   }
 
   const expected = process.env.SITE_PASSWORD ?? ""
-  const expectedBuf = Buffer.from(expected, "utf8")
-  const inputBuf = Buffer.from(password, "utf8")
+
+  // Compare digests rather than the raw strings: SHA-256 output is always 32
+  // bytes, so there is no length check to bail out of early and the comparison
+  // cannot leak how long the password is.
+  const digest = (value: string) =>
+    crypto.createHash("sha256").update(value, "utf8").digest()
 
   const ok =
-    expectedBuf.length > 0 &&
-    expectedBuf.length === inputBuf.length &&
-    crypto.timingSafeEqual(expectedBuf, inputBuf)
+    expected.length > 0 &&
+    crypto.timingSafeEqual(digest(expected), digest(password))
 
   if (!ok) return { error: true }
 

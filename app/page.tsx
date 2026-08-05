@@ -24,7 +24,6 @@ export default function Page() {
               through Three.js: thinking in three dimensions, prototyping
               concepts, and shaping ideas into interactive experiences.
             </p>
-            <p></p>
             <p>
               Bring your curiosity, your questions, and whatever you’ve been
               wanting to make. I’m looking forward to building with you.
@@ -49,7 +48,7 @@ export default function Page() {
               <dt>Class</dt>
               <dd>
                 <div>
-                  Thursdays, Oct 23 &ndash; Dec 11, 2026, 6:00&ndash;8:30pm
+                  Thursdays, Oct 22 &ndash; Dec 10, 2026, 6:00&ndash;8:30pm
                 </div>
                 <div>370 Jay Street, Room 409, Brooklyn Campus</div>
               </dd>

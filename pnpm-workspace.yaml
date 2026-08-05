@@ -4,7 +4,7 @@ allowBuilds:
   sharp: true
   unrs-resolver: true
 overrides:
-  hono@<4.12.25: ">=4.12.25"
+  hono@<4.12.34: ">=4.12.34"
   postcss@<8.5.18: ">=8.5.18"
   qs@>=6.11.1 <=6.15.1: ">=6.15.2"
   js-yaml@>=4.0.0 <=4.1.1: ">=4.1.2"

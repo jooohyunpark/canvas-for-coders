@@ -49,59 +49,58 @@ Please complete the following before the first class:
 
 ## Weekly Topics
 
-### Week 1: Introduction
+### Week 1: Intro
 
-- [Reimagining web spaces](https://github.com/jooohyunpark/itp-canvas-for-coders/blob/main/Notes.md#reimagining-web-spaces)
-- [Three.js documentation](https://threejs.org/docs/index.html#manual/en/introduction/Creating-a-scene)
-- [Three.js fundamentals](https://threejs.org/manual/#en/fundamentals)
-- [Thinking in xyz space (Three.js editor)](https://threejs.org/editor/)
-- [Getting started with a Vite project](https://vitejs.dev/guide/#scaffolding-your-first-vite-project)
-- [Vectors](https://threejs.org/docs/index.html#api/en/math/Vector3)
-- [Colors](https://threejs.org/docs/index.html#api/en/math/Color)
-- [Object properties](https://threejs.org/docs/#api/en/core/Object3D)
+- Thinking in xyz
+- Useful references
+- Setting up a class project
+- Three.js basic concepts
 
-### Week 2: Building a Scene
+### Week 2: Scene
 
-- [Renderer](https://threejs.org/manual/#en/rendertargets)
-- [Scene](https://threejs.org/manual/#en/scenegraph)
-- [Cameras](https://threejs.org/manual/#en/cameras)
-- [Lights](https://threejs.org/manual/#en/lights)
-- [Helpers](https://threejs.org/docs/?q=helper#api/en/helpers/AxesHelper)
-- [Controls](https://threejs.org/docs/#examples/en/controls/OrbitControls)
-- [Mesh](https://threejs.org/docs/index.html?q=mesh#api/en/objects/Mesh)
-- [Primitives](https://threejs.org/manual/#en/primitives)
-- [Materials](https://threejs.org/manual/#en/materials)
-- [Textures](https://threejs.org/manual/#en/textures)
-- [Group](https://threejs.org/docs/index.html#api/en/objects/Group)
+- First scene
+- Around the scene
+- Geometries
+- Materials
+- Mesh
+- Lights
+- Textures
 
-### Week 3: Motion & Depth
+### Week 3: Motion / Assets
 
-- [Animation loop](https://threejs.org/docs/index.html?q=render#api/en/renderers/WebGLRenderer.setAnimationLoop)
-- [GSAP](<https://greensock.com/docs/v3/GSAP/gsap.to()>)
-- [3D Models](https://threejs.org/docs/index.html#manual/en/introduction/Loading-3D-models)
-- [Positional audio](https://threejs.org/docs/#api/en/audio/PositionalAudio)
-- [Raycast](https://threejs.org/docs/#api/en/core/Raycaster)
+- Animation loop
+- GSAP
+- Models
+- Environment map
+- Spatial audio
 
 ### Week 4: React
 
-- [Concept](<https://react.gg/visualized#v=fn(s)>)
-- [JSX](https://react.gg/visualized#jsx)
-- [Component](https://react.gg/visualized#components) / [Props](https://react.dev/learn/passing-props-to-a-component)
-- [Event handlers](https://react.dev/learn/responding-to-events)
-- [State](https://react.dev/learn/state-a-components-memory)
-- [Hooks](https://react.dev/reference/react/hooks)
+- Concept
+- Setting up
+- JSX
+- Components & props
+- Event handlers
+- State
+- Hooks
 
-### Week 5: React Three Fiber
+### Week 5: Components in Space
 
-- [@react-three/fiber](https://r3f.docs.pmnd.rs/getting-started/your-first-scene)
-- [@react-three/drei](https://github.com/pmndrs/drei)
-- [@react-spring/three ](https://github.com/pmndrs/react-spring)
+- Concept
+- Setting up
+- Your first scene
+- Reusable components
+- State & interaction
+- Animating with react-spring
+- drei: helpers
 
-### Week 6: Interactions & Deployment
+### Week 6: Interaction
 
-- [@react-three/rapier](https://github.com/pmndrs/react-three-rapier)
-- [Deploying site](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site)
-- [Vercel deployment](https://vercel.com/docs/git/vercel-for-github)
+- Text
+- HTML in the scene
+- Scroll-driven scenes
+- Physics
+- Wrapping up
 
 ### Week 7: Final
 

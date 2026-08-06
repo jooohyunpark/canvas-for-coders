@@ -96,47 +96,124 @@ export default function Page() {
             <h2>Tools</h2>
             <ul>
               <li>
-                <Link href="https://threejs.org/">Three.js</Link> &mdash;
-                JavaScript 3D library
+                <Link href="https://threejs.org/">Three.js</Link> — JavaScript
+                3D library
               </li>
               <li>
-                <Link href="https://react.dev/">React</Link> &mdash; JavaScript
+                <Link href="https://react.dev/">React</Link> — JavaScript
                 library for building user interfaces
               </li>
               <li>
                 <Link href="https://r3f.docs.pmnd.rs/">React Three Fiber</Link>{" "}
-                &mdash; React renderer for Three.js
+                — React renderer for Three.js
               </li>
               <li>
-                <Link href="https://github.com/pmndrs/drei">Drei</Link> &mdash;
+                <Link href="https://github.com/pmndrs/drei">Drei</Link> —
                 helpers and abstractions for React Three Fiber
               </li>
               <li>
-                <Link href="https://www.react-spring.dev/">React Spring</Link>{" "}
-                &mdash; spring-based animation for React
+                <Link href="https://www.react-spring.dev/">React Spring</Link> —
+                spring-based animation for React
               </li>
               <li>
                 <Link href="https://github.com/pmndrs/react-three-rapier">
                   React Three Rapier
                 </Link>{" "}
-                &mdash; physics engine for React Three Fiber
+                — physics engine for React Three Fiber
               </li>
               <li>
-                <Link href="https://gsap.com/">GSAP</Link> &mdash;
-                timeline-based animation library
+                <Link href="https://gsap.com/">GSAP</Link> — timeline-based
+                animation library
               </li>
               <li>
-                <Link href="https://vitejs.dev/">Vite</Link> &mdash; build tool
-                and dev server
+                <Link href="https://vitejs.dev/">Vite</Link> — build tool and
+                dev server
               </li>
               <li>
-                <Link href="https://vercel.com/">Vercel</Link> &mdash;
-                deployment platform
+                <Link href="https://vercel.com/">Vercel</Link> — deployment
+                platform
               </li>
               <li>
-                <Link href="https://github.com/">GitHub</Link> &mdash; code
-                repository
+                <Link href="https://github.com/">GitHub</Link> — code repository
               </li>
+            </ul>
+
+            <h2>Weekly topics</h2>
+
+            <h3>
+              <Link href="/week/1">Week 1: Intro</Link>
+            </h3>
+            <ul>
+              <li>Thinking in xyz</li>
+              <li>Useful references</li>
+              <li>Setting up a class project</li>
+              <li>Three.js basic concepts</li>
+            </ul>
+
+            <h3>
+              <Link href="/week/2">Week 2: Scene</Link>
+            </h3>
+            <ul>
+              <li>First scene</li>
+              <li>Around the scene</li>
+              <li>Geometries</li>
+              <li>Materials</li>
+              <li>Mesh</li>
+              <li>Lights</li>
+              <li>Textures</li>
+            </ul>
+
+            <h3>
+              <Link href="/week/3">Week 3: Motion / Assets</Link>
+            </h3>
+            <ul>
+              <li>Animation loop</li>
+              <li>GSAP</li>
+              <li>Models</li>
+              <li>Environment map</li>
+              <li>Spatial audio</li>
+            </ul>
+
+            <h3>
+              <Link href="/week/4">Week 4: React</Link>
+            </h3>
+            <ul>
+              <li>Concept</li>
+              <li>Setting up</li>
+              <li>JSX</li>
+              <li>Components &amp; props</li>
+              <li>Event handlers</li>
+              <li>State</li>
+              <li>Hooks</li>
+            </ul>
+
+            <h3>
+              <Link href="/week/5">Week 5: Components in Space</Link>
+            </h3>
+            <ul>
+              <li>Concept</li>
+              <li>Setting up</li>
+              <li>Your first scene</li>
+              <li>Reusable components</li>
+              <li>State &amp; interaction</li>
+              <li>Animating with react-spring</li>
+              <li>drei: helpers</li>
+            </ul>
+
+            <h3>
+              <Link href="/week/6">Week 6: Interaction</Link>
+            </h3>
+            <ul>
+              <li>Text</li>
+              <li>HTML in the scene</li>
+              <li>Scroll-driven scenes</li>
+              <li>Physics</li>
+              <li>Wrapping up</li>
+            </ul>
+
+            <h3>Week 7: Final</h3>
+            <ul>
+              <li>Presentation</li>
             </ul>
           </Article>
         </Content>

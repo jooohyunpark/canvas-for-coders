@@ -15,6 +15,9 @@ async function hmacHex(secret: string, message: string): Promise<string> {
     .join("")
 }
 
+// The token is HMAC(AUTH_SECRET, SITE_PASSWORD), not AUTH_SECRET alone, so that
+// rotating SITE_PASSWORD invalidates every cookie already issued. Both inputs are
+// static, so the result is a constant; that is intentional, not leftover ceremony.
 export async function authToken(): Promise<string> {
   const secret = process.env.AUTH_SECRET
   const password = process.env.SITE_PASSWORD

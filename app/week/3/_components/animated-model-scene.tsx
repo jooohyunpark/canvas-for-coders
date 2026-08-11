@@ -29,7 +29,8 @@ export function AnimatedModelScene({ className }: { className?: string }) {
     container.appendChild(renderer.domElement)
 
     const pmrem = new THREE.PMREMGenerator(renderer)
-    scene.environment = pmrem.fromScene(new RoomEnvironment()).texture
+    const envTexture = pmrem.fromScene(new RoomEnvironment()).texture
+    scene.environment = envTexture
     scene.environmentIntensity = 0.5
     pmrem.dispose()
 
@@ -39,8 +40,13 @@ export function AnimatedModelScene({ className }: { className?: string }) {
     let mixer: THREE.AnimationMixer | null = null
     const clock = new THREE.Clock()
 
+    // fish.glb outlives a quick visit to this page. Without this the load
+    // finishes after cleanup and builds a mixer nothing is left to stop.
+    let cancelled = false
+
     const loader = new GLTFLoader()
     loader.load("/fish.glb", (gltf) => {
+      if (cancelled) return
       const model = gltf.scene
       scene.add(model)
 
@@ -67,10 +73,13 @@ export function AnimatedModelScene({ className }: { className?: string }) {
     resizeObserver.observe(container)
 
     return () => {
+      cancelled = true
       resizeObserver.disconnect()
       renderer.setAnimationLoop(null)
+      mixer?.stopAllAction()
       controls.dispose()
       renderer.dispose()
+      envTexture.dispose()
       container.removeChild(renderer.domElement)
     }
   }, [])

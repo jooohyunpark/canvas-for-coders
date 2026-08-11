@@ -84,7 +84,7 @@ export function GsapScene({ className }: { className?: string }) {
 
     return () => {
       tween.kill()
-      wanderTween?.kill()
+      wanderTween.kill()
       resizeObserver.disconnect()
       renderer.setAnimationLoop(null)
       controls.dispose()

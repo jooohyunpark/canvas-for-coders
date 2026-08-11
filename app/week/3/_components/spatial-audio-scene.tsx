@@ -84,7 +84,8 @@ export function SpatialAudioScene({ className }: { className?: string }) {
     container.appendChild(renderer.domElement)
 
     const pmrem = new THREE.PMREMGenerator(renderer)
-    scene.environment = pmrem.fromScene(new RoomEnvironment()).texture
+    const envTexture = pmrem.fromScene(new RoomEnvironment()).texture
+    scene.environment = envTexture
     pmrem.dispose()
 
     const controls = new OrbitControls(camera, renderer.domElement)
@@ -117,6 +118,7 @@ export function SpatialAudioScene({ className }: { className?: string }) {
       sourceMat.dispose()
       thresholdGeo.dispose()
       thresholdMat.dispose()
+      envTexture.dispose()
       container.removeChild(renderer.domElement)
     }
   }, [])

@@ -49,12 +49,3 @@ export const H2 = (props: React.ComponentProps<"h2">) => (
 export const H3 = (props: React.ComponentProps<"h3">) => (
   <Heading {...props} level={3} />
 )
-export const H4 = (props: React.ComponentProps<"h4">) => (
-  <Heading {...props} level={4} />
-)
-export const H5 = (props: React.ComponentProps<"h5">) => (
-  <Heading {...props} level={5} />
-)
-export const H6 = (props: React.ComponentProps<"h6">) => (
-  <Heading {...props} level={6} />
-)

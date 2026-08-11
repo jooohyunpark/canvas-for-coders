@@ -81,6 +81,7 @@ export function AnimationLoopScene({ className }: { className?: string }) {
       renderer.dispose()
       knotGeo.dispose()
       sphereGeo.dispose()
+      material.dispose()
       container.removeChild(renderer.domElement)
     }
   }, [])

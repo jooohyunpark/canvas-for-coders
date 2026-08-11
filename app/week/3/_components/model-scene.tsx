@@ -42,12 +42,14 @@ export function ModelScene({ className }: { className?: string }) {
     controls.enableDamping = true
     controls.target.set(0, 1, 0)
 
-    const loader = new GLTFLoader()
-    let model: THREE.Group | null = null
+    // Voyager.glb outlives a quick visit to this page. Without this the load
+    // finishes after cleanup and adds the model to a scene nothing renders.
+    let cancelled = false
 
+    const loader = new GLTFLoader()
     loader.load("/Voyager.glb", (gltf) => {
-      model = gltf.scene
-      scene.add(model)
+      if (cancelled) return
+      scene.add(gltf.scene)
     })
 
     renderer.setAnimationLoop(() => {
@@ -64,10 +66,12 @@ export function ModelScene({ className }: { className?: string }) {
     resizeObserver.observe(container)
 
     return () => {
+      cancelled = true
       resizeObserver.disconnect()
       renderer.setAnimationLoop(null)
       controls.dispose()
       renderer.dispose()
+      envTexture.dispose()
       container.removeChild(renderer.domElement)
     }
   }, [])

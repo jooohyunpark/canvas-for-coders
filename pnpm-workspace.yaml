@@ -1,12 +1,10 @@
 allowBuilds:
   es5-ext: true
-  msw: true
   sharp: true
   unrs-resolver: true
+
+# Security floors for transitive deps that resolve below a patched version.
+# Keep the upper bound: an unbounded ">=x" target lets pnpm jump a major.
 overrides:
-  hono@<4.12.34: ">=4.12.34"
-  postcss@<8.5.18: ">=8.5.18"
-  qs@>=6.11.1 <=6.15.1: ">=6.15.2"
-  "@babel/core@<=7.29.0": ">=7.29.1"
-  "@hono/node-server@<2.0.10": ">=2.0.10"
-  "sharp@<0.35.0": ">=0.35.0"
+  postcss@<8.5.23: "^8.5.23" # GHSA-6g55-p6wh-862q and follow-ups
+  sharp@<0.35.0: "^0.35.0" # inherited libvips advisories

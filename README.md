@@ -88,7 +88,7 @@ Please complete the following before the first class:
 
 - Concept
 - Setting up
-- Your first scene
+- First R3F scene
 - Reusable components
 - State & interaction
 - Animating with react-spring

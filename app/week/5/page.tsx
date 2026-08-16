@@ -133,7 +133,7 @@ export default function App() {
             would any other element.
           </p>
 
-          <H2>Your first scene</H2>
+          <H2>First R3F scene</H2>
           <p>
             An empty <code>&lt;Canvas&gt;</code> renders nothing. The smallest
             thing worth looking at is a <em>mesh</em>: a shape (its geometry)

@@ -193,7 +193,7 @@ export default function Page() {
             <ul>
               <li>Concept</li>
               <li>Setting up</li>
-              <li>Your first scene</li>
+              <li>First R3F scene</li>
               <li>Reusable components</li>
               <li>State &amp; interaction</li>
               <li>Animating with react-spring</li>

@@ -76,9 +76,9 @@ export default function Week1Page() {
             <H3>3. It’s universal.</H3>
             <p>
               The web page is one of the most universal mediums there is. Anyone
-              with a computer and an internet connection can reach it with a
-              URL, anytime, from anywhere in the world. No other medium offers
-              that kind of reach.
+              with a computer and an internet can reach it with a URL, anytime,
+              from anywhere in the world. No other medium offers that kind of
+              reach.
             </p>
 
             <p>Now, let’s get into Three.js.</p>
@@ -173,8 +173,8 @@ npm run dev`}
               automatically — a complete CI/CD pipeline.
             </p>
             <p>
-              For this class, create a repository at the start and develop your
-              final project in it across 7 weeks.
+              For this class, create a repository and develop your final project
+              throughout the semester.
             </p>
 
             <H3>Vercel</H3>

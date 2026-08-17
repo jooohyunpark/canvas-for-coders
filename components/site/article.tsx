@@ -6,7 +6,6 @@ export function Article({
 }: React.ComponentProps<"article">) {
   return (
     <article
-      data-slot="article"
       className={cn(
         "mx-auto prose prose-neutral dark:prose-invert",
         "prose-headings:font-medium prose-headings:tracking-tight",

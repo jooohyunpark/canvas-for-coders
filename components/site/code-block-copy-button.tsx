@@ -21,7 +21,6 @@ export function CodeBlockCopyButton({ text }: { text: string }) {
   return (
     <>
       <Button
-        type="button"
         variant="ghost"
         size="icon"
         onClick={onCopy}

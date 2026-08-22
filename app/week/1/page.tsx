@@ -43,9 +43,10 @@ export default function Week1Page() {
             </p>
 
             <p>
-              Since then, my practice has centered on creating work with
-              web-based media. Of all the mediums I’ve explored, these are the
-              characteristics that make the web feel uniquely expressive to me.
+              Since then, my creative practice has centered on building work
+              with web-based media. Of all the mediums I’ve explored, these are
+              the characteristics that make the web feel uniquely expressive to
+              me.
             </p>
 
             <H3>1. It’s interactive.</H3>

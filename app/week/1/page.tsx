@@ -43,7 +43,7 @@ export default function Week1Page() {
             </p>
 
             <p>
-              Since then, my creative practice has centered on building work
+              Ever since, my creative practice has centered on building work
               with web-based media. Of all the mediums I’ve explored, these are
               the characteristics that make the web feel uniquely expressive to
               me.

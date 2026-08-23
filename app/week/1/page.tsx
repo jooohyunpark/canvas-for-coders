@@ -51,11 +51,18 @@ export default function Week1Page() {
 
             <H3>1. It’s interactive.</H3>
             <p>
-              A web page can react to a click, a scroll, or a keystroke — every
-              interaction draws the audience deeper into the work. The demo
-              below is one example: a ball that follows your cursor. It’s
-              simple, but engaging. You can participate immediately without any
-              context.
+              Web pages react to every scroll, click, and keypress, drawing
+              people directly into the work. Unlike static visuals or time-based
+              media, web experience is dynamic and hands-on—it turns your
+              audience into active participants. When properly integrated,
+              interactivity makes the experience deeply immersive and
+              contextual. I think of it as an extra dimension that makes art
+              feel alive.
+            </p>
+            <p>
+              Take the demo below, for example: an element that follows your
+              cursor. It’s subtle, but engaging. You can participate immediately
+              without any context.
             </p>
 
             <CursorBall />

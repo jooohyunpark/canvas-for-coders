@@ -2,7 +2,7 @@
 
 import { GradientTexture, OrbitControls } from "@react-three/drei"
 import { Canvas } from "@react-three/fiber"
-import { animated, useSpring } from "@react-spring/three"
+import { animated, useSpring, easings } from "@react-spring/three"
 import { useMemo, useState } from "react"
 import * as THREE from "three"
 
@@ -50,7 +50,7 @@ function DoorComponent({ position, rotation, color }: DoorConfig) {
   const { scale, opacity } = useSpring({
     scale: (hovered ? [1.2, 1, 1] : [1, 1, 1]) as [number, number, number],
     opacity: hovered ? 1 : 0.5,
-    config: { duration: 200 },
+    config: { duration: 200, easing: easings.easeOutCubic },
   })
 
   return (

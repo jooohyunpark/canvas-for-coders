@@ -12,7 +12,7 @@ import {
   useEnvironment,
 } from "@react-three/drei"
 import { Canvas, useFrame } from "@react-three/fiber"
-import { animated, useSpring } from "@react-spring/three"
+import { animated, useSpring, easings } from "@react-spring/three"
 import { Suspense, useRef, useState } from "react"
 import { DoubleSide, type Group, type Mesh, MeshBasicMaterial } from "three"
 
@@ -28,7 +28,7 @@ function Door({ position }: { position: [number, number, number] }) {
   const { scale, opacity } = useSpring({
     scale: (hovered ? [1.2, 1, 1] : [1, 1, 1]) as [number, number, number],
     opacity: hovered ? 1 : 0.5,
-    config: { duration: 200 },
+    config: { duration: 200, easing: easings.easeOutCubic },
   })
 
   return (

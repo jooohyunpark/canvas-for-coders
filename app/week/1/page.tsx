@@ -69,16 +69,18 @@ export default function Week1Page() {
 
             <H3>2. It’s computational.</H3>
             <p>
-              Every pixel on the screen is the result of code. That means your
-              work can do things traditional mediums can’t — generate a
-              different composition every time someone visits, respond to live
-              data, or evolve based on audience input.
+              Every pixel on the browser is rendered through code. That means
+              your work can do things traditional mediums can’t — generate a
+              unique composition on every load, respond to live APIs, or turn
+              raw data directly into visual/audio compositions. I call these
+              distinct features a new aesthetic.
             </p>
             <p>
               Below is my work,{" "}
-              <Link href="https://doors.joohyunpark.com">Doors</Link>, from
-              2022. Each door is placed at a random position every time. Refresh
-              the browser to see the composition rearrange.
+              <Link href="https://doors.joohyunpark.com">Doors (2022)</Link>.
+              Every door is placed in a randomized position, creating a
+              different composition for each view. Try refreshing the scene to
+              see the layout rearrange.
             </p>
 
             <Doors />

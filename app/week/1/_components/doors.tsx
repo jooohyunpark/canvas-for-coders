@@ -3,8 +3,11 @@
 import { GradientTexture, OrbitControls } from "@react-three/drei"
 import { Canvas } from "@react-three/fiber"
 import { animated, useSpring, easings } from "@react-spring/three"
-import { useMemo, useState } from "react"
+import { RotateCw } from "lucide-react"
+import { useState } from "react"
 import * as THREE from "three"
+
+import { Button } from "@/components/ui/button"
 
 const WIDTH = 1.6
 const HEIGHT = WIDTH * 1.618
@@ -92,19 +95,36 @@ function DoorComponent({ position, rotation, color }: DoorConfig) {
   )
 }
 
-function Scene() {
-  const doors = useMemo(() => generateDoors(3), [])
-
+function Scene({
+  doors,
+  generation,
+}: {
+  doors: DoorConfig[]
+  generation: number
+}) {
   return (
     <>
       {doors.map((door, i) => (
-        <DoorComponent key={i} {...door} />
+        <DoorComponent key={`${generation}-${i}`} {...door} />
       ))}
     </>
   )
 }
 
 export function Doors() {
+  // Regenerating swaps in a fresh random layout; `generation` re-keys the doors
+  // so their hover springs start clean at the new positions.
+  const [{ doors, generation }, setScene] = useState(() => ({
+    doors: generateDoors(3),
+    generation: 0,
+  }))
+
+  const regenerate = () =>
+    setScene(({ generation }) => ({
+      doors: generateDoors(3),
+      generation: generation + 1,
+    }))
+
   return (
     <div className="relative aspect-video w-full overflow-hidden rounded-lg border">
       <Canvas
@@ -127,8 +147,18 @@ export function Doors() {
           enableZoom={false}
         />
 
-        <Scene />
+        <Scene doors={doors} generation={generation} />
       </Canvas>
+
+      <Button
+        variant="outline"
+        size="icon-sm"
+        aria-label="Regenerate doors"
+        onClick={regenerate}
+        className="absolute right-2 bottom-2"
+      >
+        <RotateCw />
+      </Button>
     </div>
   )
 }

@@ -87,10 +87,9 @@ export default function Week1Page() {
 
             <H3>3. It’s universal.</H3>
             <p>
-              The web page is one of the most universal mediums there is. Anyone
-              with a computer and an internet can reach it with a URL, anytime,
-              from anywhere in the world. No other medium offers that kind of
-              reach.
+              Websites are one of the most universal mediums. Anyone with a
+              computer and an internet can access them with URLs, anytime,
+              anywhere in the world. No other medium offers that kind of reach.
             </p>
 
             <p>Now, let’s get into Three.js.</p>

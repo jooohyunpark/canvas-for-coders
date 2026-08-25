@@ -41,10 +41,9 @@ export default function Week1Page() {
               mind-blowing to realize the browser could be a space for
               unconventional expression.
             </p>
-
             <p>
               Ever since, my creative practice has centered on building work
-              with web-based media. Of all the mediums I’ve explored, these are
+              with web-based media. Of all the media I’ve explored, these are
               the characteristics that make the web feel uniquely expressive to
               me.
             </p>
@@ -69,8 +68,8 @@ export default function Week1Page() {
 
             <H3>2. It’s computational.</H3>
             <p>
-              Every pixel on the browser is rendered through code. That means
-              your work can do things traditional mediums can’t — generate a
+              Every pixel in the browser is rendered through code. That means
+              your work can do things traditional media can’t — generate a
               unique composition on every load, respond to live APIs, or turn
               raw data directly into visual/audio compositions. I call these
               distinct features a new aesthetic.
@@ -87,8 +86,8 @@ export default function Week1Page() {
 
             <H3>3. It’s universal.</H3>
             <p>
-              Websites are one of the most universal mediums. Anyone with a
-              computer and an internet can access them with URLs, anytime,
+              Websites are one of the most accessible digital media. Anyone with
+              a computer and internet can access them with a URL, anytime,
               anywhere in the world. No other medium offers that kind of reach.
             </p>
 

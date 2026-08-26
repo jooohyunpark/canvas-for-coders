@@ -82,7 +82,7 @@ export default function Week1Page() {
               see the layout rearrange.
             </p>
 
-            <Doors />
+            <Doors showRefreshButton />
 
             <H3>3. It’s universal.</H3>
             <p>

@@ -111,7 +111,11 @@ function Scene({
   )
 }
 
-export function Doors() {
+export function Doors({
+  showRefreshButton = false,
+}: {
+  showRefreshButton?: boolean
+}) {
   // Regenerating swaps in a fresh random layout; `generation` re-keys the doors
   // so their hover springs start clean at the new positions.
   const [{ doors, generation }, setScene] = useState(() => ({
@@ -150,15 +154,17 @@ export function Doors() {
         <Scene doors={doors} generation={generation} />
       </Canvas>
 
-      <Button
-        variant="outline"
-        size="icon-sm"
-        aria-label="Regenerate doors"
-        onClick={regenerate}
-        className="absolute right-2 bottom-2"
-      >
-        <RotateCw />
-      </Button>
+      {showRefreshButton && (
+        <Button
+          variant="outline"
+          size="icon-sm"
+          aria-label="Regenerate doors"
+          onClick={regenerate}
+          className="absolute right-2 bottom-2"
+        >
+          <RotateCw />
+        </Button>
+      )}
     </div>
   )
 }

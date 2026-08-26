@@ -33,19 +33,19 @@ export default function Week1Page() {
             </p>
 
             <p>
-              I remember the moment I was first introduced to{" "}
-              <Link href="https://p5js.org/">p5.js</Link> in a computational
-              media class at <Link href="https://itp.nyu.edu/itp">NYU ITP</Link>
-              . Until then, websites for me were just places to search for
-              information, write documents, send emails, and so on. It was
-              mind-blowing to realize the browser could be a space for
-              unconventional expression.
+              I still remember the moment I was first introduced to{" "}
+              <Link href="https://p5js.org/">p5.js</Link> in an ICM class. The
+              exercise was about creating an animated circle bouncing off the
+              four edges of the browser window. Until then, websites for me were
+              just places to search for information, write documents, send
+              emails, and so on. It was mind-blowing to realize the browser
+              could be a space for artistic expression.
             </p>
             <p>
-              Ever since, my creative practice has centered on building work
-              with web-based media. Of all the media I’ve explored, these are
-              the characteristics that make the web feel uniquely expressive to
-              me.
+              That feeling stayed with me, shaping my perspective around the web
+              as a creative medium. Of all the tools and media I’ve explored,
+              these are the characteristics that make the web feel uniquely
+              expressive to me.
             </p>
 
             <H3>1. It’s interactive.</H3>

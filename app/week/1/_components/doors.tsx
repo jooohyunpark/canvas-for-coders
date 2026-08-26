@@ -132,8 +132,8 @@ export function Doors() {
         orthographic
         camera={{
           position: [-20, 10, -10],
-          zoom: 20,
-          near: 0,
+          zoom: 15,
+          near: -1000,
           far: 1000,
         }}
       >

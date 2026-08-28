@@ -446,7 +446,9 @@ const material = new THREE.MeshBasicMaterial({ map: texture })`}
           </p>
         </Article>
 
-        <Exercise className="mt-8 mb-12" />
+        <Block type="exercise">
+          <Exercise />
+        </Block>
 
         <Article>
           <hr />

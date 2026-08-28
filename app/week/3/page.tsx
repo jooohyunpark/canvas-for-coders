@@ -319,7 +319,9 @@ scene.add(mesh)`}
           />
         </Article>
 
-        <Exercise />
+        <Block type="exercise">
+          <Exercise />
+        </Block>
 
         <Article>
           <hr />

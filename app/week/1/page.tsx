@@ -35,18 +35,21 @@ export default function Week1Page() {
 
             <p>
               I still remember the moment I was first introduced to{" "}
-              <Link href="https://p5js.org/">p5.js</Link> in an ICM class. The
-              exercise was about creating an animated circle bouncing off the
-              four edges of the browser window. Until then, websites for me were
-              just places to search for information, write documents, send
-              emails, and so on. It was mind-blowing to realize the browser
-              could be a space for artistic expression.
+              <Link href="https://p5js.org/">p5.js</Link> in a class at{" "}
+              <Link href="https://itp.nyu.edu/itp">NYU ITP</Link>. After
+              finishing the exercise — building an animated circle bouncing off
+              the four edges of the browser window — I was completely stunned to
+              realize I could build anything in the browser. Until then,
+              websites were just tools for mundane tasks: searching for
+              information, writing documents, or sending emails. It was
+              mind-blowing to see the browser transform into a space for
+              artistic expression.
             </p>
             <p>
-              That feeling stayed with me, shaping my perspective around the web
-              as a creative medium. Of all the tools and media I’ve explored,
-              these are the characteristics that make the web feel uniquely
-              expressive to me.
+              That feeling stayed with me, shaping my perspective on the web as
+              a creative medium. Of all the tools and media I’ve explored, three
+              distinct characteristics make the web feel uniquely expressive to
+              me.
             </p>
 
             <H3>1. It’s interactive.</H3>
@@ -91,8 +94,8 @@ export default function Week1Page() {
               , where visuals are generated in real time from color palettes
               mapped directly to hours, minutes, and seconds. This dynamic
               rendering is possible with browser-native time APIs. In the demo
-              below, each time anchor is mapped directly to red, green, and blue
-              values. As time flows, it blends colors, creating a meditative
+              below, each time anchor is mapped directly to red, green, and
+              blue. As time flows, it blends colors, creating a meditative
               artifact.
             </p>
 
@@ -100,11 +103,11 @@ export default function Week1Page() {
 
             <H3>3. It’s universal.</H3>
             <p>
-              Websites are one of the most accessible digital media in
-              existence. Anyone with a computer and internet access can open a
-              URL—anytime, anywhere. The work doesn’t require specialized
-              software, nor do you need to be standing in a museum to experience
-              it. No other medium offers that kind of immediate proximity.
+              Websites are one of the most accessible digital media. Anyone with
+              a computer and internet can access a URL anytime, anywhere. The
+              work doesn’t require specialized software, nor do you need to be
+              standing in a museum to experience it. No other medium offers that
+              kind of reach.
             </p>
 
             <p>Now, let’s get into Three.js.</p>

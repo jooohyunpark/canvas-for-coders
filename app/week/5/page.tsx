@@ -614,12 +614,10 @@ function Model() {
             </li>
           </ul>
           <p>Here&apos;s the example:</p>
-          <div className="mt-4">
-            <Doors />
-          </div>
+          <Doors />
         </Article>
 
-        <Exercise className="mt-4 mb-12" />
+        <Exercise className="mt-8 mb-12" />
 
         <Article>
           <hr />

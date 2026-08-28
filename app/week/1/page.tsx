@@ -39,39 +39,38 @@ export default function Week1Page() {
               <Link href="https://itp.nyu.edu/itp">NYU ITP</Link>. After
               finishing the exercise — building an animated circle bouncing off
               the four edges of the browser window — I was completely stunned to
-              realize I could build anything in the browser. Until then,
-              websites were just tools for mundane tasks: searching for
-              information, writing documents, or sending emails. It was
-              mind-blowing to see the browser transform into a space for
-              artistic expression.
+              realize I could create anything in the browser. Until then,
+              websites were just tools for mundane tasks: looking up
+              information, writing documents, or sending emails. Seeing the
+              browser transform into a space for pure artistic expression was
+              mind-blowing.
             </p>
             <p>
-              That feeling stayed with me, shaping my perspective on the web as
-              a creative medium. Of all the tools and media I’ve explored, three
-              distinct characteristics make the web feel uniquely expressive to
-              me.
+              That feeling stayed with me, shaping how I view the web as a
+              creative medium. Across every tool and discipline I’ve explored,
+              three distinct characteristics make the web uniquely expressive:
             </p>
 
             <H3>1. It’s interactive.</H3>
             <p>
               Web pages react to every scroll, click, and keypress. Unlike
-              static visuals or time-based media, a web experience is inherently
-              hands-on, inviting the audience to participate. When integrated
-              thoughtfully, interactivity adds a contextual dimension that makes
-              art feel alive.
+              static visuals or linear, time-based media, a web experience is
+              inherently hands-on, inviting the audience to participate. When
+              integrated thoughtfully, interactivity adds a contextual dimension
+              that makes art feel alive.
             </p>
             <p>
-              Take the demo below, for example: an element that follows your
-              cursor. It’s subtle, but engaging. You can participate immediately
-              without explanation.
+              Take the demo below: an element that follows your cursor. It’s
+              subtle, yet engaging. You can participate immediately without
+              explanation.
             </p>
 
-            <CursorBall />
+            <CursorBall className="my-6" />
 
             <H3>2. It’s computational.</H3>
             <p>
               Every pixel in the browser is rendered through code. That means
-              your work can be computationally dynamic — generating a unique
+              your work can be generative or algorithmic — creating a unique
               composition on every load, responding to live APIs, or turning raw
               data directly into visual and auditory experiences. I call this
               computational nature a new aesthetic.
@@ -84,9 +83,9 @@ export default function Week1Page() {
               scene to see the layout rearrange.
             </p>
 
-            <Doors showRefreshButton />
+            <Doors showRefreshButton className="my-6" />
 
-            <p className="mt-4">
+            <p>
               Another example is{" "}
               <Link href="https://new-interface-of-time.joohyunpark.com">
                 New Interface of Time (2023)
@@ -94,17 +93,16 @@ export default function Week1Page() {
               , where visuals are generated in real time from color palettes
               mapped directly to hours, minutes, and seconds. This dynamic
               rendering is possible with browser-native time APIs. In the demo
-              below, each time anchor is mapped directly to red, green, and
-              blue. As time flows, it blends colors, creating a meditative
-              artifact.
+              below, each time anchor maps directly to red, green, and blue. As
+              time flows, it blends colors, creating a meditative artifact.
             </p>
 
-            <NewInterfaceOfTime />
+            <NewInterfaceOfTime className="my-6" />
 
             <H3>3. It’s universal.</H3>
             <p>
-              Websites are one of the most accessible digital media. Anyone with
-              a computer and internet can access a URL anytime, anywhere. The
+              Websites are among most accessible digital media. Anyone with a
+              computer and internet access can open a URL anytime, anywhere. The
               work doesn’t require specialized software, nor do you need to be
               standing in a museum to experience it. No other medium offers that
               kind of reach.

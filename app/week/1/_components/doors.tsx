@@ -8,6 +8,7 @@ import { useState } from "react"
 import * as THREE from "three"
 
 import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
 
 const WIDTH = 1.6
 const HEIGHT = WIDTH * 1.618
@@ -113,8 +114,10 @@ function Scene({
 
 export function Doors({
   showRefreshButton = false,
+  className,
 }: {
   showRefreshButton?: boolean
+  className?: string
 }) {
   // Regenerating swaps in a fresh random layout; `generation` re-keys the doors
   // so their hover springs start clean at the new positions.
@@ -130,7 +133,12 @@ export function Doors({
     }))
 
   return (
-    <div className="relative aspect-video w-full overflow-hidden rounded-lg border">
+    <div
+      className={cn(
+        "relative aspect-video w-full overflow-hidden rounded-lg border",
+        className
+      )}
+    >
       <Canvas
         flat
         orthographic

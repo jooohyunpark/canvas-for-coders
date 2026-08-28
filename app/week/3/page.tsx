@@ -74,7 +74,7 @@ renderer.setAnimationLoop((time) => {
             lang="js"
           />
 
-          <AnimationLoopScene className="mt-8" />
+          <AnimationLoopScene className="my-6" />
 
           <H2>GSAP</H2>
           <p>
@@ -119,7 +119,7 @@ gsap.to(wanderer.position, {
             lang="js"
           />
 
-          <GsapScene className="mt-8" />
+          <GsapScene className="my-6" />
 
           <H2>Models</H2>
           <p>
@@ -151,7 +151,7 @@ loader.load("/Voyager.glb", (gltf) => {
             lang="js"
           />
 
-          <ModelScene className="mt-8" />
+          <ModelScene className="my-6" />
 
           <H3>Animated model</H3>
           <p>
@@ -185,7 +185,7 @@ renderer.setAnimationLoop(() => {
             lang="js"
           />
 
-          <AnimatedModelScene className="mt-8" />
+          <AnimatedModelScene className="my-6" />
 
           <H2>Environment map</H2>
           <p>
@@ -286,7 +286,7 @@ scene.add(mesh)`}
             it shift between ears.
           </p>
 
-          <SpatialAudioScene className="mt-8" />
+          <SpatialAudioScene className="m-6" />
 
           <hr />
 
@@ -308,7 +308,7 @@ scene.add(mesh)`}
           />
         </Article>
 
-        <Exercise className="mt-4 mb-12" />
+        <Exercise />
 
         <Article>
           <hr />

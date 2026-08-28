@@ -303,7 +303,7 @@ gui.addColor(material, 'color')`}
             <code>MeshStandardMaterial</code> and picks up the directional
             light.
           </p>
-          <MaterialsScene className="mt-8" />
+          <MaterialsScene />
           <p>
             Three.js has many more materials worth knowing. This{" "}
             <Link href="https://threejs.org/manual/?q=material#en/materials">

@@ -1,12 +1,13 @@
 "use client"
 
+import { cn } from "@/lib/utils"
 import { motion, useSpring } from "motion/react"
 
 const SPRING = {
   mass: 0.1,
 }
 
-export function CursorBall() {
+export function CursorBall({ className }: { className?: string }) {
   const x = useSpring(0, SPRING)
   const y = useSpring(0, SPRING)
 
@@ -20,7 +21,10 @@ export function CursorBall() {
     <div
       onPointerMove={moveTo}
       onPointerDown={moveTo}
-      className="relative aspect-video w-full overflow-hidden rounded-lg border"
+      className={cn(
+        "relative aspect-video w-full overflow-hidden rounded-lg border",
+        className
+      )}
     >
       <motion.div
         className="absolute top-1/2 left-1/2 size-8 -translate-1/2 rounded-full bg-indigo-500 sm:size-12"

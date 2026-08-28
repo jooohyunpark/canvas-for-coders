@@ -21,7 +21,7 @@ export async function CodeBlock({
   })
 
   return (
-    <div className={cn("relative", className)}>
+    <div className={cn("relative my-6", className)}>
       <div className="absolute top-4 right-2 hidden h-lh items-center text-sm leading-relaxed md:inline-flex">
         <CodeBlockCopyButton text={code} />
       </div>

@@ -696,7 +696,7 @@ const reply = await sendMessage("hello")
           </p>
         </Article>
 
-        <Exercise className="mt-4 mb-12" />
+        <Exercise className="mt-8 mb-12" />
 
         <Article>
           <hr />

@@ -2,7 +2,12 @@
 
 import { GradientTexture, OrbitControls } from "@react-three/drei"
 import { Canvas } from "@react-three/fiber"
-import { animated, useSpring, easings } from "@react-spring/three"
+import {
+  animated,
+  easings,
+  useSpring,
+  type SpringValue,
+} from "@react-spring/three"
 import { RotateCw } from "lucide-react"
 import { useState } from "react"
 import * as THREE from "three"
@@ -49,7 +54,17 @@ function generateDoors(count: number): DoorConfig[] {
   return doors
 }
 
-function DoorComponent({ position, rotation, color }: DoorConfig) {
+// Scale x only, so a door collapses to a vertical sliver and opens back out
+// without changing height.
+const widthScale = (scale: SpringValue<number>) =>
+  scale.to((s): [number, number, number] => [s, 1, 1])
+
+function DoorComponent({
+  position,
+  rotation,
+  color,
+  collapse,
+}: DoorConfig & { collapse: SpringValue<number> }) {
   const [hovered, setHovered] = useState(false)
   const { scale, opacity } = useSpring({
     scale: (hovered ? [1.2, 1, 1] : [1, 1, 1]) as [number, number, number],
@@ -59,7 +74,10 @@ function DoorComponent({ position, rotation, color }: DoorConfig) {
 
   return (
     <group position={position} rotation={rotation}>
-      <group position={[0, -HEIGHT * 0.5, 0]}>
+      <animated.group
+        scale={widthScale(collapse)}
+        position={[0, -HEIGHT * 0.5, 0]}
+      >
         <animated.mesh
           scale={scale}
           position={[0, HEIGHT * 0.5, 0]}
@@ -91,7 +109,7 @@ function DoorComponent({ position, rotation, color }: DoorConfig) {
             />
           </animated.meshBasicMaterial>
         </animated.mesh>
-      </group>
+      </animated.group>
     </group>
   )
 }
@@ -99,14 +117,20 @@ function DoorComponent({ position, rotation, color }: DoorConfig) {
 function Scene({
   doors,
   generation,
+  collapse,
 }: {
   doors: DoorConfig[]
   generation: number
+  collapse: SpringValue<number>
 }) {
   return (
     <>
       {doors.map((door, i) => (
-        <DoorComponent key={`${generation}-${i}`} {...door} />
+        <DoorComponent
+          key={`${generation}-${i}`}
+          {...door}
+          collapse={collapse}
+        />
       ))}
     </>
   )
@@ -126,11 +150,22 @@ export function Doors({
     generation: 0,
   }))
 
+  const [{ scale: collapse }, api] = useSpring(() => ({ scale: 1 }))
+
+  // Collapse the doors, swap in the fresh layout while they're hidden, then
+  // open them back out at their new spots.
   const regenerate = () =>
-    setScene(({ generation }) => ({
-      doors: generateDoors(3),
-      generation: generation + 1,
-    }))
+    api.start({
+      config: { duration: 400, easing: easings.easeOutCubic },
+      to: async (next) => {
+        await next({ scale: 0 })
+        setScene(({ generation }) => ({
+          doors: generateDoors(3),
+          generation: generation + 1,
+        }))
+        await next({ scale: 1 })
+      },
+    })
 
   return (
     <div
@@ -159,7 +194,7 @@ export function Doors({
           enableZoom={false}
         />
 
-        <Scene doors={doors} generation={generation} />
+        <Scene doors={doors} generation={generation} collapse={collapse} />
       </Canvas>
 
       {showRefreshButton && (

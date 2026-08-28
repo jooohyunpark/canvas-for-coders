@@ -10,7 +10,7 @@
 
 ## Course Description
 
-The web browser is a twenty-first century canvas. This course explores it as a creative medium — using Three.js and React Three Fiber to think in three dimensions, prototype quickly, and shape ideas into interactive experiences on the web.
+The web browser is a 21st-century canvas. This course explores it as a creative medium — using Three.js and React Three Fiber to think in three dimensions, prototype quickly, and shape ideas into interactive experiences on the web.
 
 ## Course Objectives
 

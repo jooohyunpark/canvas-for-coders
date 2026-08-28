@@ -16,9 +16,7 @@ export default function Page() {
               Anything you make can reach anyone with a link. And best of all,
               it’s interactive. As I like to say:
             </p>
-            <blockquote>
-              The web browser is a twenty-first century canvas.
-            </blockquote>
+            <blockquote>The web browser is a 21st-century canvas.</blockquote>
             <p>
               In this course, we’ll explore creative expression on the web
               through Three.js: thinking in three dimensions, prototyping

@@ -38,7 +38,7 @@ export function AnimatedModelScene({ className }: { className?: string }) {
     controls.enableDamping = true
 
     let mixer: THREE.AnimationMixer | null = null
-    const clock = new THREE.Clock()
+    const timer = new THREE.Timer()
 
     // fish.glb outlives a quick visit to this page. Without this the load
     // finishes after cleanup and builds a mixer nothing is left to stop.
@@ -58,8 +58,8 @@ export function AnimatedModelScene({ className }: { className?: string }) {
     })
 
     renderer.setAnimationLoop(() => {
-      const delta = clock.getDelta()
-      mixer?.update(delta)
+      timer.update()
+      mixer?.update(timer.getDelta())
       controls.update()
       renderer.render(scene, camera)
     })

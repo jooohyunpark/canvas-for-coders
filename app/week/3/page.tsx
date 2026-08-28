@@ -169,10 +169,16 @@ loader.load("/Voyager.glb", (gltf) => {
             is the playback engine: bind it to the model, create an action from
             a clip, and call <code>.play()</code>. Then call{" "}
             <code>mixer.update(delta)</code> on every frame with the time
-            elapsed since the last frame.
+            elapsed since the last frame.{" "}
+            <Link href="https://threejs.org/docs/#api/en/core/Timer">
+              <code>Timer</code>
+            </Link>{" "}
+            tracks that for you: advance it once per frame with{" "}
+            <code>timer.update()</code>, then read <code>timer.getDelta()</code>
+            .
           </p>
           <CodeBlock
-            code={`const clock = new THREE.Clock()
+            code={`const timer = new THREE.Timer()
 let mixer
 
 loader.load("/fish.glb", (gltf) => {
@@ -186,7 +192,8 @@ loader.load("/fish.glb", (gltf) => {
 })
 
 renderer.setAnimationLoop(() => {
-  mixer?.update(clock.getDelta())
+  timer.update()
+  mixer?.update(timer.getDelta())
   renderer.render(scene, camera)
 })`}
             lang="js"

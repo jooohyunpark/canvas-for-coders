@@ -13,6 +13,7 @@ import { BasicSceneWithDebugUI } from "./_components/basic-scene-with-debug-ui"
 import { LightsScene } from "./_components/lights-scene"
 import { MaterialsScene } from "./_components/materials-scene"
 import { TexturesScene } from "./_components/textures-scene"
+import { Block } from "@/components/site/block"
 
 export const metadata: Metadata = {
   title: "Week 2",
@@ -138,7 +139,9 @@ document.body.appendChild(renderer.domElement);`}
           />
 
           <p>Congratulations. You’ve rendered your first Three.js scene.</p>
-          <BasicScene />
+          <Block>
+            <BasicScene />
+          </Block>
 
           <H2>Around the scene</H2>
           <p>
@@ -175,7 +178,9 @@ function animate() {
             lang="js"
           />
 
-          <BasicSceneWithControls className="mt-8" />
+          <Block>
+            <BasicSceneWithControls />
+          </Block>
 
           <H3>Resize</H3>
           <p>
@@ -217,7 +222,9 @@ gui.addColor(material, 'color')`}
             lang="js"
           />
 
-          <BasicSceneWithDebugUI className="mt-8" />
+          <Block>
+            <BasicSceneWithDebugUI />
+          </Block>
 
           <H2>Geometries</H2>
           <p>
@@ -303,7 +310,9 @@ gui.addColor(material, 'color')`}
             <code>MeshStandardMaterial</code> and picks up the directional
             light.
           </p>
-          <MaterialsScene />
+          <Block>
+            <MaterialsScene />
+          </Block>
           <p>
             Three.js has many more materials worth knowing. This{" "}
             <Link href="https://threejs.org/manual/?q=material#en/materials">
@@ -403,7 +412,9 @@ scene.add(rectLight)`}
             lang="js"
           />
 
-          <LightsScene className="mt-8" />
+          <Block>
+            <LightsScene />
+          </Block>
 
           <H2>Textures</H2>
           <p>
@@ -422,7 +433,9 @@ texture.colorSpace = THREE.SRGBColorSpace
 const material = new THREE.MeshBasicMaterial({ map: texture })`}
             lang="js"
           />
-          <TexturesScene className="mt-8" />
+          <Block>
+            <TexturesScene />
+          </Block>
 
           <hr />
 

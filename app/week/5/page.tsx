@@ -14,6 +14,7 @@ import { StagingScene } from "./_components/staging-scene"
 import { ExtrasScene } from "./_components/extras-scene"
 import { Exercise } from "./_components/exercise"
 import { Doors } from "../1/_components/doors"
+import { Block } from "@/components/site/block"
 
 export const metadata: Metadata = {
   title: "Week 5",
@@ -294,7 +295,9 @@ function Scene() {
 }`}
             lang="jsx"
           />
-          <ComponentsScene className="mt-8" />
+          <Block>
+            <ComponentsScene />
+          </Block>
 
           <H2>State &amp; interaction</H2>
           <p>
@@ -344,7 +347,9 @@ function Scene() {
 }`}
             lang="jsx"
           />
-          <InteractionScene className="mt-8" />
+          <Block>
+            <InteractionScene />
+          </Block>
           <p>
             It&apos;s the same pattern you already know. <code>useState</code>{" "}
             holds the values, the handlers update them, and because{" "}
@@ -409,7 +414,9 @@ function AnimatedBox({ position }) {
 }`}
             lang="jsx"
           />
-          <SpringScene className="mt-8" />
+          <Block>
+            <SpringScene />
+          </Block>
           <p>
             The same three cubes, now easing instead of snapping. This is the
             declarative idea applied to motion: you set the destination, and a
@@ -516,7 +523,9 @@ function Model() {
 <Environment preset="sunset" />`}
             lang="jsx"
           />
-          <StagingScene className="mt-8" />
+          <Block>
+            <StagingScene />
+          </Block>
           <p>
             The Voyager model has standard PBR materials, so it only looks right
             when something lights and reflects off it. Toggle{" "}
@@ -543,7 +552,9 @@ function Model() {
             </Link>{" "}
             for the glass gem.
           </p>
-          <ExtrasScene className="mt-8" />
+          <Block>
+            <ExtrasScene />
+          </Block>
           <p>
             <strong>Materials with character:</strong>
           </p>
@@ -614,7 +625,9 @@ function Model() {
             </li>
           </ul>
           <p>Here&apos;s the example:</p>
-          <Doors />
+          <Block>
+            <Doors />
+          </Block>
         </Article>
 
         <Exercise className="mt-8 mb-12" />

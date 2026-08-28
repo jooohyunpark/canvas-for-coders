@@ -10,6 +10,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Button } from "@/components/ui/button"
 import { Doors } from "./_components/doors"
 import { NewInterfaceOfTime } from "./_components/new-interface-of-time"
+import { Block } from "@/components/site/block"
 
 export const metadata: Metadata = {
   title: "Week 1",
@@ -65,7 +66,9 @@ export default function Week1Page() {
               explanation.
             </p>
 
-            <CursorBall className="my-6" />
+            <Block>
+              <CursorBall />
+            </Block>
 
             <H3>2. It’s computational.</H3>
             <p>
@@ -83,7 +86,9 @@ export default function Week1Page() {
               scene to see the layout rearrange.
             </p>
 
-            <Doors showRefreshButton className="my-6" />
+            <Block>
+              <Doors showRefreshButton />
+            </Block>
 
             <p>
               Another example is{" "}
@@ -97,7 +102,9 @@ export default function Week1Page() {
               time flows, it blends colors, creating a meditative artifact.
             </p>
 
-            <NewInterfaceOfTime className="my-6" />
+            <Block>
+              <NewInterfaceOfTime />
+            </Block>
 
             <H3>3. It’s universal.</H3>
             <p>

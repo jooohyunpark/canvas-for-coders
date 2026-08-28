@@ -12,6 +12,7 @@ import { ModelScene } from "./_components/model-scene"
 import { AnimatedModelScene } from "./_components/animated-model-scene"
 import { SpatialAudioScene } from "./_components/spatial-audio-scene"
 import { Exercise } from "./_components/exercise"
+import { Block } from "@/components/site/block"
 
 export const metadata: Metadata = {
   title: "Week 3",
@@ -74,7 +75,9 @@ renderer.setAnimationLoop((time) => {
             lang="js"
           />
 
-          <AnimationLoopScene className="my-6" />
+          <Block>
+            <AnimationLoopScene />
+          </Block>
 
           <H2>GSAP</H2>
           <p>
@@ -119,7 +122,9 @@ gsap.to(wanderer.position, {
             lang="js"
           />
 
-          <GsapScene className="my-6" />
+          <Block>
+            <GsapScene />
+          </Block>
 
           <H2>Models</H2>
           <p>
@@ -151,7 +156,9 @@ loader.load("/Voyager.glb", (gltf) => {
             lang="js"
           />
 
-          <ModelScene className="my-6" />
+          <Block>
+            <ModelScene />
+          </Block>
 
           <H3>Animated model</H3>
           <p>
@@ -185,7 +192,9 @@ renderer.setAnimationLoop(() => {
             lang="js"
           />
 
-          <AnimatedModelScene className="my-6" />
+          <Block>
+            <AnimatedModelScene />
+          </Block>
 
           <H2>Environment map</H2>
           <p>
@@ -286,7 +295,9 @@ scene.add(mesh)`}
             it shift between ears.
           </p>
 
-          <SpatialAudioScene className="m-6" />
+          <Block>
+            <SpatialAudioScene />
+          </Block>
 
           <hr />
 

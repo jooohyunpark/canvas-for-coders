@@ -12,6 +12,7 @@ import { CounterDemo } from "./_components/counter-demo"
 import { LiftStateDemo } from "./_components/lift-state-demo"
 import { EffectDemo } from "./_components/effect-demo"
 import { Exercise } from "./_components/exercise"
+import { Block } from "@/components/site/block"
 
 export const metadata: Metadata = {
   title: "Week 4",
@@ -326,7 +327,9 @@ npm run dev`}
 </div>`}
             lang="jsx"
           />
-          <ButtonDemo className="mt-4" />
+          <Block>
+            <ButtonDemo />
+          </Block>
 
           <H3>Scoped styling</H3>
           <p>
@@ -446,7 +449,9 @@ function Counter() {
 }`}
             lang="jsx"
           />
-          <CounterDemo className="mt-4" />
+          <Block>
+            <CounterDemo />
+          </Block>
           <p>
             In the example above, <code>useState(0)</code> sets the starting
             value and returns two things: the current value (<code>count</code>)
@@ -535,7 +540,9 @@ setItems([...items, newItem])`}
             down, and a child changes the parent&apos;s state only through a
             function, never by editing a prop directly.
           </p>
-          <LiftStateDemo className="mt-4" />
+          <Block>
+            <LiftStateDemo />
+          </Block>
 
           <H2>Hooks</H2>
           <p>
@@ -587,7 +594,9 @@ function Clock() {
 }`}
             lang="jsx"
           />
-          <EffectDemo className="mt-4" />
+          <Block>
+            <EffectDemo />
+          </Block>
           <p>
             Two parts do the work. The function you pass is the effect itself.
             The second argument is the dependency array, which tells React when

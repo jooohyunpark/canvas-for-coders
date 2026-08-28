@@ -12,6 +12,7 @@ import { HtmlButtonScene } from "./_components/html-button-scene"
 import { ScrollScene } from "./_components/scroll-scene"
 import { ScrollHtmlScene } from "./_components/scroll-html-scene"
 import { PhysicsScene } from "./_components/physics-scene"
+import { Block } from "@/components/site/block"
 
 export const metadata: Metadata = {
   title: "W6: Interaction",
@@ -53,7 +54,9 @@ export default function Week6Page() {
             lang="jsx"
           />
 
-          <TextScene className="mt-8" />
+          <Block>
+            <TextScene />
+          </Block>
 
           <H2>HTML in the scene</H2>
           <p>
@@ -91,7 +94,9 @@ export default function Week6Page() {
             Below, the label rides a marker orbiting the sphere and drops away
             each time it swings behind.
           </p>
-          <HtmlScene className="mt-8" />
+          <Block>
+            <HtmlScene />
+          </Block>
           <p>
             One caveat: this is DOM layered over the canvas, not pixels drawn
             inside it. Use it for interface, not for things that need to sit
@@ -139,7 +144,9 @@ export default function Week6Page() {
 }`}
             lang="jsx"
           />
-          <HtmlButtonScene className="mt-8" />
+          <Block>
+            <HtmlButtonScene />
+          </Block>
 
           <H2>Scroll-driven scenes</H2>
           <p>
@@ -188,7 +195,9 @@ function ScrollCamera() {
             <code>visible</code> is a boolean for skipping work. Below, the
             doors stay put and the scroll moves the camera.
           </p>
-          <ScrollScene className="mt-8" />
+          <Block>
+            <ScrollScene />
+          </Block>
 
           <H3>Scrolling scenes and HTML together</H3>
           <p>
@@ -233,7 +242,9 @@ function ScrollCamera() {
             <code>useThree</code>. Swap them and the two tracks drift apart the
             moment the window resizes.
           </p>
-          <ScrollHtmlScene className="mt-8" />
+          <Block>
+            <ScrollHtmlScene />
+          </Block>
           <p>
             One caveat: this scroll lives in the container, not the document, so
             your page cannot drive it. Give a scroll-driven scene the whole
@@ -306,7 +317,9 @@ function Scene() {
             by id, not index, or removing the oldest letters remounts every body
             resting on them.
           </p>
-          <PhysicsScene className="mt-8" />
+          <Block>
+            <PhysicsScene />
+          </Block>
           <p>
             One caveat: every body is a body forever. This scene caps the pile
             and takes the oldest letters out from under it.

@@ -8,14 +8,14 @@ import {
   OrthographicCamera,
 } from "@react-three/drei"
 import { Shuffle } from "lucide-react"
-import { Canvas } from "@react-three/fiber"
+import { Canvas, useFrame } from "@react-three/fiber"
 import {
   animated,
   easings,
   useSpring,
   type SpringValue,
 } from "@react-spring/three"
-import { useState } from "react"
+import { useRef, useState } from "react"
 import * as THREE from "three"
 
 const WIDTH = 1.6
@@ -114,14 +114,25 @@ function Door({
 // so it always faces the camera and stays readable and clickable.
 function ButtonDoor({
   position,
+  scale,
   onClick,
-}: Placement & { onClick: () => void }) {
+}: Placement & { scale: SpringValue<number>; onClick: () => void }) {
+  const ref = useRef<HTMLButtonElement>(null)
+
+  // The doors' spring, on a DOM node: <Html> renders outside the three tree,
+  // so the value is read each frame instead of passed down as a prop.
+  useFrame(() => {
+    if (ref.current) ref.current.style.transform = `scale(${scale.get()})`
+  })
+
   return (
     <Html center position={[position[0], HEIGHT * 0.8, position[2]]} occlude>
       <button
+        ref={ref}
         onClick={onClick}
         aria-label="Shuffle"
-        className="grid size-8 place-items-center rounded-full bg-white text-black shadow transition-transform hover:bg-white/80 active:scale-97"
+        // transition `scale` only — `transform` belongs to the spring now
+        className="grid size-8 place-items-center rounded-full bg-white text-black shadow transition-[scale] hover:bg-white/80 active:scale-97"
       >
         <Shuffle className="size-4" />
       </button>
@@ -159,7 +170,7 @@ function Scene() {
         />
       ))}
 
-      <ButtonDoor {...button} onClick={randomize} />
+      <ButtonDoor {...button} scale={scale} onClick={randomize} />
     </>
   )
 }

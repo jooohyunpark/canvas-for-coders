@@ -137,8 +137,8 @@ export function Doors({
         camera={{
           position: [-20, 10, -10],
           zoom: 15,
-          near: -1000,
-          far: 1000,
+          near: -100,
+          far: 100,
         }}
       >
         <OrbitControls

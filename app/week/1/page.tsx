@@ -9,6 +9,7 @@ import { H1, H2, H3 } from "@/components/site/heading"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Button } from "@/components/ui/button"
 import { Doors } from "./_components/doors"
+import { NewInterfaceOfTime } from "./_components/new-interface-of-time"
 
 export const metadata: Metadata = {
   title: "Week 1",
@@ -50,18 +51,16 @@ export default function Week1Page() {
 
             <H3>1. It’s interactive.</H3>
             <p>
-              Web pages react to every scroll, click, and keypress, drawing
-              people directly into the work. Unlike static visuals or time-based
-              media, web experience is dynamic and hands-on—it turns your
-              audience into active participants. When properly integrated,
-              interactivity makes the experience deeply immersive and
-              contextual. I think of it as an extra dimension that makes art
-              feel alive.
+              Web pages react to every scroll, click, and keypress. Unlike
+              static visuals or time-based media, a web experience is inherently
+              hands-on, inviting the audience to participate. When integrated
+              thoughtfully, interactivity adds a contextual dimension that makes
+              art feel alive.
             </p>
             <p>
               Take the demo below, for example: an element that follows your
               cursor. It’s subtle, but engaging. You can participate immediately
-              without any context.
+              without explanation.
             </p>
 
             <CursorBall />
@@ -69,26 +68,43 @@ export default function Week1Page() {
             <H3>2. It’s computational.</H3>
             <p>
               Every pixel in the browser is rendered through code. That means
-              your work can do things traditional media can’t — generate a
-              unique composition on every load, respond to live APIs, or turn
-              raw data directly into visual/audio compositions. I call these
-              distinct features a new aesthetic.
+              your work can be computationally dynamic — generating a unique
+              composition on every load, responding to live APIs, or turning raw
+              data directly into visual and auditory experiences. I call this
+              computational nature a new aesthetic.
             </p>
             <p>
               Below is my work,{" "}
               <Link href="https://doors.joohyunpark.com">Doors (2022)</Link>.
-              Every door is placed in a randomized position, creating a
-              different composition for each view. Try refreshing the scene to
-              see the layout rearrange.
+              Every door is placed in a randomized position, producing a
+              distinct composition every time the page loads. Try reloading the
+              scene to see the layout rearrange.
             </p>
 
             <Doors showRefreshButton />
 
+            <p className="mt-4">
+              Another example is{" "}
+              <Link href="https://new-interface-of-time.joohyunpark.com">
+                New Interface of Time (2023)
+              </Link>
+              , where visuals are generated in real time from color palettes
+              mapped directly to hours, minutes, and seconds. This dynamic
+              rendering is possible with browser-native time APIs. In the demo
+              below, each time anchor is mapped directly to red, green, and blue
+              values. As time flows, it blends colors, creating a meditative
+              artifact.
+            </p>
+
+            <NewInterfaceOfTime />
+
             <H3>3. It’s universal.</H3>
             <p>
-              Websites are one of the most accessible digital media. Anyone with
-              a computer and internet can access them with a URL, anytime,
-              anywhere in the world. No other medium offers that kind of reach.
+              Websites are one of the most accessible digital media in
+              existence. Anyone with a computer and internet access can open a
+              URL—anytime, anywhere. The work doesn’t require specialized
+              software, nor do you need to be standing in a museum to experience
+              it. No other medium offers that kind of immediate proximity.
             </p>
 
             <p>Now, let’s get into Three.js.</p>

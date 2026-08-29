@@ -108,11 +108,11 @@ export default function Week1Page() {
 
             <H3>3. It’s universal.</H3>
             <p>
-              Websites are among most accessible digital media. Anyone with a
-              computer and internet access can open a URL anytime, anywhere. The
-              work doesn’t require specialized software, nor do you need to be
-              standing in a museum to experience it. No other medium offers that
-              kind of reach.
+              Websites are among the most accessible digital media. Anyone with
+              a computer and internet access can open a URL anytime, anywhere.
+              The work doesn’t require specialized software, nor do you need to
+              be standing in a museum to experience it. No other medium offers
+              that kind of reach.
             </p>
 
             <p>Now, let’s get into Three.js.</p>

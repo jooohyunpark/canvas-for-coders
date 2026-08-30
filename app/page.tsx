@@ -11,20 +11,20 @@ export default function Page() {
           <Article>
             <h1>Welcome to Canvas for Coders!</h1>
             <p>
-              I’ve always thought of the browser as a creative medium. It runs
-              everywhere. It can generate visuals and sound through code.
-              Anything you make can reach anyone with a link. And best of all,
-              it’s interactive. As I like to say:
+              I’ve always thought of the browser as the ultimate creative
+              medium. It runs everywhere, generates real-time visuals through
+              code, and lets anyone experience your work with a link. As I like
+              to say:
             </p>
             <blockquote>The web browser is a 21st-century canvas.</blockquote>
             <p>
-              In this course, we’ll explore creative expression on the web
-              through Three.js: thinking in three dimensions, prototyping
-              concepts, and shaping ideas into interactive experiences.
+              In this course, we’ll explore creative expression on the web using
+              Three.js. You’ll learn to think in three dimensions, prototype
+              concepts, and transform ideas into interactive 3D experiences.
             </p>
             <p>
               Bring your curiosity, your questions, and whatever you’ve been
-              wanting to make. I’m looking forward to building with you.
+              itching to make. I’m excited to build with you.
             </p>
             <p>— Joohyun</p>
           </Article>

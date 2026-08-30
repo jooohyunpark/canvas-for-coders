@@ -41,10 +41,9 @@ export default function Week1Page() {
               finishing the exercise — building an animated circle bouncing off
               the four edges of the browser window — I was completely stunned to
               realize I could create anything in the browser. Until then,
-              websites were just tools for mundane tasks: looking up
-              information, writing documents, or sending emails. Seeing the
-              browser transform into a space for pure artistic expression was
-              mind-blowing.
+              websites were just tools for mundane tasks like looking up
+              information or sending emails. Seeing the browser transform into a
+              space for pure artistic expression was mind-blowing.
             </p>
             <p>
               That feeling stayed with me, shaping how I view the web as a

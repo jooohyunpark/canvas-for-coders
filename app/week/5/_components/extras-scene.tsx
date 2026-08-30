@@ -28,7 +28,7 @@ function Door({ position }: { position: [number, number, number] }) {
   const { scale, opacity } = useSpring({
     scale: (hovered ? [1.2, 1, 1] : [1, 1, 1]) as [number, number, number],
     opacity: hovered ? 1 : 0.5,
-    config: { duration: 200, easing: easings.easeOutCubic },
+    config: { duration: 300, easing: easings.easeOutCubic },
   })
 
   return (

@@ -1,4 +1,8 @@
-# itp-canvas-for-coders
+# canvas-for-coders
+
+Course site for **Canvas for Coders**, an NYU ITP course on reimagining the web as a creative medium with Three.js and React Three Fiber, taught by [Joohyun Park](https://joohyunpark.com).
+
+Live site: https://c4c.joohyunpark.com
 
 ## Info
 
@@ -7,6 +11,83 @@
   - 10/23/2025 - 12/11/2025, Thursday, 6:00pm-8:30pm, 370 Jay Street (Room 409) Loc: Brooklyn Campus
 - Office hours
   - 10/23/2025 - 12/11/2025, Thursday, 8:30pm-9:30pm, 370 Jay Street (Room 409) Loc: Brooklyn Campus
+
+## Stack
+
+- [Next.js](https://nextjs.org/) 16 (App Router, Turbopack) with React 19 and TypeScript
+- [Tailwind CSS](https://tailwindcss.com/) v4 and [shadcn/ui](https://ui.shadcn.com/) for the site chrome
+- [Three.js](https://threejs.org/), [React Three Fiber](https://r3f.docs.pmnd.rs/), [drei](https://github.com/pmndrs/drei), [react-spring](https://www.react-spring.dev/), [react-three-rapier](https://github.com/pmndrs/react-three-rapier), and [GSAP](https://gsap.com/) for the in-page demos
+- [Sandpack](https://sandpack.codesandbox.io/) for live, editable code blocks
+- [Shiki](https://shiki.style/) for static syntax highlighting
+- Deployed on [Vercel](https://vercel.com/)
+
+## Running locally
+
+Requires Node.js 20+ and [pnpm](https://pnpm.io/).
+
+```bash
+pnpm install
+cp .env.example .env.local   # then fill in the values below
+pnpm dev
+```
+
+The site runs at http://localhost:3000.
+
+### Environment variables
+
+Both live in `.env.local`, which is gitignored. On Vercel, set the same two in project settings.
+
+| Variable | Required | Purpose |
+| --- | --- | --- |
+| `SITE_PASSWORD` | Yes | The shared password students enter to reach the weekly lecture pages. |
+| `AUTH_SECRET` | Yes | Random string used to sign the auth cookie. Generate with `openssl rand -hex 32`. |
+
+Without `SITE_PASSWORD` and `AUTH_SECRET`, every request to `/week/*` redirects to `/verify` and no password will be accepted.
+
+### How the password gate works
+
+Everything under `/week` is gated. There is no database and no user accounts, just one shared password:
+
+1. `proxy.ts` matches the request against `protectedRoutes` in `lib/site.ts` and checks the `site_auth` cookie.
+2. `/verify` posts the password to a server action, which compares SHA-256 digests in constant time.
+3. On success the action sets `site_auth` to `HMAC(AUTH_SECRET, SITE_PASSWORD)`, httpOnly and valid for 7 days.
+
+Because the cookie is derived from the password, **rotating `SITE_PASSWORD` invalidates every cookie already issued**. Rotating `AUTH_SECRET` does the same. Use that to lock out a leaked password mid-semester.
+
+## Scripts
+
+| Command | What it does |
+| --- | --- |
+| `pnpm dev` | Dev server with Turbopack |
+| `pnpm build` | Production build |
+| `pnpm start` | Serve the production build |
+| `pnpm lint` | ESLint |
+| `pnpm typecheck` | `tsc --noEmit` |
+| `pnpm format` | Prettier over all `.ts`/`.tsx` |
+
+## Project structure
+
+```
+app/
+  page.tsx              Landing page
+  verify/               Password gate (form + server action)
+  week/<n>/page.tsx     One lecture per week
+  week/<n>/_components/ The 3D demos embedded in that week
+components/
+  site/                 Nav, headings, code blocks, Sandpack wrappers
+  ui/                   shadcn/ui primitives (vendored, edit sparingly)
+lib/
+  auth.ts               Cookie token, constant-time compare, path sanitizing
+  site.ts               Site URL, protected and noindex route lists
+proxy.ts                Middleware enforcing the password gate
+public/                 Models, textures, audio, and video used by demos
+```
+
+Adding a week means creating `app/week/<n>/page.tsx` and adding an entry to `navLinks` in `components/site/nav.tsx`.
+
+Static assets in `public/` are served with `Access-Control-Allow-Origin: *` for `.glb`, `.gltf`, `.hdr`, and `.mp3` (see `next.config.mjs`) so students can load them from their own sandboxes. `reactStrictMode` is off on purpose: drei's `<Scroll html>` creates its own React root, and StrictMode's double-invoke breaks the overlay in dev.
+
+Sandpack edits are saved to `localStorage` by `components/site/sandpack-persistence.tsx`, so student work survives a reload.
 
 ## Course Description
 

@@ -1,5 +1,4 @@
-export const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"
+export const siteUrl = "https://c4c.joohyunpark.com"
 
 export const protectedRoutes: string[] = ["/week"]
 

@@ -298,32 +298,23 @@ function Scene() {
             lang="jsx"
           />
           <p>
-            Colliders are the shapes the engine collides, and they are not your
-            geometry. <code>colliders=&quot;cuboid&quot;</code> measures each
-            letter&apos;s bounding box and hands over that, so an <code>e</code>{" "}
-            collides as the box around an <code>e</code>. A box is one
-            comparison, a glyph is hundreds.{" "}
-            <code>colliders=&quot;hull&quot;</code> wraps tighter when you need
-            it, and <code>debug</code> on <code>&lt;Physics&gt;</code> draws
-            whichever you chose. This works only because{" "}
-            <code>&lt;Text3D&gt;</code> extrudes: flat text has no thickness,
-            and a shape with no depth is one things fall through.
+            Colliders are the invisible shapes used for physics, and they
+            don&apos;t have to match your visual mesh. Setting{" "}
+            <code>colliders=&quot;cuboid&quot;</code> wraps each letter in a
+            box—so text collides like a block rather than a detailed glyph,
+            reducing hundreds of checks down to one. Use{" "}
+            <code>colliders=&quot;hull&quot;</code> for tighter bounds, or add{" "}
+            <code>debug</code> to <code>&lt;Physics&gt;</code> to draw them.
           </p>
           <p>
-            Dropping a letter is a normal state update. It mounts its own{" "}
-            <code>&lt;RigidBody&gt;</code> and the world takes over, so nothing
-            already in the pile moves because of the render. Every letter starts
-            at the same point, and what spreads them is what they land on. Key
-            by id, not index, or removing the oldest letters remounts every body
-            resting on them.
+            In the example below, dropping a letter is just a normal React state
+            update: mounting a <code>&lt;RigidBody&gt;</code> hands it off to
+            gravity.
           </p>
           <Block>
             <PhysicsScene />
           </Block>
-          <p>
-            One caveat: every body is a body forever. This scene caps the pile
-            and takes the oldest letters out from under it.
-          </p>
+
           <H2>Wrapping up</H2>
           <p>
             That&apos;s the last of the material. What you have now is enough to

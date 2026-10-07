@@ -146,7 +146,10 @@ export function ExtrasScene({ className }: { className?: string }) {
           </Suspense>
         </Center>
 
-        <OrbitControls />
+        <OrbitControls
+          minPolarAngle={Math.PI * 0.5 * 0.75}
+          maxPolarAngle={Math.PI * 0.5 * 0.75}
+        />
       </Canvas>
     </div>
   )

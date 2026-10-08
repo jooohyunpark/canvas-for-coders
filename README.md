@@ -65,23 +65,7 @@ Because the cookie is derived from the password, **rotating `SITE_PASSWORD` inva
 | `pnpm typecheck` | `tsc --noEmit` |
 | `pnpm format` | Prettier over all `.ts`/`.tsx` |
 
-## Project structure
-
-```
-app/
-  page.tsx              Landing page
-  verify/               Password gate (form + server action)
-  week/<n>/page.tsx     One lecture per week
-  week/<n>/_components/ The 3D demos embedded in that week
-components/
-  site/                 Nav, headings, code blocks, Sandpack wrappers
-  ui/                   shadcn/ui primitives (vendored, edit sparingly)
-lib/
-  auth.ts               Cookie token, constant-time compare, path sanitizing
-  site.ts               Site URL, protected and noindex route lists
-proxy.ts                Middleware enforcing the password gate
-public/                 Models, textures, audio, and video used by demos
-```
+## Notes
 
 Adding a week means creating `app/week/<n>/page.tsx` and adding an entry to `navLinks` in `components/site/nav.tsx`.
 

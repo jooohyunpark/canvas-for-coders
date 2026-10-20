@@ -42,7 +42,7 @@ export default function Week1Page() {
               browser window. Finishing it, I realized I could create anything
               in the browser. Until then, websites were tools for everyday tasks
               like looking up information or sending emails. Seeing the browser
-              become a space for artistic expression felt like a revelation.
+              become a space for artistic expression was mind-blowing.
             </p>
             <p>
               That feeling stayed with me, shaping how I view the web as a

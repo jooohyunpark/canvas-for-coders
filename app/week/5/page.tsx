@@ -47,8 +47,8 @@ export default function Week5Page() {
 
           <H2>Concept</H2>
           <p>
-            So far we&apos;ve covered Three.js — geometries, materials, meshes,
-            lights, and a manual render loop — and React, where components
+            So far we&apos;ve covered Three.js (geometries, materials, meshes,
+            lights, and a manual render loop) and React, where components
             describe the UI for the current state and keep the screen in sync.
             React Three Fiber (R3F) is the bridge: you write a Three.js scene as
             JSX, the way you write any React component.
@@ -106,8 +106,8 @@ export default function Week5Page() {
           </p>
           <p>
             Everything in R3F starts with one component:{" "}
-            <code>&lt;Canvas&gt;</code>. In Week 3, every sketch opened with the
-            same ritual: create a <code>WebGLRenderer</code> and a{" "}
+            <code>&lt;Canvas&gt;</code>. In plain Three.js, every sketch opened
+            the same way: create a <code>WebGLRenderer</code> and a{" "}
             <code>PerspectiveCamera</code>, size them to the window, append the
             canvas, and start an animation loop. <code>&lt;Canvas&gt;</code>{" "}
             does all of that for you.
@@ -150,7 +150,7 @@ export default function App() {
           />
           <p>
             This is the same <code>new THREE.Mesh(geometry, material)</code>{" "}
-            from Week 3, only the geometry and material are passed as nested
+            from Week 2, only the geometry and material are passed as nested
             tags instead of constructor arguments. R3F reads the children,
             builds the two Three.js objects, and hands them to the mesh.
           </p>
@@ -183,8 +183,8 @@ export default function App() {
           <H3>Same scene, both ways</H3>
           <p>
             Here is a lit blue cube written both ways: same geometry, same
-            material, same lights. The Three.js version is what you wrote in
-            Week 3; the R3F version is the payoff.
+            material, same lights. The Three.js version is what you&apos;ve
+            written so far; the R3F version expresses it as a component.
           </p>
           <Tabs defaultValue="r3f">
             <TabsList variant="line">
@@ -259,9 +259,9 @@ renderer.setAnimationLoop(() => {
             </TabsContent>
           </Tabs>
           <p>
-            Both render the same scene, but the R3F version is dramatically
-            cleaner, and it’s now a component you can reuse, compose, and drive
-            with props.
+            Both render the same scene, but the R3F version is shorter and
+            easier to read, and it’s now a component you can reuse, compose, and
+            drive with props.
           </p>
 
           <H2>Reusable components</H2>
@@ -359,8 +359,9 @@ function Scene() {
           </p>
           <p>
             The change is instant, though: the cube jumps to its new size in a
-            single frame. That snap is fine for a color, but a scale wants to
-            ease into place, which is exactly what react-spring does next.
+            single frame. That snap is fine for a color, but a change in scale
+            reads better when it eases into place. That&apos;s where
+            react-spring comes in.
           </p>
 
           <H2>Animating with react-spring</H2>

@@ -15,7 +15,7 @@ import { PhysicsScene } from "./_components/physics-scene"
 import { Block } from "@/components/site/block"
 
 export const metadata: Metadata = {
-  title: "W6: Interaction",
+  title: "Week 6",
 }
 
 export default function Week6Page() {
@@ -155,8 +155,8 @@ export default function Week6Page() {
             </Link>{" "}
             makes the area around the canvas scrollable, <code>pages</code>{" "}
             tall, and <code>useScroll</code> tells you where you are in it. Read
-            that inside <code>useFrame</code> and nothing runs on a timer any
-            more. The visitor scrubs it.
+            it inside <code>useFrame</code>, and the animation follows the
+            scroll instead of a clock.
           </p>
           <CodeBlock
             code={`import { ScrollControls, useScroll } from "@react-three/drei"
@@ -208,7 +208,7 @@ function ScrollCamera() {
             does the moving for you: whatever sits inside travels with the
             scroll, so meshes placed a viewport apart arrive one at a time. Add{" "}
             <code>html</code> and you get a second track, this one real DOM,
-            moving at the same speed. That is how you keep copy beside the
+            moving at the same speed. That&apos;s how you keep copy beside the
             object it describes.
           </p>
           <CodeBlock
@@ -246,9 +246,10 @@ function ScrollCamera() {
             <ScrollHtmlScene />
           </Block>
           <p>
-            One caveat: this scroll lives in the container, not the document, so
-            your page cannot drive it. Give a scroll-driven scene the whole
-            screen, or accept a second scroll area inside the page.
+            Keep in mind that this scroll lives in the container, not the
+            document, so your page can&apos;t drive it. Give a scroll-driven
+            scene the whole screen, or accept a second scroll area inside the
+            page.
           </p>
 
           <H2>Physics</H2>
@@ -301,8 +302,8 @@ function Scene() {
             Colliders are the invisible shapes used for physics, and they
             don&apos;t have to match your visual mesh. Setting{" "}
             <code>colliders=&quot;cuboid&quot;</code> wraps each letter in a
-            box—so text collides like a block rather than a detailed glyph,
-            reducing hundreds of checks down to one. Use{" "}
+            box, so each letter collides as a single block rather than a
+            detailed glyph, reducing hundreds of checks to one. Use{" "}
             <code>colliders=&quot;hull&quot;</code> for tighter bounds, or add{" "}
             <code>debug</code> to <code>&lt;Physics&gt;</code> to draw them.
           </p>
@@ -318,7 +319,7 @@ function Scene() {
           <H2>Wrapping up</H2>
           <p>
             That&apos;s the last of the material. What you have now is enough to
-            build the thing you sketched back in week one: a scene, a reason to
+            build the thing you sketched back in Week 1: a scene, a reason to
             look at it, and a way to make it interactive. Keep making, and keep
             sharing what you build. I can&apos;t wait to see where these go.
           </p>

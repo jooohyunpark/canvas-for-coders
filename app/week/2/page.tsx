@@ -54,7 +54,7 @@ export default function Week2Page() {
             <code>geometry</code> for the shape, paired with a{" "}
             <code>material</code> for the surface. <code>BoxGeometry</code>{" "}
             takes the box’s width, height, and depth.{" "}
-            <code>MeshBasicMaterial</code> takes an options object &mdash; here
+            <code>MeshBasicMaterial</code> takes an options object. Here it’s
             just a <code>color</code>, which can be a hex number (
             <code>0x0000ff</code>), a hex string (
             <code>&apos;#2563eb&apos;</code>), or a name (
@@ -161,7 +161,7 @@ document.body.appendChild(renderer.domElement);`}
             Controls live outside the core Three.js library, so import the one
             you want and pass it the camera and the renderer’s canvas.{" "}
             <code>enableDamping</code> smooths out the motion, so the camera
-            eases to a stop instead of snapping &mdash; just call{" "}
+            eases to a stop instead of snapping. For damping to work, call{" "}
             <code>controls.update()</code> each frame inside your{" "}
             <code>animate</code> loop.
           </p>
@@ -342,10 +342,10 @@ scene.add(mesh)`}
 
           <H2>Lights</H2>
           <p>
-            Lights are required for any material that reacts to shading. Beyond
-            visibility, they’re also essential for setting the tone of your
-            experience. (<code>MeshBasicMaterial</code> and{" "}
-            <code>MeshNormalMaterial</code> ignore lights.) The{" "}
+            Lights are required for any material that reacts to shading (
+            <code>MeshBasicMaterial</code> and <code>MeshNormalMaterial</code>{" "}
+            ignore them). Beyond visibility, they set the tone of your
+            experience. The{" "}
             <Link href="https://threejs.org/manual/?q=light#en/lights">
               lights article
             </Link>{" "}

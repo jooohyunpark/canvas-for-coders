@@ -52,7 +52,8 @@ export default function Week3Page() {
           <p>
             The callback receives a <code>time</code> argument: milliseconds
             elapsed since the page loaded. Dividing by 1000 converts it to
-            seconds, giving a smooth, ever-increasing value you can use.
+            seconds, giving you a steadily increasing value to drive motion
+            with.
           </p>
           <CodeBlock
             code={`const orbitGroup = new THREE.Group()

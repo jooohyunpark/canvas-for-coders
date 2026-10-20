@@ -37,13 +37,12 @@ export default function Week1Page() {
             <p>
               I still remember the moment I was first introduced to{" "}
               <Link href="https://p5js.org/">p5.js</Link> in a class at{" "}
-              <Link href="https://itp.nyu.edu/itp">NYU ITP</Link>. After
-              finishing the exercise — building an animated circle bouncing off
-              the four edges of the browser window — I was completely stunned to
-              realize I could create anything in the browser. Until then,
-              websites were just tools for mundane tasks like looking up
-              information or sending emails. Seeing the browser transform into a
-              space for pure artistic expression was mind-blowing.
+              <Link href="https://itp.nyu.edu/itp">NYU ITP</Link>. The exercise
+              was simple: an animated circle bouncing off the four edges of the
+              browser window. Finishing it, I realized I could create anything
+              in the browser. Until then, websites were tools for everyday tasks
+              like looking up information or sending emails. Seeing the browser
+              become a space for artistic expression felt like a revelation.
             </p>
             <p>
               That feeling stayed with me, shaping how I view the web as a
@@ -72,7 +71,7 @@ export default function Week1Page() {
             <H3>2. It’s computational.</H3>
             <p>
               Every pixel in the browser is rendered through code. That means
-              your work can be generative or algorithmic — creating a unique
+              your work can be generative or algorithmic: creating a unique
               composition on every load, responding to live APIs, or turning raw
               data directly into visual and auditory experiences. I call this
               computational nature a new aesthetic.
@@ -163,7 +162,8 @@ export default function Week1Page() {
             <H3>Vite</H3>
             <p>
               A dev server and bundler with hot reloads and native ES module
-              support — import <code>three</code> like any other package.
+              support, so you can import <code>three</code> like any other
+              package.
             </p>
 
             <Tabs defaultValue="npm">
@@ -182,7 +182,7 @@ export default function Week1Page() {
             </Tabs>
 
             <p>
-              The CLI will prompt for a project name and template — select{" "}
+              The CLI will prompt for a project name and template. Select{" "}
               <strong>Vanilla</strong> + <strong>JavaScript</strong>. Then
               navigate into the new directory, install dependencies, and start
               the development server:
@@ -195,7 +195,7 @@ npm run dev`}
             />
             <p>
               Vite prints a local URL (usually{" "}
-              <code>http://localhost:5173</code>). Open it — source changes
+              <code>http://localhost:5173</code>). Open it, and source changes
               hot-reload instantly.
             </p>
 
@@ -203,7 +203,7 @@ npm run dev`}
             <p>
               Stores your source code and tracks its history. Combined with
               Vercel, every push to <code>main</code> builds and deploys
-              automatically — a complete CI/CD pipeline.
+              automatically, giving you a complete CI/CD pipeline.
             </p>
             <p>
               For this class, create a repository and develop your final project
@@ -242,7 +242,7 @@ const light = new THREE.AmbientLight(0xffffff, 1)`}
             </p>
 
             <CodeBlock
-              code={`//no arguments; will be initialised to (0, 0, 0)
+              code={`// no arguments: initialized to (0, 0, 0)
 const a = new THREE.Vector3()
 const b = new THREE.Vector3(1, 2, 3);
 const d = a.distanceTo(b);
@@ -289,7 +289,7 @@ scene.add(mesh)`}
             <H2>Assignment</H2>
             <ul>
               <li>
-                Read{" "}
+                Read the{" "}
                 <Link href="https://threejs.org/manual/#en/fundamentals">
                   Three.js fundamentals
                 </Link>{" "}

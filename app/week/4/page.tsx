@@ -155,12 +155,11 @@ npm run dev`}
             everywhere in React: JSX.
           </p>
           <p>
-            JSX looks like HTML, but it&apos;s actually JavaScript. It lets you
-            write markup directly inside your code, and a build step turns it
-            into plain JavaScript objects that describe the UI. It&apos;s not a
-            template language, it&apos;s JavaScript wearing HTML. And because
-            it&apos;s JavaScript, curly braces let you drop an expression right
-            into the markup:
+            JSX looks like HTML, but it&apos;s JavaScript. It lets you write
+            markup directly inside your code, and a build step turns it into
+            plain JavaScript objects that describe the UI. Because it&apos;s
+            JavaScript, curly braces let you drop an expression right into the
+            markup:
           </p>
           <CodeBlock
             code={`function Greeting() {
@@ -719,7 +718,7 @@ const reply = await sendMessage("hello")
               from the React documentation.
             </li>
             <li>
-              Continue developing your project — next week you’ll migrate it to
+              Continue developing your project. Next week, you’ll migrate it to
               a React app.
             </li>
           </ul>

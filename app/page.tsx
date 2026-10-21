@@ -48,7 +48,7 @@ export default function Page() {
                 <div>
                   Thursdays, Oct 22 &ndash; Dec 10, 2026, 6:00&ndash;8:30pm
                 </div>
-                <div>370 Jay Street, Room 409, Brooklyn Campus</div>
+                <div>370 Jay Street, Room 410, Brooklyn Campus</div>
               </dd>
 
               <dt>Office hours</dt>

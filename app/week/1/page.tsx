@@ -22,6 +22,12 @@ const INSTALL_COMMANDS = [
   { name: "yarn", command: "yarn create vite" },
 ]
 
+const THREE_INSTALL_COMMANDS = [
+  { name: "npm", command: "npm install three" },
+  { name: "pnpm", command: "pnpm add three" },
+  { name: "yarn", command: "yarn add three" },
+]
+
 export default function Week1Page() {
   return (
     <div>
@@ -176,23 +182,18 @@ export default function Week1Page() {
               </TabsList>
               {INSTALL_COMMANDS.map(({ name, command }) => (
                 <TabsContent key={name} value={name}>
-                  <CodeBlock code={command} lang="bash" />
+                  <CodeBlock code={command} lang="bash" className="mt-0" />
                 </TabsContent>
               ))}
             </Tabs>
 
             <p>
               The CLI will prompt for a project name and template. Select{" "}
-              <strong>Vanilla</strong> + <strong>JavaScript</strong>. Then
-              navigate into the new directory, install dependencies, and start
-              the development server:
+              <strong>Vanilla</strong> + <strong>JavaScript</strong>, then
+              answer <strong>Yes</strong> to{" "}
+              <em>Install with npm and start now?</em> Vite installs the
+              dependencies and starts the development server.
             </p>
-            <CodeBlock
-              code={`cd my-project
-npm install
-npm run dev`}
-              lang="bash"
-            />
             <p>
               Vite prints a local URL (usually{" "}
               <code>http://localhost:5173</code>). Open it, and source changes
@@ -217,6 +218,21 @@ npm run dev`}
             </p>
 
             <H2>Three.js basic concepts</H2>
+            <p>First, install Three.js in your project directory.</p>
+            <Tabs defaultValue="npm">
+              <TabsList variant="line">
+                {THREE_INSTALL_COMMANDS.map(({ name }) => (
+                  <TabsTrigger key={name} value={name}>
+                    {name}
+                  </TabsTrigger>
+                ))}
+              </TabsList>
+              {THREE_INSTALL_COMMANDS.map(({ name, command }) => (
+                <TabsContent key={name} value={name}>
+                  <CodeBlock code={command} lang="bash" className="mt-0" />
+                </TabsContent>
+              ))}
+            </Tabs>
 
             <H3>Pattern</H3>
             <p>

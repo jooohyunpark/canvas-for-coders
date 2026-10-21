@@ -136,7 +136,7 @@ function Counter() {
             </TabsList>
             {CREATE_COMMANDS.map(({ name, command }) => (
               <TabsContent key={name} value={name}>
-                <CodeBlock code={command} lang="bash" />
+                <CodeBlock code={command} lang="bash" className="mt-0" />
               </TabsContent>
             ))}
           </Tabs>

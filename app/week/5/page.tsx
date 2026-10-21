@@ -22,14 +22,14 @@ export const metadata: Metadata = {
 
 const INSTALL_COMMANDS = [
   {
-    name: "pnpm",
-    command:
-      "pnpm add three @react-three/fiber @react-three/drei @react-spring/three",
-  },
-  {
     name: "npm",
     command:
       "npm install three @react-three/fiber @react-three/drei @react-spring/three",
+  },
+  {
+    name: "pnpm",
+    command:
+      "pnpm add three @react-three/fiber @react-three/drei @react-spring/three",
   },
   {
     name: "yarn",
@@ -76,7 +76,7 @@ export default function Week5Page() {
             Start from a React project (the Vite setup from Week 4 works), then
             install the four packages for this week:
           </p>
-          <Tabs defaultValue="pnpm">
+          <Tabs defaultValue="npm">
             <TabsList variant="line">
               {INSTALL_COMMANDS.map((c) => (
                 <TabsTrigger key={c.name} value={c.name}>
@@ -86,7 +86,7 @@ export default function Week5Page() {
             </TabsList>
             {INSTALL_COMMANDS.map((c) => (
               <TabsContent key={c.name} value={c.name}>
-                <CodeBlock code={c.command} lang="bash" />
+                <CodeBlock code={c.command} lang="bash" className="mt-0" />
               </TabsContent>
             ))}
           </Tabs>

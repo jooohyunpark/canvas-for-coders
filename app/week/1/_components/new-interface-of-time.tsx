@@ -117,7 +117,7 @@ export function NewInterfaceOfTime({ className }: { className?: string }) {
     <div
       ref={containerRef}
       className={cn(
-        "relative flex aspect-video w-full items-center justify-center overflow-hidden rounded-lg border bg-black",
+        "relative flex aspect-video w-full items-center justify-center overflow-hidden rounded-lg border",
         className
       )}
     >

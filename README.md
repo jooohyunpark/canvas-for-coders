@@ -189,7 +189,7 @@ Grading (pass/fail) will be based on a combination of factors:
 - Assignments (40%)
 - Final Project (20%)
 
-Please see ITP's statement on [Pass/Fail](https://help.itp.nyu.edu/academic-policies/pass-fail) which states that a "Pass" is equivalent to an "A" or a "B" while anything less would be considered a "Fail".
+Please see ITP's statement on [Pass/Fail](https://itp.nyu.edu/help/pass-fail/) which states that a "Pass" is equivalent to an "A" or a "B" while anything less would be considered a "Fail".
 
 Attendance is mandatory. Please inform your teacher via email if you are going to miss a class. Two unexcused absences is cause for failing the class. (An unexcused lateness of 10 minutes or more is equivalent to 1/2 an absence.)
 

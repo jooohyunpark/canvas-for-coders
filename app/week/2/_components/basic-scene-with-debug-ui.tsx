@@ -37,6 +37,9 @@ export function BasicSceneWithDebugUI({ className }: { className?: string }) {
     const controls = new OrbitControls(camera, renderer.domElement)
     controls.enableDamping = true
 
+    const axesHelper = new THREE.AxesHelper()
+    scene.add(axesHelper)
+
     // Debug UI — kept inside the demo container instead of floating on the page
     const gui = new GUI({ container })
     gui.domElement.style.position = "absolute"

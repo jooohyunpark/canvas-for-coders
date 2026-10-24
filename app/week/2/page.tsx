@@ -200,6 +200,18 @@ window.addEventListener('resize', onResize);`}
             lang="js"
           />
 
+          <H3>AxesHelper</H3>
+          <p>
+            <code>AxesHelper</code> draws the three axes so you can see how the
+            scene is oriented. It’s handy during development for checking
+            positions and directions.
+          </p>
+          <CodeBlock
+            code={`const axesHelper = new THREE.AxesHelper(5);
+scene.add(axesHelper);`}
+            lang="js"
+          />
+
           <H3>Debug UI</H3>
           <p>
             A debug UI lets you tweak values live, such as a color, position, or

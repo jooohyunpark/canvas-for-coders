@@ -132,9 +132,9 @@ document.body.appendChild(renderer.domElement);`}
           </p>
 
           <CodeBlock
-            code={`const animate = () => {
+            code={`function animate() {
   renderer.render(scene, camera);
-};`}
+}`}
             lang="js"
           />
 

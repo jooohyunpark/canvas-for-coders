@@ -16,33 +16,29 @@ import {
 } from "@/components/site/sandpack-persistence"
 
 const noopSubscribe = () => () => {}
-const STORAGE_KEY = "cfc-week4-exercise"
+// Bumped from "cfc-week4-exercise" when the starter code was simplified, so
+// students with the old files saved start fresh instead of a half-migrated mix.
+const STORAGE_KEY = "cfc-week4-exercise-v2"
 
 const defaultFiles = {
-  "/App.js": `import "./styles.css"
+  "/App.js": `import { useState } from "react"
+import "./styles.css"
 import { sendMessage } from "./emoji-api"
 import { Composer } from "./components/Composer"
 import { Bubble } from "./components/Bubble"
 
-/*
-  App.js
-  styles.css
-  emoji-api.js
-  components/
-    Composer/
-      index.js
-      styles.module.css
-    Bubble/
-      index.js
-      styles.module.css
-*/
-
 export default function App() {
+  const [messages, setMessages] = useState([
+    { type: "user", text: "hello" },
+    { type: "agent", text: "👋" },
+  ])
 
   const handleSend = async (prompt) => {
-    // The async part is done for you. "await" pauses here until the
-    // emoji bot replies (it fakes a network request, so it takes a moment).
+    // "await" pauses here until the emoji bot replies.
+    // It fakes a network request, so it takes a moment.
     const reply = await sendMessage(prompt)
+
+    // Add both the prompt and the reply to your messages here.
   }
 
   return (
@@ -211,7 +207,9 @@ body {
   gap: 8px;
 }
 `,
-  "/emoji-api.js": `const EMOJIS = [
+  "/emoji-api.js": {
+    readOnly: true,
+    code: `const EMOJIS = [
   "😀", "😂", "🥳", "😎", "🤖", "👾", "🎉", "🔥", "✨", "🌈",
   "🍕", "🍩", "🚀", "🌟", "💡", "🐙", "🦄", "🌮", "🪐", "💬",
   "😅", "😍", "🤩", "😜", "🤯", "😴", "🤔", "🙌", "👏", "💪",
@@ -229,6 +227,7 @@ export function sendMessage(prompt) {
   })
 }
 `,
+  },
 }
 
 export function Exercise({ className }: { className?: string }) {
@@ -268,7 +267,12 @@ export function Exercise({ className }: { className?: string }) {
         theme={resolvedTheme === "dark" ? "dark" : "light"}
         files={loadSandpackFiles(STORAGE_KEY, defaultFiles)}
         customSetup={{ dependencies: { "lucide-react": "^1.14.0" } }}
-        options={{ activeFile: "/App.js" }}
+        options={{
+          activeFile: "/App.js",
+          // Composer, Bubble and the stylesheets still run, they're just kept
+          // out of the tabs so students only see the files they work with.
+          visibleFiles: ["/App.js", "/emoji-api.js"],
+        }}
       >
         <SandpackPersistence
           storageKey={STORAGE_KEY}

@@ -665,7 +665,9 @@ function Clock() {
           <p>
             In this exercise, you’ll build an emoji chatbot, a chat app where
             every reply comes back as emojis. The starter code provides the
-            skeleton: a message list, an input composer, and a{" "}
+            skeleton: a <code>messages</code> state with two starter messages,
+            two ready-made components (<code>{"<Composer>"}</code> for typing
+            and <code>{"<Bubble>"}</code> for showing a message), and a{" "}
             <code>handleSend</code> function in <code>App.js</code>. Your job is
             to wire these pieces together into a working chat.
           </p>
@@ -674,37 +676,42 @@ function Clock() {
             <code>emoji-api.js</code>. It exposes a single function,{" "}
             <code>sendMessage(prompt)</code>, which simulates an API call: pass
             it some text and, after a brief delay, it resolves with a random
-            emoji string. Since <code>handleSend</code> already imports and{" "}
-            <code>await</code>s it, you can focus entirely on the React side.
+            emoji. Since <code>handleSend</code> already calls it with{" "}
+            <code>await</code>, you can focus entirely on the React side.
           </p>
           <CodeBlock
             code={`import { sendMessage } from "./emoji-api"
 
 const reply = await sendMessage("hello")
-// → something like "🚀✨🦄🎉"`}
+// → something like "🚀"`}
             lang="jsx"
           />
-          <p>Here’s a suggested roadmap:</p>
+          <p>Here’s a suggested steps:</p>
           <ul>
             <li>
-              Make the input a controlled field: store its text in{" "}
-              <code>state</code> and update it via <code>onChange</code>.
+              Replace the two hardcoded bubbles with <code>.map()</code> over
+              the <code>messages</code> state, rendering a{" "}
+              <code>{"<Bubble>"}</code> for each one. Since messages are only
+              ever added, the index works fine as a <code>key</code>.
             </li>
             <li>
-              Track the conversation in a second state variable, an array of
-              messages. When the user submits, append their prompt, call{" "}
-              <code>sendMessage</code>, and append the emoji response. Always
+              Pass <code>handleSend</code> to the composer as its{" "}
+              <code>onSend</code> prop. It will be called with the text the user
+              typed, and the composer clears itself afterwards.
+            </li>
+            <li>
+              Inside <code>handleSend</code>, after the reply arrives, add two
+              new messages: the user’s prompt and the agent’s reply. Always
               create a fresh array rather than modifying the existing one.
-            </li>
-            <li>
-              Use <code>.map()</code> to render the message list, giving each
-              item a stable <code>key</code>, and reset the input after sending.
             </li>
           </ul>
           <p>
-            If you’d like to go further, try showing a “typing…” indicator while
-            waiting for the reply, or auto-scrolling to the latest message with
-            a <code>ref</code> and <code>useEffect</code>.
+            If you’d like to go further, show the user’s message right away
+            instead of waiting for the reply, then add a “typing…” indicator
+            while the bot thinks. You’ll find that updating state twice in one
+            function needs the updater form,{" "}
+            <code>{"setMessages((prev) => [...prev, message])"}</code>. Try
+            figuring out why.
           </p>
         </Article>
 

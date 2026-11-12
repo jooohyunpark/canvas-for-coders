@@ -8,6 +8,12 @@ import { useSandpack, type SandpackFiles } from "@codesandbox/sandpack-react"
 // saving and loading disagree and no edit survives a reload.
 const normalize = (path: string) => (path.startsWith("/") ? path : `/${path}`)
 
+// Students can't edit hidden or read-only files, so a saved copy of one can
+// only ever be stale. Skipping them lets starter-code fixes to those files
+// reach everyone, not just people who never opened the exercise.
+const isLocked = (file: SandpackFiles[string]) =>
+  typeof file !== "string" && (file.hidden === true || file.readOnly === true)
+
 export function loadSandpackFiles(
   storageKey: string,
   defaultFiles: SandpackFiles
@@ -23,7 +29,7 @@ export function loadSandpackFiles(
         // unprefixed under the old scheme, and dropping them would throw away
         // work already sitting in someone's browser.
         const savedCode = codes[normalize(path)] ?? codes[path]
-        if (!savedCode) return [path, file]
+        if (!savedCode || isLocked(file)) return [path, file]
         if (typeof file === "string") return [path, savedCode]
         return [path, { ...file, code: savedCode }]
       })
@@ -45,7 +51,11 @@ export function SandpackPersistence({
   useEffect(() => {
     const timer = setTimeout(() => {
       try {
-        const defaultPaths = new Set(Object.keys(defaultFiles).map(normalize))
+        const defaultPaths = new Set(
+          Object.entries(defaultFiles)
+            .filter(([, file]) => !isLocked(file))
+            .map(([path]) => normalize(path))
+        )
         const codes: Record<string, string> = {}
         for (const [path, file] of Object.entries(sandpack.files)) {
           const key = normalize(path)

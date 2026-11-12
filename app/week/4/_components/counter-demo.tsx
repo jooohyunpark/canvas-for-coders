@@ -11,7 +11,9 @@ export function CounterDemo({ className }: { className?: string }) {
 
   return (
     <div className={cn("flex justify-center rounded-lg border p-6", className)}>
-      <Button onClick={handleClick}>{count}</Button>
+      <Button onClick={handleClick} className="tabular-nums">
+        {count}
+      </Button>
     </div>
   )
 }

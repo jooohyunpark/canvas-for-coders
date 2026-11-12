@@ -52,23 +52,14 @@ export default function App() {
   )
 }
 `,
-  "/components/Composer/index.js": `import { useEffect, useRef, useState } from "react"
+  "/components/Composer/index.js": {
+    readOnly: true,
+    code: `import { useState } from "react"
 import { ArrowUp } from "lucide-react"
 import styles from "./styles.module.css"
 
 export function Composer({ onSend }) {
   const [value, setValue] = useState("")
-  const textareaRef = useRef(null)
-
-  // Reset the height, then grow it to fit the content.
-  const resize = () => {
-    const el = textareaRef.current
-    el.style.height = "auto"
-    el.style.height = el.scrollHeight + "px"
-  }
-
-  // Re-fit whenever the text changes.
-  useEffect(() => resize(), [value])
 
   const submit = () => {
     if (!value.trim()) return
@@ -92,7 +83,6 @@ export function Composer({ onSend }) {
       }}
     >
       <textarea
-        ref={textareaRef}
         className={styles.textarea}
         placeholder="What's on your mind?"
         rows={1}
@@ -107,11 +97,16 @@ export function Composer({ onSend }) {
   )
 }
 `,
-  "/components/Composer/styles.module.css": `.composer {
-  position: relative;
+  },
+  "/components/Composer/styles.module.css": {
+    hidden: true,
+    code: `.composer {
+  position: sticky;
+  bottom: 24px;
   border: 1px solid #ccc;
   border-radius: 24px;
-  padding: 8px 12px;
+  padding: 4px 12px;
+  background: white;
 }
 
 .composer:focus-within {
@@ -121,11 +116,12 @@ export function Composer({ onSend }) {
 .textarea {
   display: block;
   width: 100%;
+  field-sizing: content; /* grows with the text, up to max-height */
   max-height: 160px;
-  padding: 4px 40px 4px 4px;
+  padding: 4px 36px 4px 4px;
   font-size: 16px;
   font-family: inherit;
-  line-height: 1.5;
+  line-height: 24px;
   border: none;
   outline: none;
   resize: none;
@@ -133,12 +129,16 @@ export function Composer({ onSend }) {
   background: transparent;
 }
 
+.textarea::placeholder {
+  font-size: 14px;
+}
+
 .button {
   position: absolute;
-  right: 8px;
-  bottom: 8px;
-  width: 32px;
-  height: 32px;
+  right: 6px;
+  bottom: 6px;
+  width: 28px;
+  height: 28px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -153,18 +153,25 @@ export function Composer({ onSend }) {
   background: #333;
 }
 `,
-  "/components/Bubble/index.js": `import styles from "./styles.module.css"
+  },
+  "/components/Bubble/index.js": {
+    readOnly: true,
+    code: `import styles from "./styles.module.css"
 
 export function Bubble({ type = "agent", children }) {
   return <div className={\`\${styles.bubble} \${styles[type]}\`}>{children}</div>
 }
 `,
-  "/components/Bubble/styles.module.css": `.bubble {
+  },
+  "/components/Bubble/styles.module.css": {
+    hidden: true,
+    code: `.bubble {
   max-width: 75%;
   width: fit-content;
   padding: 8px 16px;
   border-radius: 16px;
   font-size: 16px;
+  line-height: 24px;
   white-space: pre-wrap;
   overflow-wrap: anywhere;
 }
@@ -173,15 +180,20 @@ export function Bubble({ type = "agent", children }) {
   margin-left: auto;
   background: #007aff;
   color: white;
+  border-bottom-right-radius: 0;
 }
 
 .agent {
   margin-right: auto;
   background: #e5e5ea;
   color: black;
+  border-bottom-left-radius: 0;
 }
 `,
-  "/styles.css": `* {
+  },
+  "/styles.css": {
+    hidden: true,
+    code: `* {
   box-sizing: border-box;
 }
 
@@ -207,6 +219,7 @@ body {
   gap: 8px;
 }
 `,
+  },
   "/emoji-api.js": {
     readOnly: true,
     code: `const EMOJIS = [
@@ -269,9 +282,6 @@ export function Exercise({ className }: { className?: string }) {
         customSetup={{ dependencies: { "lucide-react": "^1.14.0" } }}
         options={{
           activeFile: "/App.js",
-          // Composer, Bubble and the stylesheets still run, they're just kept
-          // out of the tabs so students only see the files they work with.
-          visibleFiles: ["/App.js", "/emoji-api.js"],
         }}
       >
         <SandpackPersistence

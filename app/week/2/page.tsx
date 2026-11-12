@@ -56,9 +56,8 @@ export default function Week2Page() {
             takes the box’s width, height, and depth.{" "}
             <code>MeshBasicMaterial</code> takes an options object. Here it’s
             just a <code>color</code>, which can be a hex number (
-            <code>0x0000ff</code>), a hex string (
-            <code>&apos;#2563eb&apos;</code>), or a name (
-            <code>&apos;blue&apos;</code>).
+            <code>0x0000ff</code>), a hex string (<code>{"'#2563eb'"}</code>),
+            or a name (<code>{"'blue'"}</code>).
           </p>
           <p>
             One thing to remember: add the mesh to the scene, or it won’t appear

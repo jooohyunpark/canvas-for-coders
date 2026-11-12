@@ -158,7 +158,7 @@ export default function Week1Page() {
 
             <H2>Setting up a class project</H2>
             <p>
-              We&rsquo;ll use <Link href="https://vite.dev">Vite</Link>,{" "}
+              We’ll use <Link href="https://vite.dev">Vite</Link>,{" "}
               <Link href="https://github.com">GitHub</Link>, and{" "}
               <Link href="https://vercel.com">Vercel</Link> throughout the
               class. Commit your work each week to track how your project
@@ -269,8 +269,8 @@ const d = a.distanceTo(b);
             <H3>Colors</H3>
             <p>
               <code>Color</code> accepts a CSS name, a hex string, a JavaScript
-              hex literal, or three numbers in the range 0&ndash;1. Three.js
-              stores it as floats so the GPU can blend between values.
+              hex literal, or three numbers in the range 0–1. Three.js stores it
+              as floats so the GPU can blend between values.
             </p>
             <CodeBlock
               code={`const color1 = new THREE.Color("coral")

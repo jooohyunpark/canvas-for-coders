@@ -47,19 +47,18 @@ export default function Week5Page() {
 
           <H2>Concept</H2>
           <p>
-            So far we&apos;ve covered Three.js (geometries, materials, meshes,
+            So far we’ve covered Three.js (geometries, materials, meshes,
             lights, and a manual render loop) and React, where components
             describe the UI for the current state and keep the screen in sync.
             React Three Fiber (R3F) is the bridge: you write a Three.js scene as
             JSX, the way you write any React component.
           </p>
           <p>
-            R3F isn&apos;t a new 3D engine. It builds real Three.js objects
-            underneath: a <code>&lt;mesh&gt;</code> is a{" "}
-            <code>new THREE.Mesh()</code>, a <code>&lt;boxGeometry&gt;</code> is
-            a <code>new THREE.BoxGeometry()</code>. Everything from the past
-            weeks still applies, and the full Three.js API is there when you
-            need it.
+            R3F isn’t a new 3D engine. It builds real Three.js objects
+            underneath: a <code>{"<mesh>"}</code> is a{" "}
+            <code>new THREE.Mesh()</code>, a <code>{"<boxGeometry>"}</code> is a{" "}
+            <code>new THREE.BoxGeometry()</code>. Everything from the past weeks
+            still applies, and the full Three.js API is there when you need it.
           </p>
           <p>
             The payoff is the same principle from React. There,{" "}
@@ -67,8 +66,8 @@ export default function Week5Page() {
             describe what the scene should contain, and R3F creates, updates,
             and removes the objects to match. A component still takes props,
             holds state, and composes with others, only now it returns meshes,
-            lights, and groups instead of <code>&lt;div&gt;</code>s. That&apos;s
-            the idea this week: React components, in space.
+            lights, and groups instead of <code>{"<div>"}</code>s. That’s the
+            idea this week: React components, in space.
           </p>
 
           <H2>Setting up</H2>
@@ -102,15 +101,15 @@ export default function Week5Page() {
             <Link href="https://github.com/pmndrs/react-spring">
               @react-spring/three
             </Link>{" "}
-            are helpers we&apos;ll reach for later.
+            are helpers we’ll reach for later.
           </p>
           <p>
             Everything in R3F starts with one component:{" "}
-            <code>&lt;Canvas&gt;</code>. In plain Three.js, every sketch opened
+            <code>{"<Canvas>"}</code>. In plain Three.js, every sketch opened
             the same way: create a <code>WebGLRenderer</code> and a{" "}
             <code>PerspectiveCamera</code>, size them to the window, append the
-            canvas, and start an animation loop. <code>&lt;Canvas&gt;</code>{" "}
-            does all of that for you.
+            canvas, and start an animation loop. <code>{"<Canvas>"}</code> does
+            all of that for you.
           </p>
           <CodeBlock
             code={`import { Canvas } from "@react-three/fiber"
@@ -125,18 +124,18 @@ export default function App() {
             lang="jsx"
           />
           <p>
-            It renders a real <code>&lt;canvas&gt;</code> that fills its parent
+            It renders a real <code>{"<canvas>"}</code> that fills its parent
             and wires up the scene, camera, renderer, and loop behind it.
             Anything you nest inside becomes part of the 3D scene, not the DOM:
-            from here on, the tags you write (<code>&lt;mesh&gt;</code>,{" "}
-            <code>&lt;ambientLight&gt;</code>, and so on) are Three.js objects,
+            from here on, the tags you write (<code>{"<mesh>"}</code>,{" "}
+            <code>{"<ambientLight>"}</code>, and so on) are Three.js objects,
             not HTML. To size the scene, size that parent container, the way you
             would any other element.
           </p>
 
           <H2>First R3F scene</H2>
           <p>
-            An empty <code>&lt;Canvas&gt;</code> renders nothing. The smallest
+            An empty <code>{"<Canvas>"}</code> renders nothing. The smallest
             thing worth looking at is a <em>mesh</em>: a shape (its geometry)
             wrapped in a surface (its material). In R3F a mesh is a component
             with two children, one for each part.
@@ -183,8 +182,8 @@ export default function App() {
           <H3>Same scene, both ways</H3>
           <p>
             Here is a lit blue cube written both ways: same geometry, same
-            material, same lights. The Three.js version is what you&apos;ve
-            written so far; the R3F version expresses it as a component.
+            material, same lights. The Three.js version is what you’ve written
+            so far; the R3F version expresses it as a component.
           </p>
           <Tabs defaultValue="r3f">
             <TabsList variant="line">
@@ -299,7 +298,7 @@ function Scene() {
             <ComponentsScene />
           </Block>
 
-          <H2>State &amp; interaction</H2>
+          <H2>State & interaction</H2>
           <p>
             You already know this loop: a click updates state, and the UI
             re-renders to match. The only difference here is that what changes
@@ -308,7 +307,7 @@ function Scene() {
             <code>onPointerOut</code>) and handles the raycasting for you.
           </p>
           <p>
-            Here&apos;s a counter-style example in 3D, reusing the same{" "}
+            Here’s a counter-style example in 3D, reusing the same{" "}
             <code>Box</code> from before: click a cube to grow it, hover to
             highlight it.
           </p>
@@ -351,17 +350,16 @@ function Scene() {
             <InteractionScene />
           </Block>
           <p>
-            It&apos;s the same pattern you already know. <code>useState</code>{" "}
-            holds the values, the handlers update them, and because{" "}
-            <code>scale</code> and <code>color</code> are just props, the mesh
-            re-renders to match. Each cube keeps its own state, so clicking one
-            grows only that cube.
+            It’s the same pattern you already know. <code>useState</code> holds
+            the values, the handlers update them, and because <code>scale</code>{" "}
+            and <code>color</code> are just props, the mesh re-renders to match.
+            Each cube keeps its own state, so clicking one grows only that cube.
           </p>
           <p>
             The change is instant, though: the cube jumps to its new size in a
             single frame. That snap is fine for a color, but a change in scale
-            reads better when it eases into place. That&apos;s where
-            react-spring comes in.
+            reads better when it eases into place. That’s where react-spring
+            comes in.
           </p>
 
           <H2>Animating with react-spring</H2>
@@ -372,10 +370,9 @@ function Scene() {
             </Link>{" "}
             takes target values and returns animated ones that travel smoothly
             toward them. To read those moving values, a mesh has to be animated:{" "}
-            <code>&lt;animated.mesh&gt;</code> in place of{" "}
-            <code>&lt;mesh&gt;</code>, and{" "}
-            <code>&lt;animated.meshStandardMaterial&gt;</code> for the material.
-            Here&apos;s the box as a reusable <code>AnimatedBox</code> that
+            <code>{"<animated.mesh>"}</code> in place of <code>{"<mesh>"}</code>
+            , and <code>{"<animated.meshStandardMaterial>"}</code> for the
+            material. Here’s the box as a reusable <code>AnimatedBox</code> that
             eases its scale and color instead of snapping:
           </p>
           <CodeBlock
@@ -431,22 +428,22 @@ function AnimatedBox({ position }) {
           <p>
             <Link href="https://github.com/pmndrs/drei">@react-three/drei</Link>{" "}
             is a community library of ready-made helpers for R3F, still plain
-            R3F underneath, just components and hooks you&apos;d otherwise write
-            yourself. It&apos;s less a thing to memorize than a catalog to
-            browse. Here are the pieces you&apos;ll reach for first.
+            R3F underneath, just components and hooks you’d otherwise write
+            yourself. It’s less a thing to memorize than a catalog to browse.
+            Here are the pieces you’ll reach for first.
           </p>
 
           <H3>Scene basics</H3>
           <p>
             drei gives you drop-in components for the parts every scene needs.{" "}
-            <code>&lt;OrbitControls /&gt;</code> makes a scene explorable: drag
-            to orbit, scroll to zoom.{" "}
-            <code>&lt;PerspectiveCamera makeDefault /&gt;</code> lets you place
-            the camera as a component instead of a <code>&lt;Canvas&gt;</code>{" "}
+            <code>{"<OrbitControls />"}</code> makes a scene explorable: drag to
+            orbit, scroll to zoom.{" "}
+            <code>{"<PerspectiveCamera makeDefault />"}</code> lets you place
+            the camera as a component instead of a <code>{"<Canvas>"}</code>{" "}
             prop (<code>makeDefault</code> tells R3F to render through it). And
-            shape shortcuts like <code>&lt;Box&gt;</code>,{" "}
-            <code>&lt;Sphere&gt;</code>, and <code>&lt;RoundedBox&gt;</code>{" "}
-            bundle mesh and geometry into a single tag for quick prototyping.
+            shape shortcuts like <code>{"<Box>"}</code>,{" "}
+            <code>{"<Sphere>"}</code>, and <code>{"<RoundedBox>"}</code> bundle
+            mesh and geometry into a single tag for quick prototyping.
           </p>
           <CodeBlock
             code={`import { OrbitControls, PerspectiveCamera, Box } from "@react-three/drei"
@@ -481,18 +478,18 @@ function Model() {
 
           <H3>Centering and framing</H3>
           <p>
-            A model you didn&apos;t make rarely arrives ready to show: its
-            origin may sit off-center, and its size is unknown up front. Rather
-            than guess camera and scale values, drei gives you two helpers.
+            A model you didn’t make rarely arrives ready to show: its origin may
+            sit off-center, and its size is unknown up front. Rather than guess
+            camera and scale values, drei gives you two helpers.
           </p>
           <p>
-            <code>&lt;Center&gt;</code> shifts its children so their
-            bounding-box midpoint sits at the origin, fixing off-center models.{" "}
-            <code>&lt;Bounds&gt;</code> measures that box and drives the camera
-            to frame it: <code>fit</code> zooms to fit on load,{" "}
-            <code>clip</code> adjusts the near and far planes so nothing is cut
-            off, <code>observe</code> refits on resize, and <code>margin</code>{" "}
-            sets the breathing room (1 is snug, higher zooms out).
+            <code>{"<Center>"}</code> shifts its children so their bounding-box
+            midpoint sits at the origin, fixing off-center models.{" "}
+            <code>{"<Bounds>"}</code> measures that box and drives the camera to
+            frame it: <code>fit</code> zooms to fit on load, <code>clip</code>{" "}
+            adjusts the near and far planes so nothing is cut off,{" "}
+            <code>observe</code> refits on resize, and <code>margin</code> sets
+            the breathing room (1 is snug, higher zooms out).
           </p>
           <CodeBlock
             code={`import { Bounds, Center } from "@react-three/drei"
@@ -507,16 +504,16 @@ function Model() {
           <p>
             Together, you can drop in almost any model and see it framed without
             tuning a number, exactly how the Voyager below is set up. Pair them
-            with <code>&lt;OrbitControls /&gt;</code> and the camera starts from
+            with <code>{"<OrbitControls />"}</code> and the camera starts from
             that framed view.
           </p>
 
           <H3>Staging</H3>
           <p>
-            <code>&lt;Environment /&gt;</code> lights the whole scene from a
-            preset HDRI: realistic lighting and reflections in one line.
-            It&apos;s often all the lighting a scene needs, and what makes
-            reflective materials actually reflect something.
+            <code>{"<Environment />"}</code> lights the whole scene from a
+            preset HDRI: realistic lighting and reflections in one line. It’s
+            often all the lighting a scene needs, and what makes reflective
+            materials actually reflect something.
           </p>
           <CodeBlock
             code={`import { Environment } from "@react-three/drei"
@@ -533,7 +530,7 @@ function Model() {
             <code>environment</code> in the panel: off, a faint fill leaves it
             flat; on, the HDRI lights it and shows up in its reflections. That
             panel is <Link href="https://github.com/pmndrs/leva">leva</Link>,
-            the R3F ecosystem&apos;s take on lil-gui.
+            the R3F ecosystem’s take on lil-gui.
           </p>
 
           <H3>Worth a browse</H3>
@@ -541,11 +538,11 @@ function Model() {
             drei ships plenty of creative utilities too. The scene below, for
             example, is built from three of them:{" "}
             <Link href="https://drei.docs.pmnd.rs/staging/cloud">
-              <code>&lt;Cloud&gt;</code>
+              <code>{"<Cloud>"}</code>
             </Link>{" "}
             for the puffs,{" "}
             <Link href="https://drei.docs.pmnd.rs/abstractions/gradient-texture">
-              <code>&lt;GradientTexture&gt;</code>
+              <code>{"<GradientTexture>"}</code>
             </Link>{" "}
             for the light spilling from the door, and{" "}
             <Link href="https://drei.docs.pmnd.rs/shaders/mesh-refraction-material">
@@ -583,25 +580,25 @@ function Model() {
           <ul>
             <li>
               <Link href="https://drei.docs.pmnd.rs/abstractions/trail">
-                <code>&lt;Trail&gt;</code>
+                <code>{"<Trail>"}</code>
               </Link>{" "}
               leaves a ribbon behind moving objects.
             </li>
             <li>
               <Link href="https://drei.docs.pmnd.rs/staging/sparkles">
-                <code>&lt;Sparkles&gt;</code>
+                <code>{"<Sparkles>"}</code>
               </Link>{" "}
               scatters points of light.
             </li>
             <li>
               <Link href="https://drei.docs.pmnd.rs/portals/mesh-portal-material">
-                <code>&lt;MeshPortalMaterial&gt;</code>
+                <code>{"<MeshPortalMaterial>"}</code>
               </Link>{" "}
               turns a shape into a window onto another scene.
             </li>
             <li>
               <Link href="https://drei.docs.pmnd.rs/shaders/soft-shadows">
-                <code>&lt;SoftShadows&gt;</code>
+                <code>{"<SoftShadows>"}</code>
               </Link>{" "}
               swaps in soft, realistic contact shadows.
             </li>
@@ -621,11 +618,11 @@ function Model() {
             </li>
             <li>Add a subtle hover animation of your choice.</li>
             <li>
-              Clicking a door animates the scene background to that door&apos;s
+              Clicking a door animates the scene background to that door’s
               color.
             </li>
           </ul>
-          <p>Here&apos;s the example:</p>
+          <p>Here’s the example:</p>
           <Block>
             <Doors />
           </Block>

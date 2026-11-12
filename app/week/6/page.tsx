@@ -28,13 +28,13 @@ export default function Week6Page() {
           <H2>Text</H2>
           <p>
             <Link href="https://drei.docs.pmnd.rs/abstractions/text">
-              <code>&lt;Text&gt;</code>
+              <code>{"<Text>"}</code>
             </Link>{" "}
             renders text as real geometry in the scene. It stays crisp at any
             distance, and you position, rotate, and light it like any mesh. For
             type with real depth,{" "}
             <Link href="https://drei.docs.pmnd.rs/abstractions/text3d">
-              <code>&lt;Text3D&gt;</code>
+              <code>{"<Text3D>"}</code>
             </Link>{" "}
             extrudes each letter from a font file so it catches light like any
             solid object.
@@ -63,7 +63,7 @@ export default function Week6Page() {
             Sometimes you need a real HTML element in the scene: labels,
             tooltips, or buttons.{" "}
             <Link href="https://drei.docs.pmnd.rs/misc/html">
-              <code>&lt;Html&gt;</code>
+              <code>{"<Html>"}</code>
             </Link>{" "}
             pins a DOM element to a point in the scene so it tracks the object
             as the camera moves.
@@ -105,11 +105,11 @@ export default function Week6Page() {
 
           <H3>Interacting with an HTML button</H3>
           <p>
-            Because <code>&lt;Html&gt;</code> renders a real DOM element, you
-            can use a button&apos;s click event to drive the scene. It works
-            like any React control: clicking updates state, and any mesh reading
-            that state re-renders to match with new positions, fresh rotations,
-            a shuffled layout.
+            Because <code>{"<Html>"}</code> renders a real DOM element, you can
+            use a button’s click event to drive the scene. It works like any
+            React control: clicking updates state, and any mesh reading that
+            state re-renders to match with new positions, fresh rotations, a
+            shuffled layout.
           </p>
           <CodeBlock
             code={`function Scene() {
@@ -151,7 +151,7 @@ export default function Week6Page() {
           <H2>Scroll-driven scenes</H2>
           <p>
             <Link href="https://drei.docs.pmnd.rs/controls/scroll-controls">
-              <code>&lt;ScrollControls&gt;</code>
+              <code>{"<ScrollControls>"}</code>
             </Link>{" "}
             makes the area around the canvas scrollable, <code>pages</code>{" "}
             tall, and <code>useScroll</code> tells you where you are in it. Read
@@ -203,13 +203,13 @@ function ScrollCamera() {
           <p>
             <code>useScroll</code> lets you react to the scroll.{" "}
             <Link href="https://drei.docs.pmnd.rs/controls/scroll-controls">
-              <code>&lt;Scroll&gt;</code>
+              <code>{"<Scroll>"}</code>
             </Link>{" "}
             does the moving for you: whatever sits inside travels with the
             scroll, so meshes placed a viewport apart arrive one at a time. Add{" "}
             <code>html</code> and you get a second track, this one real DOM,
-            moving at the same speed. That&apos;s how you keep copy beside the
-            object it describes.
+            moving at the same speed. That’s how you keep copy beside the object
+            it describes.
           </p>
           <CodeBlock
             code={`import { Scroll, ScrollControls } from "@react-three/drei"
@@ -247,9 +247,8 @@ function ScrollCamera() {
           </Block>
           <p>
             Keep in mind that this scroll lives in the container, not the
-            document, so your page can&apos;t drive it. Give a scroll-driven
-            scene the whole screen, or accept a second scroll area inside the
-            page.
+            document, so your page can’t drive it. Give a scroll-driven scene
+            the whole screen, or accept a second scroll area inside the page.
           </p>
 
           <H2>Physics</H2>
@@ -257,9 +256,9 @@ function ScrollCamera() {
             <Link href="https://github.com/pmndrs/react-three-rapier">
               <code>@react-three/rapier</code>
             </Link>{" "}
-            wraps a physics engine as components. <code>&lt;Physics&gt;</code>{" "}
+            wraps a physics engine as components. <code>{"<Physics>"}</code>{" "}
             creates a world and steps it every frame. Anything inside a{" "}
-            <code>&lt;RigidBody&gt;</code> is handed to that world, which writes
+            <code>{"<RigidBody>"}</code> is handed to that world, which writes
             its position and rotation from then on. A dynamic body falls and
             collides. A <code>fixed</code> one collides but never moves, which
             is how you build a floor.
@@ -299,17 +298,17 @@ function Scene() {
             lang="jsx"
           />
           <p>
-            Colliders are the invisible shapes used for physics, and they
-            don&apos;t have to match your visual mesh. Setting{" "}
-            <code>colliders=&quot;cuboid&quot;</code> wraps each letter in a
-            box, so each letter collides as a single block rather than a
-            detailed glyph, reducing hundreds of checks to one. Use{" "}
-            <code>colliders=&quot;hull&quot;</code> for tighter bounds, or add{" "}
-            <code>debug</code> to <code>&lt;Physics&gt;</code> to draw them.
+            Colliders are the invisible shapes used for physics, and they don’t
+            have to match your visual mesh. Setting{" "}
+            <code>{'colliders="cuboid"'}</code> wraps each letter in a box, so
+            each letter collides as a single block rather than a detailed glyph,
+            reducing hundreds of checks to one. Use{" "}
+            <code>{'colliders="hull"'}</code> for tighter bounds, or add{" "}
+            <code>debug</code> to <code>{"<Physics>"}</code> to draw them.
           </p>
           <p>
             In the example below, dropping a letter is just a normal React state
-            update: mounting a <code>&lt;RigidBody&gt;</code> hands it off to
+            update: mounting a <code>{"<RigidBody>"}</code> hands it off to
             gravity.
           </p>
           <Block>
@@ -318,10 +317,10 @@ function Scene() {
 
           <H2>Wrapping up</H2>
           <p>
-            That&apos;s the last of the material. What you have now is enough to
+            That’s the last of the material. What you have now is enough to
             build the thing you sketched back in Week 1: a scene, a reason to
             look at it, and a way to make it interactive. Keep making, and keep
-            sharing what you build. I can&apos;t wait to see where these go.
+            sharing what you build. I can’t wait to see where these go.
           </p>
 
           <hr />
@@ -335,9 +334,9 @@ function Scene() {
               references, code.
             </li>
             <li>
-              Walk us through your approach, what you learned, and where
-              you&apos;re taking it next. We care more about your process than
-              the finished thing.
+              Walk us through your approach, what you learned, and where you’re
+              taking it next. We care more about your process than the finished
+              thing.
             </li>
             <li>
               Drop a link to your project and documentation in the comments.

@@ -9,7 +9,7 @@ import {
 import { useSyncExternalStore, useState } from "react"
 import { useTheme } from "next-themes"
 import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
+import { HoldToReset } from "@/components/site/hold-to-reset"
 import {
   loadSandpackFiles,
   SandpackPersistence,
@@ -260,9 +260,7 @@ export function Exercise({ className }: { className?: string }) {
   return (
     <div className={cn("flex flex-col gap-2", className)}>
       <div className="flex justify-end">
-        <Button variant="outline" size="xs" onClick={handleReset}>
-          Reset
-        </Button>
+        <HoldToReset onReset={handleReset} />
       </div>
       <SandpackProvider
         key={resetKey}

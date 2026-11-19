@@ -1,7 +1,7 @@
 "use client"
 
 import { GradientTexture, OrbitControls } from "@react-three/drei"
-import { Canvas } from "@react-three/fiber"
+import { Canvas, useFrame } from "@react-three/fiber"
 import {
   animated,
   easings,
@@ -32,7 +32,8 @@ type DoorConfig = {
   color: string
 }
 
-function generateDoors(count: number): DoorConfig[] {
+function generateDoors(colors: string[]): DoorConfig[] {
+  const count = colors.length
   const doors: DoorConfig[] = []
   let attempts = 0
   while (doors.length < count && attempts < 500) {
@@ -48,7 +49,7 @@ function generateDoors(count: number): DoorConfig[] {
     doors.push({
       position: [x, 0, z],
       rotation: [0, Math.floor(Math.random() * 4) * (Math.PI / 2), 0],
-      color: DOOR_COLORS[doors.length % DOOR_COLORS.length],
+      color: colors[doors.length],
     })
   }
   return doors
@@ -64,7 +65,11 @@ function DoorComponent({
   rotation,
   color,
   collapse,
-}: DoorConfig & { collapse: SpringValue<number> }) {
+  onSelect,
+}: DoorConfig & {
+  collapse: SpringValue<number>
+  onSelect?: (color: string) => void
+}) {
   const [hovered, setHovered] = useState(false)
   const { scale, opacity } = useSpring({
     scale: (hovered ? [1.2, 1, 1] : [1, 1, 1]) as [number, number, number],
@@ -84,6 +89,14 @@ function DoorComponent({
           rotation={[0, Math.PI, 0]}
           onPointerOver={() => setHovered(true)}
           onPointerOut={() => setHovered(false)}
+          onClick={
+            onSelect &&
+            ((e) => {
+              // Only the nearest door under the pointer should react.
+              e.stopPropagation()
+              onSelect(color)
+            })
+          }
         >
           <planeGeometry args={[WIDTH, HEIGHT]} />
           <meshBasicMaterial color={color} side={THREE.DoubleSide} />
@@ -114,14 +127,33 @@ function DoorComponent({
   )
 }
 
+// Springs scene.background to the last clicked door's color, from black.
+function Background({ color = "#000000" }: { color?: string }) {
+  const { background } = useSpring({
+    background: color,
+    config: { duration: 700, easing: easings.easeOutCubic },
+  })
+
+  useFrame(({ scene }) => {
+    if (!(scene.background instanceof THREE.Color)) {
+      scene.background = new THREE.Color()
+    }
+    scene.background.set(background.get())
+  })
+
+  return null
+}
+
 function Scene({
   doors,
   generation,
   collapse,
+  onSelect,
 }: {
   doors: DoorConfig[]
   generation: number
   collapse: SpringValue<number>
+  onSelect?: (color: string) => void
 }) {
   return (
     <>
@@ -130,6 +162,7 @@ function Scene({
           key={`${generation}-${i}`}
           {...door}
           collapse={collapse}
+          onSelect={onSelect}
         />
       ))}
     </>
@@ -138,15 +171,24 @@ function Scene({
 
 export function Doors({
   showRefreshButton = false,
+  interactiveBackground = false,
+  colors = DOOR_COLORS,
   className,
 }: {
   showRefreshButton?: boolean
+  interactiveBackground?: boolean
+  // One door per color. Placement can rarely fit fewer doors than colors, and
+  // the last colors are the ones dropped, so list must-have colors first.
+  colors?: string[]
   className?: string
 }) {
+  // Last clicked door's color; undefined until the first click.
+  const [background, setBackground] = useState<string>()
+
   // Regenerating swaps in a fresh random layout; `generation` re-keys the doors
   // so their hover springs start clean at the new positions.
   const [{ doors, generation }, setScene] = useState(() => ({
-    doors: generateDoors(3),
+    doors: generateDoors(colors),
     generation: 0,
   }))
 
@@ -160,7 +202,7 @@ export function Doors({
       to: async (next) => {
         await next({ scale: 0 })
         setScene(({ generation }) => ({
-          doors: generateDoors(3),
+          doors: generateDoors(colors),
           generation: generation + 1,
         }))
         await next({ scale: 1 })
@@ -194,7 +236,13 @@ export function Doors({
           enableZoom={false}
         />
 
-        <Scene doors={doors} generation={generation} collapse={collapse} />
+        {interactiveBackground && <Background color={background} />}
+        <Scene
+          doors={doors}
+          generation={generation}
+          collapse={collapse}
+          onSelect={interactiveBackground ? setBackground : undefined}
+        />
       </Canvas>
 
       {showRefreshButton && (

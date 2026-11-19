@@ -627,7 +627,10 @@ function Model() {
           </ul>
           <p>Here’s the example:</p>
           <Block>
-            <Doors />
+            <Doors
+              interactiveBackground
+              colors={["#000000", "#00ff00", "#0000ff", "#ff0000"]}
+            />
           </Block>
         </Article>
 

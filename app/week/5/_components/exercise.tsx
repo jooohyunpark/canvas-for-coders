@@ -19,16 +19,19 @@ const noopSubscribe = () => () => {}
 const STORAGE_KEY = "cfc-week5-exercise"
 
 const defaultFiles = {
-  "/App.js": `import { Canvas } from "@react-three/fiber"
+  "/App.js": `import { useState } from "react"
+import { Canvas } from "@react-three/fiber"
 import { OrbitControls, OrthographicCamera } from "@react-three/drei"
 import "./styles.css"
 import { Door } from "./Door"
 import { Background } from "./Background"
 
 function Scene() {
+  const [background, setBackground] = useState("black")
+
   return (
     <>
-      <Background />
+      <Background color={background} />
       <Door />
     </>
   )
@@ -56,11 +59,30 @@ export default function App() {
   )
 }
 `,
-  "/Background.js": `export function Background({ color = "black" }) {
-  return <color attach="background" args={[color]} />
+  "/Background.js": `import * as THREE from "three"
+import { animated, easings, useSpring } from "@react-spring/three"
+
+export function Background({ color = "black" }) {
+  const { r, g, b } = new THREE.Color(color)
+  const spring = useSpring({
+    r,
+    g,
+    b,
+    config: { duration: 500, easing: easings.easeOutCubic },
+  })
+
+  return (
+    <animated.color
+      attach="background"
+      r={spring.r}
+      g={spring.g}
+      b={spring.b}
+    />
+  )
 }
 `,
-  "/Door.js": `import { GradientTexture } from "@react-three/drei"
+  "/Door.js": `import { useState } from "react"
+import { GradientTexture } from "@react-three/drei"
 import * as THREE from "three"
 // import { animated, useSpring } from "@react-spring/three"
 
@@ -68,17 +90,43 @@ const WIDTH = 1
 const HEIGHT = WIDTH * 1.618
 const SPILL_LENGTH = HEIGHT * 2.5
 
-export function Door() {
+export function Door({
+  color = "white",
+  position = [0, 0, 0],
+  rotation = [0, 0, 0],
+  onSelect,
+  ...props
+}) {
+  const [hovered, setHovered] = useState(false)
+
+  const hover = (isHovered) => (event) => {
+    event.stopPropagation()
+    setHovered(isHovered)
+    document.body.style.cursor = isHovered ? "pointer" : "auto"
+  }
+
   return (
-    <group>
-      <mesh position={[0, HEIGHT / 2, 0]}>
+    <group
+      position={position}
+      rotation={rotation}
+      onPointerOver={hover(true)}
+      onPointerOut={hover(false)}
+      {...props}
+    >
+      <mesh
+        position={[0, HEIGHT / 2, 0]}
+        onClick={(e) => {
+          e.stopPropagation()
+          onSelect?.(color)
+        }}
+      >
         <planeGeometry args={[WIDTH, HEIGHT]} />
-        <meshBasicMaterial color="white" side={THREE.DoubleSide} />
+        <meshBasicMaterial color={color} side={THREE.DoubleSide} />
       </mesh>
 
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, SPILL_LENGTH / 2]}>
         <planeGeometry args={[WIDTH, SPILL_LENGTH]} />
-        <meshBasicMaterial color="white" side={THREE.DoubleSide} transparent opacity={0.5}>
+        <meshBasicMaterial color={color} side={THREE.DoubleSide} transparent opacity={0.5}>
           {/* alphaMap: GradientTexture runs colors through
               THREE.Color, which strips alpha */}
           <GradientTexture

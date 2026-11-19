@@ -84,7 +84,7 @@ export function Background({ color = "black" }) {
   "/Door.js": `import { useState } from "react"
 import { GradientTexture } from "@react-three/drei"
 import * as THREE from "three"
-// import { animated, useSpring } from "@react-spring/three"
+import { animated, useSpring } from "@react-spring/three"
 
 const WIDTH = 1
 const HEIGHT = WIDTH * 1.618
@@ -113,7 +113,7 @@ export function Door({
       onPointerOut={hover(false)}
       {...props}
     >
-      <mesh
+      <animated.mesh
         position={[0, HEIGHT / 2, 0]}
         onClick={(e) => {
           e.stopPropagation()
@@ -122,9 +122,9 @@ export function Door({
       >
         <planeGeometry args={[WIDTH, HEIGHT]} />
         <meshBasicMaterial color={color} side={THREE.DoubleSide} />
-      </mesh>
+      </animated.mesh>
 
-      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, SPILL_LENGTH / 2]}>
+      <animated.mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, SPILL_LENGTH / 2]}>
         <planeGeometry args={[WIDTH, SPILL_LENGTH]} />
         <meshBasicMaterial color={color} side={THREE.DoubleSide} transparent opacity={0.5}>
           {/* alphaMap: GradientTexture runs colors through
@@ -135,7 +135,7 @@ export function Door({
             colors={["white", "black"]}
           />
         </meshBasicMaterial>
-      </mesh>
+      </animated.mesh>
     </group>
   )
 }

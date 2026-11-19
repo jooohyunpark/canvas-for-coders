@@ -92,9 +92,11 @@ export function Door() {
   )
 }
 `,
-  "/styles.css": `* {
+  "/styles.css": {
+    hidden: true,
+    code: `* {
   margin: 0;
-  padding:0;
+  padding: 0;
 }
 
 #app {
@@ -102,6 +104,7 @@ export function Door() {
   height: 100vh;
 }
 `,
+  },
 }
 
 export function Exercise({ className }: { className?: string }) {

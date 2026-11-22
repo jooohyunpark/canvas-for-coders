@@ -4,3 +4,4 @@ allowBuilds:
 
 overrides:
   "@tailwindcss/typography>postcss-selector-parser": ^6.1.5
+  "@ts-morph/common>minimatch": ^11.0.1

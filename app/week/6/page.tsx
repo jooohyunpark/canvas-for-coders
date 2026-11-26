@@ -36,8 +36,8 @@ export default function Week6Page() {
             <Link href="https://drei.docs.pmnd.rs/abstractions/text3d">
               <code>{"<Text3D>"}</code>
             </Link>{" "}
-            extrudes each letter from a font file so it catches light like any
-            solid object.
+            extrudes each letter from a font file so it catches light the way a
+            solid object does.
           </p>
           <CodeBlock
             code={`import { Text } from "@react-three/drei"
@@ -108,8 +108,8 @@ export default function Week6Page() {
             Because <code>{"<Html>"}</code> renders a real DOM element, you can
             use a button’s click event to drive the scene. It works like any
             React control: clicking updates state, and any mesh reading that
-            state re-renders to match with new positions, fresh rotations, a
-            shuffled layout.
+            state re-renders to match: new positions, new rotations, a shuffled
+            layout.
           </p>
           <CodeBlock
             code={`function Scene() {
@@ -299,11 +299,10 @@ function Scene() {
           />
           <p>
             Colliders are the invisible shapes used for physics, and they don’t
-            have to match your visual mesh. Setting{" "}
-            <code>{'colliders="cuboid"'}</code> wraps each letter in a box, so
-            each letter collides as a single block rather than a detailed glyph,
-            reducing hundreds of checks to one. Use{" "}
-            <code>{'colliders="hull"'}</code> for tighter bounds, or add{" "}
+            have to match your visual mesh. <code>{'colliders="cuboid"'}</code>{" "}
+            (the default) wraps each letter in a box, so it collides as a single
+            block rather than a detailed glyph, which is far cheaper to compute.
+            Use <code>{'colliders="hull"'}</code> for tighter bounds, or add{" "}
             <code>debug</code> to <code>{"<Physics>"}</code> to draw them.
           </p>
           <p>
